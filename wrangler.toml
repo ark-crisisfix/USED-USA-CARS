@@ -2,6 +2,7 @@
 # After `npm run build`, HTML/CSS/JS are in ./out (including index.html at root).
 #
 # Dashboard (Workers & Pages → your project → Settings → Builds):
+#   Production branch:    main   ← must match the branch you push to (NOT master if you only push main)
 #   Framework preset: None  ← important (do NOT use "Next.js" preset for this repo)
 #   Build command:        npm run build
 #   Build output directory: out   ← ONLY the word "out" (no "/", no spaces — "/ out" → 404)
