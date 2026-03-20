@@ -2,6 +2,14 @@
 
 Next.js static site (App Router) with `output: 'export'`.
 
+## Languages
+
+- **English (default):** site root, e.g. `/`, `/catalog`, `/contact`
+- **Russian:** prefix `/ru`, e.g. `/ru`, `/ru/catalog`, `/ru/contact`
+- **Switcher:** header (EN | RU) keeps the same page in the other language when a Russian route exists.
+
+Copy lives in `lib/dictionaries.ts` (`en` / `ru`).
+
 ## Deploy (Cloudflare Pages / Netlify)
 
 - **Framework preset:** `None` (not “Next.js”) — this project is a **static export**; the Next preset uses another pipeline and often yields **404 on `/`**.
