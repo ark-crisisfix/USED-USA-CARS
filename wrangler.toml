@@ -4,10 +4,10 @@
 # Dashboard (Workers & Pages → your project → Settings → Builds):
 #   Framework preset: None  ← important (do NOT use "Next.js" preset for this repo)
 #   Build command:        npm run build
-#   Build output directory: out
+#   Build output directory: out   ← ONLY the word "out" (no "/", no spaces — "/ out" → 404)
 #
 # If preset is "Next.js", Cloudflare may run a different pipeline and ignore ./out → site 404.
 
 name = "used-usa-cars"
 compatibility_date = "2025-03-20"
-pages_build_output_dir = "./out"
+pages_build_output_dir = "out"
