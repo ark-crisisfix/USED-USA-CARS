@@ -1,0 +1,35 @@
+[
+  {
+    "lot_id": "12345678",
+    "make": "Toyota",
+    "model": "Camry SE",
+    "year": 2022,
+    "mileage": "15,000",
+    "damage": "Front End",
+    "auction_price": 4500,
+    "estimated_total": 8500,
+    "image": "https://placehold.co/600x400/blue/white?text=Toyota+Camry+2022"
+  },
+  {
+    "lot_id": "87654321",
+    "make": "Honda",
+    "model": "CR-V EX",
+    "year": 2021,
+    "mileage": "32,000",
+    "damage": "Rear End",
+    "auction_price": 6200,
+    "estimated_total": 10800,
+    "image": "https://placehold.co/600x400/red/white?text=Honda+CR-V+2021"
+  },
+  {
+    "lot_id": "55555555",
+    "make": "Tesla",
+    "model": "Model 3 Long Range",
+    "year": 2023,
+    "mileage": "8,000",
+    "damage": "Side",
+    "auction_price": 12000,
+    "estimated_total": 18500,
+    "image": "https://placehold.co/600x400/gray/white?text=Tesla+Model+3+2023"
+  }
+]
