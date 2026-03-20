@@ -1,0 +1,13 @@
+# Cloudflare Pages — static export (Next.js `output: 'export'`)
+# After `npm run build`, HTML/CSS/JS are in ./out (including index.html at root).
+#
+# Dashboard (Workers & Pages → your project → Settings → Builds):
+#   Framework preset: None  ← important (do NOT use "Next.js" preset for this repo)
+#   Build command:        npm run build
+#   Build output directory: out
+#
+# If preset is "Next.js", Cloudflare may run a different pipeline and ignore ./out → site 404.
+
+name = "used-usa-cars"
+compatibility_date = "2025-03-20"
+pages_build_output_dir = "./out"
