@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
+    "export": "node -e \"const fs=require('fs');if(!fs.existsSync('out')){console.error('Run npm run build first — static files go to out/ (output: export)');process.exit(1)}console.log('Static export ready in out/')\"",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.2.0",
+    "next": "15.5.14",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -20,7 +20,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.27",
     "eslint": "^8",
-    "eslint-config-next": "15.2.0",
+    "eslint-config-next": "15.5.14",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
