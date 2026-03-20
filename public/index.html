@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Used Cars from USA — Quick MVP</title>
+    <meta name="description" content="Buy used cars from USA auctions (Copart/IAAI) + delivery to Ukraine/UAE" />
+    <style>
+      body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f9fa; color:#1f2937; }
+      .container { max-width:900px; margin: 0 auto; padding:35px; }
+      h1 { margin-top:0; color:#111827; }
+      .hero { background:#ffffff; border-radius:12px; box-shadow:0 8px 30px rgba(15, 23, 42, 0.08); padding:30px; }
+      .cards { display:grid; grid-template-columns:1fr; gap:14px; margin-top:24px; }
+      .card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:18px; }
+      .cta { display:inline-block; margin-top:14px; background:#2563eb; color:#fff; border:none; border-radius:8px; padding:10px 16px; text-decoration:none; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <h1>Used Cars from USA – Save Up to 40%</h1>
+        <p>Direct from auctions (Copart, IAAI) with full delivery to Ukraine and UAE.</p>
+        <a class="cta" href="#catalog">Browse cars</a>
+      </div>
+
+      <section id="trust" class="cards">
+        <div class="card"><strong>500+ cars sourced</strong><br>Proven auction sourcing and shipping.</div>
+        <div class="card"><strong>Avg savings 20–40%</strong><br>Skip dealer markups, buy direct.</div>
+        <div class="card"><strong>Delivery 4–10 weeks</strong><br>Transparent logistics and tracking.</div>
+      </section>
+
+      <section id="catalog" class="cards" style="margin-top: 16px;">
+        <div class="card"><strong>CAR 1</strong><br>Toyota Camry 2017, salvage, auction price $6,400, estimated total $9,200.</div>
+        <div class="card"><strong>CAR 2</strong><br>BMW X5 2018, clean title, auction price $12,500, estimated total $17,300.</div>
+      </section>
+
+      <section class="cards" style="margin-top:16px;">
+        <div class="card">
+          <h3>Import to Ukraine</h3>
+          <p>Salvage and repair workflow. Customs support from office to delivery.</p>
+        </div>
+        <div class="card">
+          <h3>Import to UAE</h3>
+          <p>Clean-title ready-to-drive cars. Customs, registration support, port delivery.</p>
+        </div>
+      </section>
+
+      <section id="form" class="card" style="margin-top:16px;">
+        <h3>Request a quote</h3>
+        <form action="#" method="post">
+          <label>Full Name<br><input name="name" type="text" required style="width:100%;padding:8px;margin-top:4px;margin-bottom:8px;"></label>
+          <label>Phone / WhatsApp / Telegram<br><input name="phone" type="text" required style="width:100%;padding:8px;margin-top:4px;margin-bottom:8px;"></label>
+          <label>Budget<br><input name="budget" type="text" style="width:100%;padding:8px;margin-top:4px;margin-bottom:8px;"></label>
+          <label>Destination<br>
+            <select name="destination" style="width:100%;padding:8px;margin-top:4px;margin-bottom:8px;">
+              <option value="ukraine">Ukraine</option>
+              <option value="uae">UAE</option>
+            </select>
+          </label>
+          <button class="cta" type="submit">Send request</button>
+        </form>
+      </section>
+
+      <footer style="margin-top:28px;color:#6b7280;font-size:14px;">MVP page generated instantly. Next step: full Next.js site with catalog routes and SEO landing pages.</footer>
+    </div>
+  </body>
+</html>
