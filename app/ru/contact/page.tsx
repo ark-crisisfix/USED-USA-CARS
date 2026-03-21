@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import ContactPage from "@/components/pages/ContactPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Контакты | Used Cars USA",
-  description: "Связь с командой: расчёт, вопросы по аукционам и доставке.",
+  title: metaTitleWithSeoKeywords("Контакты"),
+  description: "NorthAm Cars: связь, расчёт, аукционы и доставка — northamcars.com.",
 };
 
 export default function Page() {

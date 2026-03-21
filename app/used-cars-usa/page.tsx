@@ -1,9 +1,10 @@
 import UsedCarsUsaPage from "@/components/pages/UsedCarsUsaPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Used Cars from USA - Buy Direct from Auctions",
+  title: metaTitleWithSeoKeywords("Used cars from USA — buy from US auctions"),
   description:
-    "Learn how to buy cheap used cars from USA auctions (Copart, IAAI). Direct access, huge savings, and full delivery support.",
+    "NorthAm Cars: buy used cars from USA auctions (Copart, IAAI). Direct access, savings, and delivery — northamcars.com.",
 };
 
 export default function Page() {

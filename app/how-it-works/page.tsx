@@ -1,9 +1,10 @@
 import HowItWorksPage from "@/components/pages/HowItWorksPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "How It Works - Buying Cars from US Auctions",
+  title: metaTitleWithSeoKeywords("How it works — buying from US auctions"),
   description:
-    "Learn the step-by-step process of buying a car from Copart or IAAI with our full-service export company.",
+    "NorthAm Cars: step-by-step Copart & IAAI buying, export, and delivery — northamcars.com.",
 };
 
 export default function Page() {

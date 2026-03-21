@@ -1,9 +1,10 @@
 import UsedCarsCanadaPage from "@/components/pages/UsedCarsCanadaPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Used Cars from Canada - Direct Auction Access",
+  title: metaTitleWithSeoKeywords("Used cars from Canada — auction access"),
   description:
-    "Buy cheap used cars from Canadian auto auctions. Metric dashboards, winter-ready vehicles, and direct export services.",
+    "NorthAm Cars: Canadian auction cars, export, metric specs — northamcars.com.",
 };
 
 export default function Page() {

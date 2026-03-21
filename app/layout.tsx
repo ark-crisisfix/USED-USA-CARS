@@ -3,13 +3,14 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import HtmlLang from '@/components/HtmlLang'
+import { SITE_BRAND, SITE_URL, SEO_KEYWORD_BRAND } from '@/lib/siteMeta'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
 export const metadata: Metadata = {
-  title: 'Used Cars from USA with Auction Access & International Delivery',
-  description: 'Save up to 40% buying used cars directly from US auctions (Copart, IAAI) with full international delivery to Ukraine and UAE.',
+  title: `${SITE_BRAND} — US auction access & international delivery`,
+  description: `${SITE_BRAND} · ${SITE_URL.replace('https://', '')}. Used cars from USA auctions (Copart, IAAI) with international delivery — Ukraine, UAE, and more. Save up to 40%.`,
 }
 
 export default function RootLayout({

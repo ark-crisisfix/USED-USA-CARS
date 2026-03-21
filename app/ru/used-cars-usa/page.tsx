@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import UsedCarsUsaPage from "@/components/pages/UsedCarsUsaPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Авто из США с аукциона | Used Cars USA",
+  title: metaTitleWithSeoKeywords("Авто из США с аукциона"),
   description:
-    "Подержанные авто из США: Copart, IAAI, доставка в Украину и ОАЭ. Экономия и прозрачные условия.",
+    "NorthAm Cars: подержанные авто из США (Copart, IAAI), доставка — northamcars.com.",
 };
 
 export default function Page() {

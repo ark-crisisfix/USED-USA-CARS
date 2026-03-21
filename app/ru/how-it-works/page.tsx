@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import HowItWorksPage from "@/components/pages/HowItWorksPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Как купить авто с аукциона США | Used Cars USA",
-  description: "Пошагово: договор, ставки, оплата, доставка и таможня.",
+  title: metaTitleWithSeoKeywords("Как купить авто с аукциона США"),
+  description: "NorthAm Cars: договор, ставки, оплата, доставка — northamcars.com.",
 };
 
 export default function Page() {

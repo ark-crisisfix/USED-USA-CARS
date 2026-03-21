@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import ExportLandingPage from "@/components/pages/ExportLandingPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Импорт авто из США в Украину | Used Cars USA",
-  description: "Выкуп с Copart/IAAI, доставка, таможня и ремонт под ключ.",
+  title: metaTitleWithSeoKeywords("Импорт авто из США в Украину"),
+  description: "NorthAm Cars: Copart/IAAI — доставка в Украину, таможня — northamcars.com.",
 };
 
 export default function Page() {

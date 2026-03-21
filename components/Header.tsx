@@ -9,14 +9,15 @@ import LanguageSwitcher from "./LanguageSwitcher";
 export default function Header() {
   const pathname = usePathname() || "/";
   const locale = getLocaleFromPath(pathname);
-  const t = getDictionary(locale).nav;
+  const d = getDictionary(locale);
+  const t = d.nav;
   const L = (path: string) => localizePath(path, locale);
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <Link href={L("/")} className="font-bold text-2xl text-blue-600 shrink-0">
-          Used Cars USA
+          {d.site.brand}
         </Link>
         <nav className="hidden md:flex space-x-6 lg:space-x-8">
           <Link href={L("/catalog")} className="text-gray-600 hover:text-blue-600 font-medium">

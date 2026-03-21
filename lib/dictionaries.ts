@@ -3,6 +3,9 @@ import type { Locale } from './i18n'
 /** Site copy — keep `en` and `ru` keys in sync */
 export const dictionaries = {
   en: {
+    site: {
+      brand: 'NorthAm Cars',
+    },
     switcher: { en: 'EN', ru: 'RU', aria: 'Language' },
     nav: {
       catalog: 'Catalog',
@@ -15,8 +18,9 @@ export const dictionaries = {
       getQuote: 'Get Quote',
     },
     footer: {
-      brand: 'Used Cars USA',
-      tagline: 'Buy cars directly from US auctions with global delivery. Save up to 40%.',
+      brand: 'NorthAm Cars',
+      tagline:
+        'northamcars.com — US auction access (Copart, IAAI) with global delivery. Save up to 40%.',
       services: 'Services',
       auctionCatalog: 'Auction Catalog',
       deliveryUa: 'Delivery to Ukraine',
@@ -64,9 +68,9 @@ export const dictionaries = {
       mi: 'mi',
     },
     home: {
-      heroTitle: 'Used Cars from USA – Save Up to 40%',
+      heroTitle: 'Save up to 40% on US auction cars',
       heroSub:
-        'Direct from auctions (Copart, IAAI) with full delivery to Ukraine and UAE.',
+        'NorthAm Cars — direct from Copart & IAAI with delivery to Ukraine, UAE, and worldwide.',
       findMyCar: 'Find My Car',
       browseCars: 'Browse Cars',
       trustCars: 'Cars Sourced',
@@ -108,9 +112,9 @@ export const dictionaries = {
       leadFormTitle: 'Get a Free Estimate',
     },
     catalog: {
-      title: 'Used Cars Catalog',
+      title: 'Auction car catalog',
       subtitle:
-        'Browse our selection of cars available at Copart and IAAI auctions. These are examples of what we can source for you.',
+        'NorthAm Cars — example lots from Copart and IAAI we can source for you.',
       lot: 'Lot #',
     },
     car: {
@@ -261,8 +265,8 @@ export const dictionaries = {
     },
     usedCarsUsa: {
       formTitle: 'Get a Free Consultation',
-      h1: 'Used Cars from USA – Buy Direct from Auctions',
-      p1: 'Buying used cars from USA has never been easier or more affordable. With direct access to the largest wholesale auto auctions like Copart and IAAI, buyers worldwide can save up to 40% compared to local dealership prices.',
+      h1: 'US auction cars — buy direct (Copart & IAAI)',
+      p1: 'NorthAm Cars (northamcars.com): buying used cars from USA auctions is straightforward. Direct access to Copart and IAAI — buyers worldwide often save up to 40% vs local retail.',
       h2a: 'Why Buy Cheap Cars from USA?',
       p2: 'The United States auto market is the largest in the world. Millions of vehicles are sold through car auctions USA every year. Many of these vehicles have minor damage, theft recovery status, or simply were traded in. This creates an incredible opportunity for international buyers to acquire high-quality vehicles at a fraction of the cost.',
       li1: 'Massive Inventory: Access to over 300,000 cars daily.',
@@ -287,8 +291,8 @@ export const dictionaries = {
     },
     usedCarsCanada: {
       formTitle: 'Get a Free Consultation',
-      h1: 'Used Cars from Canada – Buy Direct from Auctions',
-      p1: 'Importing used cars from Canada is a hidden gem for many international buyers. With a strong currency exchange rate and excellent vehicle maintenance standards, Canadian auctions offer unique advantages.',
+      h1: 'Canadian auction cars — buy & export',
+      p1: 'NorthAm Cars (northamcars.com): importing used cars from Canadian auctions — strong specs, metric odometers, winter-ready inventory, and export-friendly paperwork.',
       h2a: 'Why Choose Canadian Cars?',
       p2: 'While the US market is larger, the Canadian market offers specific benefits. Many cars come with metric dashboards (km/h and Celsius), making them perfectly suited for European and Middle Eastern markets without costly conversions.',
       li1: 'Metric System Standard: No need to convert speedometers or climate controls.',
@@ -376,6 +380,9 @@ export const dictionaries = {
     },
   },
   ru: {
+    site: {
+      brand: 'NorthAm Cars',
+    },
     switcher: { en: 'EN', ru: 'RU', aria: 'Язык' },
     nav: {
       catalog: 'Каталог',
@@ -388,9 +395,9 @@ export const dictionaries = {
       getQuote: 'Запросить расчёт',
     },
     footer: {
-      brand: 'Used Cars USA',
+      brand: 'NorthAm Cars',
       tagline:
-        'Покупка авто с аукционов США с доставкой по миру. Экономия до 40%.',
+        'northamcars.com — доступ к аукционам США (Copart, IAAI) и доставка по миру. Экономия до 40%.',
       services: 'Услуги',
       auctionCatalog: 'Каталог аукциона',
       deliveryUa: 'Доставка в Украину',
@@ -440,9 +447,9 @@ export const dictionaries = {
       mi: 'миль',
     },
     home: {
-      heroTitle: 'Авто из США – экономия до 40%',
+      heroTitle: 'Экономия до 40% на авто с аукционов США',
       heroSub:
-        'Напрямую с аукционов Copart и IAAI с полной доставкой в Украину и ОАЭ.',
+        'NorthAm Cars — Copart и IAAI с доставкой в Украину, ОАЭ и другие направления.',
       findMyCar: 'Подобрать авто',
       browseCars: 'Смотреть каталог',
       trustCars: 'Авто подобрано',
@@ -484,9 +491,9 @@ export const dictionaries = {
       leadFormTitle: 'Бесплатная оценка',
     },
     catalog: {
-      title: 'Каталог авто из США',
+      title: 'Каталог с аукционов',
       subtitle:
-        'Примеры лотов с Copart и IAAI — такие машины мы можем выкупить для вас.',
+        'NorthAm Cars — примеры лотов Copart и IAAI, которые можем выкупить для вас.',
       lot: 'Лот #',
     },
     car: {
@@ -638,8 +645,8 @@ export const dictionaries = {
     },
     usedCarsUsa: {
       formTitle: 'Бесплатная консультация',
-      h1: 'Автомобили из США – покупка с аукционов',
-      p1: 'Купить подержанный автомобиль из США сегодня проще и выгоднее: прямой доступ к оптовым аукционам Copart и IAAI позволяет экономить до 40% по сравнению с дилерами у себя в стране.',
+      h1: 'Авто с аукционов США — Copart и IAAI',
+      p1: 'NorthAm Cars (northamcars.com): покупка подержанных авто с оптовых аукционов США — прямой доступ к Copart и IAAI, экономия до 40% к рознице у вас в стране.',
       h2a: 'Зачем покупать дёшево в США?',
       p2: 'Рынок США — крупнейший в мире: миллионы машин ежегодно проходят через car auctions USA. Многие лоты — с лёгкими повреждениями, статусом theft recovery или просто trade-in. Это шанс взять качественный автомобиль за долю рыночной цены.',
       li1: 'Огромный выбор: доступ к сотням тысяч лотов ежедневно.',
@@ -664,8 +671,8 @@ export const dictionaries = {
     },
     usedCarsCanada: {
       formTitle: 'Бесплатная консультация',
-      h1: 'Авто из Канады – прямой доступ к аукционам',
-      p1: 'Импорт подержанных авто из Канады — сильный вариант: курс, уход за машинами и метрические приборы часто упрощают экспорт в Европу и на Ближний Восток.',
+      h1: 'Авто с канадских аукционов — выкуп и экспорт',
+      p1: 'NorthAm Cars (northamcars.com): подержанные авто из Канады — метрика, зимняя комплектация, удобный экспорт в Европу и на Ближний Восток.',
       h2a: 'Почему Канада',
       p2: 'Рынок меньше американского, но есть плюсы: км/ч и °C «из коробки», зимняя комплектация, выгодный курс CAD.',
       li1: 'Метрика: не нужно переделывать спидометр и климат.',

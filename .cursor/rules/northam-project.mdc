@@ -1,0 +1,43 @@
+---
+description: Профиль NorthAm Cars (northamcars.com), архитектура и обязательный CHANGELOG
+alwaysApply: true
+---
+
+# NorthAm Cars — контекст для агента
+
+Любая модель/агент **обязаны** опираться на этот профиль; не выдумывать стек и не предлагать SSR/API routes Next.js для лидов без учёта экспорта.
+
+## Продукт и тон
+
+- **Публичный бренд:** NorthAm Cars · **домен:** https://northamcars.com/
+- **«Used Cars USA»** — только SEO-слой (`lib/siteMeta.ts`: `SEO_KEYWORD_BRAND`), не подменять им шапку/подвал/hero.
+- Реальный оператор (аукционы США → доставка), не «пустой агрегатор».
+- **Доверие и конверсия:** блоки Ready Cars, Real Cases, кастомная форма лидов — приоритетны.
+- **Копирайт:** фактично, без фейковых цифр/отзывов; оценки явно помечать (*example estimate* / `is_estimate` в данных).
+- **i18n:** `en` — корень сайта; `ru` — префикс `/ru`. Строки — `lib/dictionaries.ts`, коммерческие заголовки — `lib/commerceCopy.ts`, лейблы формы — `lib/leadFormLabels.ts`. Новые публичные страницы дублировать под `/ru/...` где уже принято в проекте.
+
+## Технический профиль
+
+- **Next.js 15** (App Router), **`output: 'export'`** в `next.config.js` — только статика в **`out/`**.
+- **Деплой:** Cloudflare Pages; preset **None**; output directory ровно **`out`** (см. `README.md`, `wrangler.toml`).
+- **Нет runtime Next API:** лиды — **`POST /api/leads`** через **`functions/api/leads.ts`** (Pages Function), логика в **`lib/leads/handleLeadPost.ts`**.
+- **Данные MVP:** `data/ready-cars.json`, `data/savings-cases.json` — карточки и списки **только из JSON/хелперов** (`lib/ready-cars.ts`, `lib/savings-cases.ts`), не хардкодить ряды карточек в JSX.
+- **Форма:** один компонент **`LeadFormUniversal`** (+ обёртка `LeadForm`); контекст через `formType`, `*_reference_id`, `sourceContext`, honeypot `website`.
+- **Стиль кода:** mobile-first, без тяжёлых библиотек без необходимости; изображения — `next/image` не обязателен при static export (в проекте часто `img`).
+
+## Обязательное ведение CHANGELOG
+
+- Файл: **`CHANGELOG.md`** в корне репозитория.
+- **Каждое значимое изменение**, которое уходит в репозиторий (фича, фикс, ломающее изменение, деплой-релевантное), должно сопровождаться записью в **`## [Unreleased]`** (или при релизе — перенос в версионированную секцию с датой).
+- Формат: **[Keep a Changelog](https://keepachangelog.com/)** — секции `Added` / `Changed` / `Fixed` / `Removed` / `Security` по необходимости; краткие пункты на русском или английском (как в остальном репо), **без лора** и без внутренних ID тикетов, если их нет.
+- **Не закрывать PR/merge без обновления CHANGELOG**, если изменение видно пользователю, DevOps или контенту (новые страницы, форма, API лидов, данные, навигация, SEO).
+- Исключения (CHANGELOG не обязателен): правки опечаток в комментариях, чистый рефактор без поведения, обновление только dev-зависимостей — по усмотрению, но при сомнении — **добавить строку**.
+
+## Быстрые пути
+
+| Задача | Где смотреть |
+|--------|----------------|
+| Бренд / SEO title | `lib/siteMeta.ts` (`SITE_BRAND`, `SEO_KEYWORD_BRAND`, `metaTitle*`) |
+| Новый готовый авто / кейс | JSON + типы `lib/types/commerce.ts` |
+| Новая страница EN/RU | `app/...` и зеркало `app/ru/...` |
+| Лиды и env | `README.md`, `lib/leads/*`, `functions/api/leads.ts` |

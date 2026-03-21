@@ -1,9 +1,10 @@
 import ExportLandingPage from "@/components/pages/ExportLandingPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Import Cars from USA to Ukraine - Full Service",
+  title: metaTitleWithSeoKeywords("Import cars from USA to Ukraine — full service"),
   description:
-    "Buy salvage and clean cars from Copart/IAAI with delivery to Ukraine. Turnkey service: buying, shipping, customs, and repair.",
+    "NorthAm Cars: Copart/IAAI to Ukraine — buying, shipping, customs, repair. northamcars.com.",
 };
 
 export default function Page() {

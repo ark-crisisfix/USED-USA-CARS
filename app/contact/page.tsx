@@ -1,9 +1,10 @@
 import ContactPage from "@/components/pages/ContactPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Contact Us - Used Cars USA",
+  title: metaTitleWithSeoKeywords("Contact us"),
   description:
-    "Contact our team to get a quote, ask questions about buying from USA auctions, or discuss export to your country.",
+    "Contact NorthAm Cars (northamcars.com): quotes, USA auction buying, export to Ukraine, UAE, and more.",
 };
 
 export default function Page() {

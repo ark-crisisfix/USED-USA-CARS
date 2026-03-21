@@ -2,10 +2,11 @@ import ReadyCarsClient from "@/components/ready-cars/ReadyCarsClient";
 import { commerce } from "@/lib/commerceCopy";
 import { getAllReadyCars } from "@/lib/ready-cars";
 import type { Metadata } from "next";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Авто в наличии — Канада и экспорт | Used Cars USA",
-  description: "Уже выкупленный инвентарь: продажа в Канаде или отправка на экспорт.",
+  title: metaTitleWithSeoKeywords("Авто в наличии — Канада и экспорт"),
+  description: "NorthAm Cars: инвентарь в Канаде и экспорт — northamcars.com.",
 };
 
 export default function Page() {

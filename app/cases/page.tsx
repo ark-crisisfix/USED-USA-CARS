@@ -1,9 +1,10 @@
 import CasesPage from "@/components/pages/CasesPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Real Export Cases - Used Cars from USA",
+  title: metaTitleWithSeoKeywords("Real purchase cases — US auction imports"),
   description:
-    "See real examples of cars bought from USA auto auctions, shipped internationally, and the final savings for our clients.",
+    "NorthAm Cars: transparent US auction import examples — costs, shipping, savings. northamcars.com.",
 };
 
 export default function Page() {

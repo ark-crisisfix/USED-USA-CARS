@@ -1,9 +1,10 @@
 import ExportLandingPage from "@/components/pages/ExportLandingPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Export Cars from USA to UAE - Direct Delivery",
+  title: metaTitleWithSeoKeywords("Export cars from USA to UAE — direct delivery"),
   description:
-    "Buy clean title or lightly damaged cars from USA auctions with direct shipping to Jebel Ali, UAE. Complete export service.",
+    "NorthAm Cars: USA auctions to Jebel Ali, UAE — clean titles, full export. northamcars.com.",
 };
 
 export default function Page() {

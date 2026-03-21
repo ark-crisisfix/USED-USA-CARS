@@ -1,11 +1,12 @@
 import ReadyCarsClient from "@/components/ready-cars/ReadyCarsClient";
 import { commerce } from "@/lib/commerceCopy";
 import { getAllReadyCars } from "@/lib/ready-cars";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: "Ready Cars — Available in Canada & Export | Used Cars USA",
+  title: metaTitleWithSeoKeywords("Ready cars — Canada & export"),
   description:
-    "Company-owned and partner inventory already purchased — available in Canada or ready to ship for export to Ukraine, UAE, and worldwide.",
+    "NorthAm Cars (northamcars.com): inventory in Canada and ready-to-ship export to Ukraine, UAE, worldwide.",
 };
 
 export default function Page() {

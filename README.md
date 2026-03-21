@@ -1,4 +1,6 @@
-# Used Cars USA
+# NorthAm Cars (northamcars.com)
+
+Публичный бренд: **NorthAm Cars**, продакшен: **https://northamcars.com/**. Фраза *Used Cars USA* остаётся в SEO-слое (title/description, лендинги), не как имя компании в UI.
 
 Next.js static site (App Router) with `output: 'export'`.
 
@@ -9,6 +11,8 @@ Next.js static site (App Router) with `output: 'export'`.
 - **Switcher:** header (EN | RU) keeps the same page in the other language when a Russian route exists.
 
 Copy lives in `lib/dictionaries.ts` (`en` / `ru`).
+
+**Changelog:** значимые изменения фиксируются в **`CHANGELOG.md`** ([Keep a Changelog](https://keepachangelog.com/)); подробности — в `.cursor/rules/northam-project.mdc`.
 
 ## Deploy (Cloudflare Pages / Netlify)
 

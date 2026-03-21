@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/pages/HomePage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Авто из США — аукционы Copart / IAAI и доставка",
+  title: metaTitleWithSeoKeywords("Авто из США — Copart / IAAI и доставка"),
   description:
-    "Экономия до 40%: покупка с аукционов США с доставкой в Украину и ОАЭ. Прозрачные цены и полное сопровождение.",
+    "NorthAm Cars (northamcars.com): аукционы США, доставка в Украину и ОАЭ. Экономия до 40%.",
 };
 
 export default function RuHomePage() {

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import UsedCarsCanadaPage from "@/components/pages/UsedCarsCanadaPage";
+import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "Авто из Канады с аукциона | Used Cars USA",
-  description: "Канадские аукционы: метрические приборы, зимняя комплектация, экспорт.",
+  title: metaTitleWithSeoKeywords("Авто из Канады с аукциона"),
+  description: "NorthAm Cars: канадские аукционы и экспорт — northamcars.com.",
 };
 
 export default function Page() {
