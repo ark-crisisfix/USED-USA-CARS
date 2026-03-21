@@ -18,6 +18,47 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const hrefPrefix = locale === "ru" ? "/ru" : "";
   const featuredReady = getFeaturedReadyCarsForHome(6);
   const featuredCases = getFeaturedCasesForHome(3);
+  const trustProof = locale === "ru"
+    ? {
+        title: "Почему процессу доверяют",
+        subtitle:
+          "Вместо шаблонных отзывов мы показываем сигналы доверия, важные до ставки и покупки.",
+        note: "Реальные отзывы клиентов можно будет добавить позже, по мере сбора и проверки.",
+        items: [
+          {
+            title: "Понятная структура расходов",
+            body: "До решения раскладываем стоимость: ставка, сборы аукциона, перевозка по США, море и расходы на стороне назначения.",
+          },
+          {
+            title: "Открытые кейсы и наличие",
+            body: "Можно посмотреть авто в наличии, кейсы закупки и страницы по направлениям, а не опираться только на обещания.",
+          },
+          {
+            title: "Прямой контакт без ожидания",
+            body: "На сайте сразу доступны WhatsApp, Telegram, звонок и email-шаблон заказа, чтобы быстро перейти к живому общению.",
+          },
+        ],
+      }
+    : {
+        title: "Why Clients Trust The Process",
+        subtitle:
+          "Instead of placeholder testimonials, we show the trust signals that matter before you place a bid.",
+        note: "Real customer reviews can be added later as they are collected and verified.",
+        items: [
+          {
+            title: "Clear Cost Logic",
+            body: "We break down auction price, fees, inland transport, ocean freight, and destination-side costs before you commit.",
+          },
+          {
+            title: "Visible Inventory And Cases",
+            body: "You can review ready cars, purchase cases, and destination pages instead of relying on generic promises.",
+          },
+          {
+            title: "Direct Communication",
+            body: "WhatsApp, Telegram, phone, and order email are available directly on the site, so you can reach a person without waiting.",
+          },
+        ],
+      };
 
   return (
     <div className="bg-gray-50 text-gray-900 font-sans">
@@ -87,6 +128,29 @@ export default function HomePage({ locale }: { locale: Locale }) {
               <h3 className="text-xl font-bold mb-3">{t.v3t}</h3>
               <p className="text-gray-600 leading-relaxed">{t.v3b}</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-slate-950 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-300 mb-4">Trust</p>
+            <h2 className="text-3xl md:text-4xl font-bold">{trustProof.title}</h2>
+            <p className="mt-4 text-slate-300 text-lg">{trustProof.subtitle}</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {trustProof.items.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-7 shadow-lg">
+                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <p className="mt-3 text-slate-300 leading-7">{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-sky-900/70 bg-sky-950/40 px-5 py-4 text-sm text-sky-100">
+            {trustProof.note}
           </div>
         </div>
       </section>

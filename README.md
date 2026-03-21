@@ -63,6 +63,7 @@ npm run build   # produces static files in out/
 - **Data (JSON, swap for API later):** `data/ready-cars.json`, `data/savings-cases.json`
 - **Routes:** `/ready-cars`, `/ready-cars/[slug]`, `/cases`, `/cases/[slug]` (and `/ru/...` mirrors)
 - **Contact block:** `components/LeadFormUniversal.tsx` now renders direct contact actions instead of a submit form.
+  - Call: `+1 672-673-9976`, `+778-254-55333`
   - WhatsApp: `+380 99 255 7209`
   - Telegram: `@ARMAN_TATEVOSYAN`
   - Email: `bid@hortham.com`

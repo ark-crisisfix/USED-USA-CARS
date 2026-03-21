@@ -22,12 +22,19 @@ export type LeadFormUniversalProps = {
 
 const WHATSAPP_NUMBER = "380992557209";
 const WHATSAPP_LABEL = "+380 99 255 7209";
+const CALL_NUMBERS = [
+  { label: "+1 672-673-9976", href: "tel:+16726739976" },
+  { label: "+778-254-55333", href: "tel:+77825455333" },
+] as const;
 const TELEGRAM_USERNAME = "@ARMAN_TATEVOSYAN";
 const TELEGRAM_URL = "https://t.me/ARMAN_TATEVOSYAN";
 const ORDER_EMAIL = "bid@hortham.com";
 
 type ContactCopy = {
   subtitle: string;
+  callTitle: string;
+  callBody: string;
+  callCta: string;
   whatsappTitle: string;
   whatsappBody: string;
   whatsappCta: string;
@@ -43,7 +50,10 @@ type ContactCopy = {
 function getCopy(locale: "en" | "ru"): ContactCopy {
   if (locale === "ru") {
     return {
-      subtitle: "Напишите удобным способом: в WhatsApp, Telegram или отправьте email с готовым шаблоном заказа.",
+      subtitle: "Напишите удобным способом: позвоните, откройте WhatsApp или Telegram, либо отправьте email с готовым шаблоном заказа.",
+      callTitle: "Звонок",
+      callBody: "Два прямых номера для звонка по подбору авто, ставкам и доставке.",
+      callCta: "Позвонить",
       whatsappTitle: "WhatsApp",
       whatsappBody: "Быстрый контакт для подбора авто, расчета бюджета и уточнения деталей доставки.",
       whatsappCta: "Открыть WhatsApp",
@@ -58,7 +68,10 @@ function getCopy(locale: "en" | "ru"): ContactCopy {
   }
 
   return {
-    subtitle: "Reach out via WhatsApp, Telegram, or send an email using a ready-made order template.",
+    subtitle: "Reach out by phone, WhatsApp, Telegram, or send an email using a ready-made order template.",
+    callTitle: "Call Us",
+    callBody: "Two direct phone lines for discussing vehicle selection, bidding, and shipping.",
+    callCta: "Call Now",
     whatsappTitle: "WhatsApp",
     whatsappBody: "Fastest way to discuss vehicle options, budget, and shipping details.",
     whatsappCta: "Open WhatsApp",
@@ -194,6 +207,16 @@ export default function LeadFormUniversal({
 
   const cards = [
     {
+      title: copy.callTitle,
+      body: copy.callBody,
+      href: CALL_NUMBERS[0].href,
+      cta: copy.callCta,
+      tone: "bg-slate-50 border-slate-200 text-slate-900",
+      buttonTone: "bg-slate-900 hover:bg-slate-800 text-white",
+      phoneLinks: CALL_NUMBERS,
+      value: "",
+    },
+    {
       title: copy.whatsappTitle,
       body: copy.whatsappBody,
       value: WHATSAPP_LABEL,
@@ -201,6 +224,7 @@ export default function LeadFormUniversal({
       cta: copy.whatsappCta,
       tone: "bg-green-50 border-green-200 text-green-900",
       buttonTone: "bg-green-600 hover:bg-green-700 text-white",
+      phoneLinks: undefined,
     },
     {
       title: copy.telegramTitle,
@@ -210,6 +234,7 @@ export default function LeadFormUniversal({
       cta: copy.telegramCta,
       tone: "bg-sky-50 border-sky-200 text-sky-900",
       buttonTone: "bg-sky-600 hover:bg-sky-700 text-white",
+      phoneLinks: undefined,
     },
     {
       title: copy.emailTitle,
@@ -219,6 +244,7 @@ export default function LeadFormUniversal({
       cta: copy.emailCta,
       tone: "bg-amber-50 border-amber-200 text-amber-900",
       buttonTone: "bg-amber-600 hover:bg-amber-700 text-white",
+      phoneLinks: undefined,
     },
   ];
 
@@ -234,12 +260,22 @@ export default function LeadFormUniversal({
               <div>
                 <h4 className="text-lg font-bold">{card.title}</h4>
                 <p className="mt-1 text-sm leading-6">{card.body}</p>
-                <p className="mt-3 font-semibold">{card.value}</p>
+                {card.phoneLinks ? (
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {card.phoneLinks.map((phone) => (
+                      <a key={phone.href} href={phone.href} className="font-semibold underline-offset-2 hover:underline">
+                        {phone.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-3 font-semibold">{card.value}</p>
+                )}
               </div>
               <a
                 href={card.href}
-                target={card.title === copy.emailTitle ? undefined : "_blank"}
-                rel={card.title === copy.emailTitle ? undefined : "noreferrer"}
+                target={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "_blank"}
+                rel={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "noreferrer"}
                 className={`shrink-0 rounded-lg px-4 py-2 text-sm font-bold transition-colors ${card.buttonTone}`}
               >
                 {card.cta}
