@@ -18,6 +18,35 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const hrefPrefix = locale === "ru" ? "/ru" : "";
   const featuredReady = getFeaturedReadyCarsForHome(6);
   const featuredCases = getFeaturedCasesForHome(3);
+  const heroPanel = locale === "ru"
+    ? {
+        eyebrow: "NorthAm Cars",
+        bullets: ["Copart и IAAI без посредников", "Понятная структура расходов до ставки", "Прямой контакт: звонок, WhatsApp, Telegram"],
+        stats: [
+          { value: "500+", label: "подобранных авто" },
+          { value: "20–40%", label: "типичная экономия" },
+          { value: "4–10", label: "недель логистики" },
+        ],
+        links: {
+          contact: "Быстрый контакт",
+          cases: "Реальные кейсы",
+          ready: "Готовые авто",
+        },
+      }
+    : {
+        eyebrow: "NorthAm Cars",
+        bullets: ["Copart and IAAI access without middlemen", "Clear cost structure before you bid", "Direct contact by phone, WhatsApp, and Telegram"],
+        stats: [
+          { value: "500+", label: "cars sourced" },
+          { value: "20–40%", label: "typical savings" },
+          { value: "4–10", label: "weeks logistics" },
+        ],
+        links: {
+          contact: "Fast Contact",
+          cases: "Real Cases",
+          ready: "Ready Cars",
+        },
+      };
   const trustProof = locale === "ru"
     ? {
         title: "Почему процессу доверяют",
@@ -82,23 +111,69 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
   return (
     <div className="bg-gray-50 text-gray-900 font-sans">
-      <section className="bg-gradient-to-br from-blue-900 to-indigo-800 text-white py-20 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">{t.heroTitle}</h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-10 max-w-2xl mx-auto">{t.heroSub}</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href={L("/#contact")}
-              className="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg"
-            >
-              {t.findMyCar}
-            </Link>
-            <Link
-              href={L("/catalog")}
-              className="bg-blue-700 text-white border border-blue-600 font-bold px-8 py-4 rounded-xl hover:bg-blue-600 transition shadow-lg text-lg"
-            >
-              {t.browseCars}
-            </Link>
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(125,211,252,0.2),_transparent_32%),linear-gradient(135deg,_#0f172a_0%,_#1d4ed8_45%,_#1e3a8a_100%)] text-white py-20 px-4">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute -top-16 right-0 h-72 w-72 rounded-full bg-sky-300 blur-3xl" />
+          <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-emerald-300 blur-3xl" />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+          <div>
+            <p className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100">
+              {heroPanel.eyebrow}
+            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mt-6 leading-tight">{t.heroTitle}</h1>
+            <p className="text-xl md:text-2xl text-blue-100 mt-6 max-w-2xl">{t.heroSub}</p>
+
+            <div className="mt-8 grid gap-3 max-w-2xl">
+              {heroPanel.bullets.map((bullet) => (
+                <div key={bullet} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/8 px-4 py-3 backdrop-blur-sm">
+                  <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-300" />
+                  <span className="text-sm md:text-base text-slate-100">{bullet}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <Link
+                href={L("/#contact")}
+                className="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg text-center"
+              >
+                {t.findMyCar}
+              </Link>
+              <Link
+                href={L("/catalog")}
+                className="bg-blue-700/80 backdrop-blur border border-blue-300/20 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-600 transition shadow-lg text-lg text-center"
+              >
+                {t.browseCars}
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[30px] border border-white/12 bg-slate-950/45 backdrop-blur-md p-6 shadow-2xl">
+            <div className="grid grid-cols-3 gap-3">
+              {heroPanel.stats.map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+                  <div className="text-2xl md:text-3xl font-black text-white">{stat.value}</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-200 mb-3">Quick Paths</p>
+              <div className="grid gap-3">
+                <Link href={L("/ready-cars")} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/8 transition">
+                  {heroPanel.links.ready}
+                </Link>
+                <Link href={L("/cases")} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/8 transition">
+                  {heroPanel.links.cases}
+                </Link>
+                <Link href={L("/#contact")} className="rounded-xl border border-sky-300/25 bg-sky-400/10 px-4 py-3 text-sm font-semibold text-sky-100 hover:bg-sky-400/20 transition">
+                  {heroPanel.links.contact}
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
