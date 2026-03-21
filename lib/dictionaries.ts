@@ -89,6 +89,20 @@ export const dictionaries = {
       v3t: 'Worldwide Shipping',
       v3b:
         'We handle land transport in the US, ocean freight, customs clearance, and delivery to your door.',
+      proofTitle: 'Why Clients Trust The Process',
+      proofSub:
+        'Instead of placeholder testimonials, we show the trust signals that matter before you place a bid.',
+      proof1t: 'Clear Cost Logic',
+      proof1b:
+        'We break down auction price, fees, inland transport, ocean freight, and destination-side costs before you commit.',
+      proof2t: 'Visible Inventory And Cases',
+      proof2b:
+        'You can review ready cars, purchase cases, and destination pages instead of relying on generic promises.',
+      proof3t: 'Direct Communication',
+      proof3b:
+        'WhatsApp, Telegram, phone, and order email are available directly on the site, so you can reach a person without waiting.',
+      proofNote:
+        'Real customer reviews can be added later as they are collected and verified.',
       featuredTitle: 'Featured Cars',
       featuredSub: 'Recently bought for our clients',
       destTitle: 'Popular Destinations',
