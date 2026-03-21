@@ -1,14 +1,23 @@
 import Link from "next/link";
-import LeadForm from "@/components/LeadForm";
+import CaseCard from "@/components/savings-cases/CaseCard";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
+import ReadyCarCard from "@/components/ready-cars/ReadyCarCard";
 import cars from "@/data/cars.json";
+import { commerce } from "@/lib/commerceCopy";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 import { localizePath } from "@/lib/i18n";
+import { getFeaturedCasesForHome } from "@/lib/savings-cases";
+import { getFeaturedReadyCarsForHome } from "@/lib/ready-cars";
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).home;
   const c = getDictionary(locale).common;
+  const co = commerce(locale);
   const L = (path: string) => localizePath(path, locale);
+  const hrefPrefix = locale === "ru" ? "/ru" : "";
+  const featuredReady = getFeaturedReadyCarsForHome(6);
+  const featuredCases = getFeaturedCasesForHome(3);
 
   return (
     <div className="bg-gray-50 text-gray-900 font-sans">
@@ -82,6 +91,31 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <section className="py-20 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-6">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">{co.readySectionTitle}</h2>
+              <p className="text-gray-600 mt-2 max-w-2xl">{co.readySectionSub}</p>
+              <p className="text-xs text-amber-800 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 mt-3 inline-block">{co.readyBadgeExample}</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Link
+                href={L("/ready-cars")}
+                className="text-center text-sm font-bold px-5 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+              >
+                {co.readyViewAll}
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredReady.map((car) => (
+              <ReadyCarCard key={car.id} car={car} hrefPrefix={hrefPrefix} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 px-4 bg-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-end mb-10">
@@ -144,7 +178,26 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-10">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">{co.realCasesTitle}</h2>
+              <p className="text-gray-600 mt-2 max-w-2xl">{co.realCasesSub}</p>
+            </div>
+            <Link href={L("/cases")} className="text-blue-600 font-bold hover:underline shrink-0">
+              {co.viewAllCases}
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredCases.map((cs) => (
+              <CaseCard key={cs.id} c={cs} locale={locale} hrefPrefix={hrefPrefix} compact />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-12">{t.destTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -222,7 +275,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
             </ul>
           </div>
           <div>
-            <LeadForm title={t.leadFormTitle} />
+            <LeadFormUniversal heading={t.leadFormTitle} formType="general" sourceContext="homepage_contact" />
           </div>
         </div>
       </section>

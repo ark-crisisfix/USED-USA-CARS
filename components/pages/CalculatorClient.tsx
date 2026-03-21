@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import LeadForm from "@/components/LeadForm";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
@@ -18,6 +18,7 @@ export default function CalculatorClient({ locale }: { locale: Locale }) {
   const serviceFee = 500;
   const customs = destination === "ukraine" ? Math.round(budget * 0.35) : Math.round(budget * 0.05);
   const total = budget + auctionFee + landShipping + oceanShipping + serviceFee + customs;
+  const destPref = destination === "ukraine" ? "Ukraine" : "UAE";
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">
@@ -144,7 +145,12 @@ export default function CalculatorClient({ locale }: { locale: Locale }) {
         <div className="mt-16 max-w-3xl mx-auto">
           <div className="bg-blue-50 border border-blue-100 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-center mb-6 text-blue-900">{tc.leadTitle}</h3>
-            <LeadForm />
+            <LeadFormUniversal
+              heading={tc.leadTitle}
+              formType="calculator"
+              destinationPrefill={destPref}
+              sourceContext={`calculator:${destination}:${carType}`}
+            />
           </div>
         </div>
       </div>

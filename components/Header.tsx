@@ -22,6 +22,12 @@ export default function Header() {
           <Link href={L("/catalog")} className="text-gray-600 hover:text-blue-600 font-medium">
             {t.catalog}
           </Link>
+          <Link href={L("/ready-cars")} className="text-gray-600 hover:text-blue-600 font-medium">
+            {t.readyCars}
+          </Link>
+          <Link href={L("/cases")} className="text-gray-600 hover:text-blue-600 font-medium">
+            {t.cases}
+          </Link>
           <Link href={L("/export-to-ukraine")} className="text-gray-600 hover:text-blue-600 font-medium">
             {t.ukraine}
           </Link>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import LeadForm from "@/components/LeadForm";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
@@ -135,7 +135,14 @@ export default function CarDetailPage({ car, locale }: { car: Car | undefined; l
               <p className="text-blue-100 text-sm">{t.trustSub}</p>
             </div>
 
-            <LeadForm title={formTitle} />
+            <LeadFormUniversal
+              heading={formTitle}
+              formType="similar_car"
+              carReferenceId={car.lot_id}
+              sourceContext={`catalog_lot:${car.lot_id}`}
+              compact
+              submitButtonText={locale === "ru" ? "Запросить" : "Request this car"}
+            />
           </div>
         </div>
       </div>

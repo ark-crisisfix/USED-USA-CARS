@@ -1,4 +1,4 @@
-import LeadForm from "@/components/LeadForm";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 
@@ -90,7 +90,12 @@ function ExportUkraine({ locale }: { locale: Locale }) {
                   ))}
                 </ul>
               </div>
-              <LeadForm title={t.formTitle} />
+              <LeadFormUniversal
+                heading={t.formTitle}
+                formType="shipping"
+                destinationPrefill="Ukraine"
+                sourceContext="export_ukraine_sidebar"
+              />
             </div>
           </div>
         </div>
@@ -166,7 +171,12 @@ function ExportUae({ locale }: { locale: Locale }) {
                   ))}
                 </ul>
               </div>
-              <LeadForm title={t.formTitle} />
+              <LeadFormUniversal
+                heading={t.formTitle}
+                formType="shipping"
+                destinationPrefill="UAE"
+                sourceContext="export_uae_sidebar"
+              />
             </div>
           </div>
         </div>

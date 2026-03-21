@@ -6,6 +6,8 @@ export const dictionaries = {
     switcher: { en: 'EN', ru: 'RU', aria: 'Language' },
     nav: {
       catalog: 'Catalog',
+      readyCars: 'Ready Cars',
+      cases: 'Cases',
       ukraine: 'To Ukraine',
       uae: 'To UAE',
       calculator: 'Calculator',
@@ -377,6 +379,8 @@ export const dictionaries = {
     switcher: { en: 'EN', ru: 'RU', aria: 'Язык' },
     nav: {
       catalog: 'Каталог',
+      readyCars: 'В наличии',
+      cases: 'Кейсы',
       ukraine: 'В Украину',
       uae: 'В ОАЭ',
       calculator: 'Калькулятор',

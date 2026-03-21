@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LeadForm from "@/components/LeadForm";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 import { localizePath } from "@/lib/i18n";
@@ -60,7 +60,12 @@ export default function UsedCarsCanadaPage({ locale }: { locale: Locale }) {
 
           <div className="space-y-8">
             <div className="sticky top-24">
-              <LeadForm title={t.formTitle} />
+              <LeadFormUniversal
+                heading={t.formTitle}
+                formType="general"
+                destinationPrefill="Canada"
+                sourceContext="used_cars_canada"
+              />
             </div>
           </div>
         </div>
