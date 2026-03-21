@@ -91,23 +91,3 @@ export type LeadFormType =
   | "shipping"
   | "calculator"
   | "case_similar";
-
-export interface LeadPayload {
-  name: string;
-  contact: string;
-  budget: string;
-  destination: string;
-  preferred_vehicle?: string;
-  condition_preference?: string;
-  message?: string;
-  source_page: string;
-  form_type: LeadFormType;
-  source_context?: string;
-  car_reference_id?: string;
-  ready_car_reference_id?: string;
-  case_reference_id?: string;
-  website?: string;
-  timestamp: string;
-  user_agent?: string;
-  referrer?: string;
-}

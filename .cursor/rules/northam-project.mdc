@@ -14,15 +14,15 @@ alwaysApply: true
 - Реальный оператор (аукционы США → доставка), не «пустой агрегатор».
 - **Доверие и конверсия:** блоки Ready Cars, Real Cases, кастомная форма лидов — приоритетны.
 - **Копирайт:** фактично, без фейковых цифр/отзывов; оценки явно помечать (*example estimate* / `is_estimate` в данных).
-- **i18n:** `en` — корень сайта; `ru` — префикс `/ru`. Строки — `lib/dictionaries.ts`, коммерческие заголовки — `lib/commerceCopy.ts`, лейблы формы — `lib/leadFormLabels.ts`. Новые публичные страницы дублировать под `/ru/...` где уже принято в проекте.
+- **i18n:** `en` — корень сайта; `ru` — префикс `/ru`. Строки — `lib/dictionaries.ts`, коммерческие заголовки — `lib/commerceCopy.ts`. Новые публичные страницы дублировать под `/ru/...` где уже принято в проекте.
 
 ## Технический профиль
 
 - **Next.js 15** (App Router), **`output: 'export'`** в `next.config.js` — только статика в **`out/`**.
 - **Деплой:** Cloudflare Pages; preset **None**; output directory ровно **`out`** (см. `README.md`, `wrangler.toml`).
-- **Нет runtime Next API:** лиды — **`POST /api/leads`** через **`functions/api/leads.ts`** (Pages Function), логика в **`lib/leads/handleLeadPost.ts`**.
+- **Нет runtime Next API:** сайт собирается как статика; контакты работают через прямые ссылки (WhatsApp / Telegram / `mailto:`), без runtime-обработчика лидов.
 - **Данные MVP:** `data/ready-cars.json`, `data/savings-cases.json` — карточки и списки **только из JSON/хелперов** (`lib/ready-cars.ts`, `lib/savings-cases.ts`), не хардкодить ряды карточек в JSX.
-- **Форма:** один компонент **`LeadFormUniversal`** (+ обёртка `LeadForm`); контекст через `formType`, `*_reference_id`, `sourceContext`, honeypot `website`.
+- **Контактный CTA:** один компонент **`LeadFormUniversal`** (+ обёртка `LeadForm`); он рендерит WhatsApp, Telegram и email-шаблон. Контекст страницы передаётся через `formType`, `*_reference_id`, `sourceContext` и попадает в `mailto:` шаблон.
 - **Стиль кода:** mobile-first, без тяжёлых библиотек без необходимости; изображения — `next/image` не обязателен при static export (в проекте часто `img`).
 
 ## Обязательное ведение CHANGELOG
@@ -40,4 +40,4 @@ alwaysApply: true
 | Бренд / SEO title | `lib/siteMeta.ts` (`SITE_BRAND`, `SEO_KEYWORD_BRAND`, `metaTitle*`) |
 | Новый готовый авто / кейс | JSON + типы `lib/types/commerce.ts` |
 | Новая страница EN/RU | `app/...` и зеркало `app/ru/...` |
-| Лиды и env | `README.md`, `lib/leads/*`, `functions/api/leads.ts` |
+| Контакты / CTA | `README.md`, `components/LeadFormUniversal.tsx` |

@@ -1,15 +1,21 @@
 # Changelog
 
-Все значимые изменения в этом проекте документируются здесь.
+All notable changes to this project are documented in this file.
 
-Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/). Версии соответствуют релизам по мере их появления.
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
 ### Added
 
-- Правило Cursor `.cursor/rules/northam-project.mdc`: профиль проекта для любой ИИ-модели и **обязательное** ведение этого файла.
+- Added the Cursor project profile in `.cursor/rules/northam-project.mdc` with repository-specific guidance and mandatory changelog upkeep.
 
 ### Changed
 
-- Публичный бренд: **NorthAm Cars** / **northamcars.com**; «Used Cars USA» перенесено в SEO-слой (`lib/siteMeta.ts`, хвосты `<title>`, описания). Обновлены шапка, подвал, hero, README, метаданные страниц, SEO-страницы в словарях.
+- Public brand standardized as **NorthAm Cars** / **northamcars.com**, while **Used Cars USA** remains in the SEO layer only.
+- Replaced lead capture with direct contact actions: WhatsApp, Telegram, and a prefilled order email template.
+- Updated project documentation and internal rules to reflect the static contact CTA flow instead of a server-side lead pipeline.
+
+### Removed
+
+- Removed the unused lead-processing backend (`functions/api/leads.ts`, `lib/leads/*`) and legacy lead-form label helpers.

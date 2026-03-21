@@ -58,29 +58,20 @@ npm run dev
 npm run build   # produces static files in out/
 ```
 
-## Ready cars, cases, and leads (MVP)
+## Ready cars, cases, and contact CTA
 
 - **Data (JSON, swap for API later):** `data/ready-cars.json`, `data/savings-cases.json`
 - **Routes:** `/ready-cars`, `/ready-cars/[slug]`, `/cases`, `/cases/[slug]` (and `/ru/...` mirrors)
-- **Lead form:** `components/LeadFormUniversal.tsx` — posts JSON to **`/api/leads`** (see below). Optional `NEXT_PUBLIC_LEAD_SUBMIT_URL` to override the POST URL (e.g. absolute URL to your Worker).
+- **Contact block:** `components/LeadFormUniversal.tsx` now renders direct contact actions instead of a submit form.
+  - WhatsApp: `+380 99 255 7209`
+  - Telegram: `@ARMAN_TATEVOSYAN`
+  - Email: `bid@hortham.com`
 
-### Cloudflare Pages Function — `POST /api/leads`
+### Email order template
 
-With static export, the handler lives in **`functions/api/leads.ts`**. It imports `lib/leads/handleLeadPost.ts`.
+The email CTA opens a `mailto:` link with a prefilled subject and body. The template includes:
 
-**Environment variables (Cloudflare Pages → Settings → Variables):**
-
-| Variable | Purpose |
-|----------|---------|
-| `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Insert into `leads` table via REST (optional; if unset, email-only path) |
-| `RESEND_API_KEY` + `LEADS_NOTIFY_EMAIL` + `RESEND_FROM_EMAIL` | Internal notification email (optional) |
-| `HUBSPOT_PRIVATE_APP_TOKEN` | Optional contact create; failures do not block success if DB path is configured |
-
-**Supabase `leads` table** (match columns used in `handleLeadPost` `dbRow`):  
-`created_at`, `name`, `contact`, `budget`, `destination`, `preferred_vehicle`, `condition_preference`, `message`, `page_type`, `page_url`, `source_context`, `car_reference_id`, `ready_car_reference_id`, `case_reference_id`, `ip_hash`, `user_agent`, `referrer`, `status`, `hubspot_sync_status`.
-
-Local smoke test for the function: use **`wrangler pages dev ./out`** from the project root (with Node 20+) and POST to `/api/leads`.
-
-### Spam protection
-
-Honeypot field `website`, server-side validation in `lib/leads/leadValidate.ts`. Rate limiting can be added later (e.g. KV).
+- current page path
+- inquiry type / context
+- prefilled car or case identifiers when available
+- basic order fields for the customer to complete manually
