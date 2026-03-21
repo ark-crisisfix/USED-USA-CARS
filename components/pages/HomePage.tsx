@@ -24,16 +24,26 @@ export default function HomePage({ locale }: { locale: Locale }) {
         subtitle:
           "Вместо шаблонных отзывов мы показываем сигналы доверия, важные до ставки и покупки.",
         note: "Реальные отзывы клиентов можно будет добавить позже, по мере сбора и проверки.",
+        eyebrow: "Доверие",
+        badges: ["Без фейковых отзывов", "Открытые кейсы", "Прямой контакт"],
+        links: {
+          cases: "Смотреть кейсы",
+          ready: "Авто в наличии",
+          contact: "Связаться сейчас",
+        },
         items: [
           {
+            stat: "01",
             title: "Понятная структура расходов",
             body: "До решения раскладываем стоимость: ставка, сборы аукциона, перевозка по США, море и расходы на стороне назначения.",
           },
           {
+            stat: "02",
             title: "Открытые кейсы и наличие",
             body: "Можно посмотреть авто в наличии, кейсы закупки и страницы по направлениям, а не опираться только на обещания.",
           },
           {
+            stat: "03",
             title: "Прямой контакт без ожидания",
             body: "На сайте сразу доступны WhatsApp, Telegram, звонок и email-шаблон заказа, чтобы быстро перейти к живому общению.",
           },
@@ -44,16 +54,26 @@ export default function HomePage({ locale }: { locale: Locale }) {
         subtitle:
           "Instead of placeholder testimonials, we show the trust signals that matter before you place a bid.",
         note: "Real customer reviews can be added later as they are collected and verified.",
+        eyebrow: "Trust",
+        badges: ["No fake reviews", "Open cases", "Direct contact"],
+        links: {
+          cases: "View Cases",
+          ready: "Ready Cars",
+          contact: "Contact Now",
+        },
         items: [
           {
+            stat: "01",
             title: "Clear Cost Logic",
             body: "We break down auction price, fees, inland transport, ocean freight, and destination-side costs before you commit.",
           },
           {
+            stat: "02",
             title: "Visible Inventory And Cases",
             body: "You can review ready cars, purchase cases, and destination pages instead of relying on generic promises.",
           },
           {
+            stat: "03",
             title: "Direct Communication",
             body: "WhatsApp, Telegram, phone, and order email are available directly on the site, so you can reach a person without waiting.",
           },
@@ -134,23 +154,66 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       <section className="py-20 px-4 bg-slate-950 text-white">
         <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-300 mb-4">Trust</p>
-            <h2 className="text-3xl md:text-4xl font-bold">{trustProof.title}</h2>
-            <p className="mt-4 text-slate-300 text-lg">{trustProof.subtitle}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-300 mb-4">{trustProof.eyebrow}</p>
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight">{trustProof.title}</h2>
+              <p className="mt-5 text-slate-300 text-lg leading-8">{trustProof.subtitle}</p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {trustProof.badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="rounded-full border border-sky-800/80 bg-sky-900/30 px-4 py-2 text-sm font-medium text-sky-100"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-2xl">
+              <div className="grid grid-cols-3 gap-3">
+                <Link
+                  href={L("/cases")}
+                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-sky-700 hover:bg-slate-800 transition"
+                >
+                  <div className="text-2xl font-black text-sky-300">{featuredCases.length}</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.cases}</div>
+                </Link>
+                <Link
+                  href={L("/ready-cars")}
+                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-emerald-700 hover:bg-slate-800 transition"
+                >
+                  <div className="text-2xl font-black text-emerald-300">{featuredReady.length}</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.ready}</div>
+                </Link>
+                <Link
+                  href={L("/#contact")}
+                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-amber-700 hover:bg-slate-800 transition"
+                >
+                  <div className="text-2xl font-black text-amber-300">24/7</div>
+                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.contact}</div>
+                </Link>
+              </div>
+
+              <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-sm leading-7 text-slate-300">
+                {trustProof.note}
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             {trustProof.items.map((item) => (
-              <div key={item.title} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-7 shadow-lg">
+              <div key={item.title} className="rounded-[26px] border border-slate-800 bg-slate-900/70 p-7 shadow-lg">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-xs font-bold tracking-[0.22em] text-sky-300">{item.stat}</span>
+                  <span className="h-px flex-1 bg-slate-800" />
+                </div>
                 <h3 className="text-xl font-bold text-white">{item.title}</h3>
                 <p className="mt-3 text-slate-300 leading-7">{item.body}</p>
               </div>
             ))}
-          </div>
-
-          <div className="mt-8 rounded-2xl border border-sky-900/70 bg-sky-950/40 px-5 py-4 text-sm text-sky-100">
-            {trustProof.note}
           </div>
         </div>
       </section>
