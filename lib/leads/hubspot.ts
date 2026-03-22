@@ -99,6 +99,7 @@ function buildStandardProperties(lead: LeadRecord): Record<string, string> {
 
 function buildCustomProperties(lead: LeadRecord): Record<string, string> {
   const candidatePairs = {
+    site_source: lead.site_source,
     budget_range: lead.budget,
     destination: lead.destination,
     preferred_vehicle: lead.preferred_vehicle,
@@ -155,6 +156,7 @@ function buildLeadNoteBody(lead: LeadRecord): string {
     `Condition preference: ${lead.condition_preference ?? "-"}`,
     `Message: ${lead.message ?? "-"}`,
     "",
+    `Site source: ${lead.site_source}`,
     `Form type: ${lead.form_type}`,
     `Source context: ${lead.source_context ?? "-"}`,
     `Page URL: ${lead.page_url ?? "-"}`,
@@ -276,4 +278,3 @@ export async function syncLeadToHubSpot(
     };
   }
 }
-

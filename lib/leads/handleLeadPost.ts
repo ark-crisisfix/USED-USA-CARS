@@ -1,4 +1,5 @@
 import { syncLeadToHubSpot } from "@/lib/leads/hubspot";
+import { SITE_URL } from "@/lib/siteMeta";
 import type {
   LeadFailureResponse,
   LeadRecord,
@@ -108,6 +109,7 @@ function normalizeLead(payload: LeadRequestPayload, context: LeadRequestContext)
     contact,
     budget,
     destination,
+    site_source: SITE_URL.replace(/^https?:\/\//, ""),
     preferred_vehicle: asOptionalString(payload.preferred_vehicle),
     condition_preference: asOptionalString(payload.condition_preference),
     message: asOptionalString(payload.message),

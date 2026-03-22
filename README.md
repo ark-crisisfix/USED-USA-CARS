@@ -112,6 +112,7 @@ The implementation always stores the lead in HubSpot by creating/updating a cont
 
 Recommended custom contact properties for cleaner reporting:
 
+- `site_source`
 - `budget_range`
 - `destination`
 - `preferred_vehicle`

@@ -28,6 +28,7 @@ export type LeadRecord = {
   contact: string;
   budget: string;
   destination: string;
+  site_source: string;
   preferred_vehicle: string | null;
   condition_preference: string | null;
   message: string | null;
@@ -70,4 +71,3 @@ export type LeadRequestContext = {
   user_agent: string | null;
   ip_hash: string | null;
 };
-
