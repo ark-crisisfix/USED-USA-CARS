@@ -1,10 +1,12 @@
 import Link from "next/link";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 import { localizePath } from "@/lib/i18n";
 
 export default function HowItWorksPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).howItWorks;
+  const lead = getDictionary(locale).leadForm;
   const L = (path: string) => localizePath(path, locale);
 
   return (
@@ -37,6 +39,14 @@ export default function HowItWorksPage({ locale }: { locale: Locale }) {
               {t.ctaBtn}
             </Link>
           </div>
+        </div>
+
+        <div className="mt-10">
+          <LeadFormUniversal
+            heading={lead.defaultTitle}
+            formType="general"
+            sourceContext="how_it_works_footer"
+          />
         </div>
       </div>
     </div>

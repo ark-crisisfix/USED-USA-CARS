@@ -1,10 +1,12 @@
 import Link from "next/link";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
 import { localizePath } from "@/lib/i18n";
 
 export default function PricingPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).pricing;
+  const lead = getDictionary(locale).leadForm;
   const L = (path: string) => localizePath(path, locale);
 
   return (
@@ -102,6 +104,14 @@ export default function PricingPage({ locale }: { locale: Locale }) {
               {t.calcLink}
             </Link>
           </div>
+        </div>
+
+        <div className="mt-10">
+          <LeadFormUniversal
+            heading={lead.defaultTitle}
+            formType="calculator"
+            sourceContext="pricing_footer"
+          />
         </div>
       </div>
     </div>

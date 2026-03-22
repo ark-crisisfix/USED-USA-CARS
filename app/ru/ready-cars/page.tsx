@@ -1,5 +1,7 @@
 import ReadyCarsClient from "@/components/ready-cars/ReadyCarsClient";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { commerce } from "@/lib/commerceCopy";
+import { getDictionary } from "@/lib/dictionaries";
 import { getAllReadyCars } from "@/lib/ready-cars";
 import type { Metadata } from "next";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const co = commerce("ru");
+  const lead = getDictionary("ru").leadForm;
   const cars = getAllReadyCars();
 
   return (
@@ -22,6 +25,13 @@ export default function Page() {
           Сейчас в наличии 3 автомобиля. Новые позиции будем добавлять по мере поступления.
         </div>
         <ReadyCarsClient cars={cars} hrefPrefix="/ru" />
+        <div className="mt-10">
+          <LeadFormUniversal
+            heading={lead.defaultTitle}
+            formType="ready_car"
+            sourceContext="ready_cars_listing_ru"
+          />
+        </div>
       </div>
     </div>
   );

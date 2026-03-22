@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LeadFormUniversal from "@/components/LeadFormUniversal";
 import cars from "@/data/cars.json";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -7,6 +8,7 @@ import { localizePath } from "@/lib/i18n";
 export default function CatalogPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).catalog;
   const c = getDictionary(locale).common;
+  const lead = getDictionary(locale).leadForm;
   const L = (path: string) => localizePath(path, locale);
 
   return (
@@ -87,6 +89,14 @@ export default function CatalogPage({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-10">
+              <LeadFormUniversal
+                heading={lead.defaultTitle}
+                formType="similar_car"
+                sourceContext="catalog_footer"
+              />
             </div>
           </div>
         </div>
