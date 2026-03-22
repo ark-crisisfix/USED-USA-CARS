@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LeadConversionEvent from "@/components/LeadConversionEvent";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-20 font-sans">
+      <LeadConversionEvent locale="ru" />
       <div className="mx-auto max-w-3xl rounded-3xl border border-gray-200 bg-white p-10 text-center shadow-sm">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">NorthAm Cars</p>
         <h1 className="mt-4 text-4xl font-bold text-gray-900">Спасибо</h1>
