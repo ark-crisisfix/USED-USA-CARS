@@ -15,7 +15,7 @@ export default function CalculatorClient({ locale }: { locale: Locale }) {
   const auctionFee = Math.round(budget * 0.1);
   const landShipping = 450;
   const oceanShipping = destination === "ukraine" ? 1200 : 1500;
-  const serviceFee = 500;
+  const serviceFee = destination === "ukraine" ? 800 : 1000;
   const customs = destination === "ukraine" ? Math.round(budget * 0.35) : Math.round(budget * 0.05);
   const total = budget + auctionFee + landShipping + oceanShipping + serviceFee + customs;
   const destPref = destination === "ukraine" ? "Ukraine" : "UAE";
