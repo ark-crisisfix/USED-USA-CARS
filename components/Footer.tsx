@@ -39,6 +39,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href={L("/export-to-poland")} className="hover:text-white transition">
+                  {t.deliveryPoland}
+                </Link>
+              </li>
+              <li>
+                <Link href={L("/export-to-baltics")} className="hover:text-white transition">
+                  {t.deliveryBaltics}
+                </Link>
+              </li>
+              <li>
                 <Link href={L("/calculator")} className="hover:text-white transition">
                   {t.costCalculator}
                 </Link>
