@@ -53,6 +53,11 @@ export default function Footer() {
                   {t.costCalculator}
                 </Link>
               </li>
+              <li>
+                <Link href={L("/guides")} className="hover:text-white transition">
+                  {t.guides}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

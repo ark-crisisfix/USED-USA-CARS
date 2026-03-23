@@ -9,6 +9,11 @@ export default function HtmlLang() {
   const pathname = usePathname() || "/";
 
   useEffect(() => {
+    if (pathname === "/uk" || pathname.startsWith("/uk/")) {
+      document.documentElement.lang = "uk";
+      return;
+    }
+
     document.documentElement.lang = getLocaleFromPath(pathname) === "ru" ? "ru" : "en";
   }, [pathname]);
 
