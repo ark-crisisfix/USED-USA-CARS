@@ -9,6 +9,7 @@ export default function Footer() {
   const pathname = usePathname() || "/";
   const locale = getLocaleFromPath(pathname);
   const t = getDictionary(locale).footer;
+  const auctionListingsLabel = locale === "ru" ? "Площадки с лотами" : "Auction Listings";
   const L = (path: string) => localizePath(path, locale);
   const y = new Date().getFullYear();
 
@@ -56,6 +57,11 @@ export default function Footer() {
               <li>
                 <Link href={L("/guides")} className="hover:text-white transition">
                   {t.guides}
+                </Link>
+              </li>
+              <li>
+                <Link href={L("/auction-listings")} className="hover:text-white transition">
+                  {auctionListingsLabel}
                 </Link>
               </li>
             </ul>

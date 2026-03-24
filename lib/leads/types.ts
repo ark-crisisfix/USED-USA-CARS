@@ -12,6 +12,7 @@ export type LeadRequestPayload = {
   budget?: unknown;
   destination?: unknown;
   preferred_vehicle?: unknown;
+  lot_reference?: unknown;
   condition_preference?: unknown;
   message?: unknown;
   source_context?: unknown;
@@ -30,6 +31,7 @@ export type LeadRecord = {
   destination: string;
   site_source: string;
   preferred_vehicle: string | null;
+  lot_reference: string | null;
   condition_preference: string | null;
   message: string | null;
   source_context: string | null;

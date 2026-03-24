@@ -44,6 +44,7 @@ type ContactCopy = {
   budgetLabel: string;
   destinationLabel: string;
   preferredVehicleLabel: string;
+  lotReferenceLabel?: string;
   conditionLabel: string;
   messageLabel: string;
   conditionPlaceholder: string;
@@ -147,6 +148,7 @@ function getCopy(locale: "en" | "ru"): ContactCopy {
     budgetLabel: "Budget",
     destinationLabel: "Destination",
     preferredVehicleLabel: "Preferred vehicle",
+    lotReferenceLabel: "Lot URL / Lot number",
     conditionLabel: "Condition preference",
     messageLabel: "Comment",
     conditionPlaceholder: "Select an option",
@@ -263,6 +265,7 @@ export default function LeadFormUniversal({
   const locale = getLocaleFromPath(pathname);
   const copy = getCopy(locale);
   const effectiveSubtitle = subtitle ?? copy.subtitle;
+  const lotReferenceLabel = copy.lotReferenceLabel ?? (locale === "ru" ? "Ссылка на лот / номер лота" : "Lot URL / Lot number");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formValues, setFormValues] = useState({
@@ -271,6 +274,7 @@ export default function LeadFormUniversal({
     budget: "",
     destination: destinationPrefill || "",
     preferred_vehicle: preferredVehicleInitial || "",
+    lot_reference: "",
     condition_preference: "",
     message: "",
     honeypot: "",
@@ -387,6 +391,7 @@ export default function LeadFormUniversal({
         budget: "",
         destination: destinationPrefill || "",
         preferred_vehicle: preferredVehicleInitial || "",
+        lot_reference: "",
         condition_preference: "",
           message: "",
           honeypot: "",
@@ -550,6 +555,19 @@ export default function LeadFormUniversal({
               />
             </label>
 
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-gray-700">{lotReferenceLabel}</span>
+              <input
+                type="text"
+                name="lot_reference"
+                value={formValues.lot_reference}
+                onChange={handleChange}
+                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-gray-500"
+              />
+            </label>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
             <label className="block">
               <span className="mb-1 block text-sm font-medium text-gray-700">{copy.conditionLabel}</span>
               <select
