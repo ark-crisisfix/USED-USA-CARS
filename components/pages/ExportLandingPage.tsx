@@ -264,94 +264,353 @@ function ExportUkraine({ locale }: { locale: Locale }) {
     { title: t.s3t, body: t.s3b },
     { title: t.s4t, body: t.s4b },
   ];
-  const sideItems = [t.side1, t.side2, t.side3, t.side4];
+  const copy =
+    locale === "ru"
+      ? {
+          eyebrow: "Авто из США в Украину под ключ",
+          heroTitle: "Мечтаешь о машине из-за океана? Она может обойтись дешевле и быстрее, чем ты думаешь.",
+          heroBody:
+            "Подбираем ликвидные лоты с американских аукционов, просчитываем маршрут заранее и ведем сделку до выдачи автомобиля. Без хаоса, без догадок и с понятным бюджетом до старта.",
+          bullets: [
+            "Бюджетные электромобили, семейные SUV и практичные модели под рынок Украины",
+            "Прозрачный расчет до ставки: покупка, доставка, таможня и сопровождение",
+            "Сильный call to action: оставь заявку и получи вариант, который реально удивит по цене",
+          ],
+          primaryCta: "Оставить заявку",
+          secondaryCta: "Смотреть примеры цен",
+          formCardTitle: "Оставь заявку сейчас",
+          formCardBody:
+            "Мы вернемся к тебе с классным предложением, которое действительно сможет поразить по цене, маршруту и срокам.",
+          formButton: "Получить предложение",
+          trustStats: [
+            { value: "4 шага", label: "от подбора лота до выдачи" },
+            { value: "До 24 ч", label: "на первый расчет и обратную связь" },
+            { value: "Под ключ", label: "аукцион, логистика, документы и сопровождение" },
+          ],
+          promiseTitle: "Почему это предложение работает",
+          promiseCards: [
+            {
+              title: "Экономика видна заранее",
+              body: "До ставки показываем, где экономия возникает на покупке, логистике и конечной цене в Украине.",
+            },
+            {
+              title: "Подбираем не красивую мечту, а выгодный лот",
+              body: "Смотрим на реальные задачи: электромобиль на каждый день, доступный городской авто, семейный кроссовер или ликвидный проект под восстановление.",
+            },
+            {
+              title: "Без потери контроля",
+              body: "Ты понимаешь, что покупаем, сколько это стоит, как едет и когда выходить на следующий этап.",
+            },
+          ],
+          midCtaTitle: "Оставь заявку, и мы соберем маршрут под твой бюджет",
+          midCtaBody:
+            "Если давно смотришь в сторону США, сейчас лучший момент запросить живой расчет и увидеть цифры без завышенных ожиданий.",
+          objectionsTitle: "Что обычно волнует перед стартом",
+          objections: [
+            {
+              title: "А вдруг это слишком дорого?",
+              body: "Показываем структуру бюджета по шагам, чтобы было видно, где покупка из США реально выгоднее местного рынка.",
+            },
+            {
+              title: "А если автомобиль после ремонта?",
+              body: "Подбираем как clean-title варианты, так и repair-friendly лоты, если задача — зайти в более низкий бюджет.",
+            },
+            {
+              title: "А если затянется доставка?",
+              body: "Сразу объясняем маршрут, ожидания по срокам и какие этапы влияют на скорость прибытия в Украину.",
+            },
+          ],
+          finalCtaTitle: "Оставь заявку. Мы вернемся к тебе с предложением, которое может по-настоящему поразить.",
+          finalCtaBody:
+            "Не откладывай идею еще на месяц. Напиши нам сейчас, и мы подберем сильный вариант из США под твой бюджет и задачи по Украине.",
+          sideTitle: "Что ты получаешь",
+          sideItems: [
+            "Просчет до ставки и честный маршрут доставки",
+            "Подбор под рынок Украины, а не случайные красивые лоты",
+            "Сопровождение по документам, логистике и финальному получению",
+            "Контакт напрямую: заявка, WhatsApp, Telegram и звонок",
+          ],
+          examplesTitle: "Примеры цен, от которых уже можно отталкиваться",
+        }
+      : {
+          eyebrow: "Turnkey car delivery from the USA to Ukraine",
+          heroTitle: "Dreaming about a car from overseas? It can cost less and arrive faster than you think.",
+          heroBody:
+            "We source practical lots from US auctions, calculate the route before bidding, and manage the deal all the way to delivery in Ukraine. Clear budget, clear process, no guesswork.",
+          bullets: [
+            "Affordable EVs, family SUVs, and practical cars selected for Ukraine",
+            "Transparent numbers before bidding: purchase, shipping, customs, and support",
+            "Strong call to action: leave a request and get an offer that may seriously surprise you",
+          ],
+          primaryCta: "Leave a Request",
+          secondaryCta: "See Price Examples",
+          formCardTitle: "Leave your request now",
+          formCardBody:
+            "We will get back to you with a strong offer that can genuinely surprise you on price, route, and timing.",
+          formButton: "Get My Offer",
+          trustStats: [
+            { value: "4 steps", label: "from lot selection to final handover" },
+            { value: "Within 24h", label: "for the first estimate and reply" },
+            { value: "Turnkey", label: "auction, shipping, paperwork, and support" },
+          ],
+          promiseTitle: "Why this offer works",
+          promiseCards: [
+            {
+              title: "The numbers are visible before the bid",
+              body: "We break down where the savings come from, so you can compare the US route to your local market with real numbers.",
+            },
+            {
+              title: "We source the right lot, not just a pretty listing",
+              body: "Daily EVs, low-cost city cars, family crossovers, or repair-friendly projects if the goal is a lower entry budget.",
+            },
+            {
+              title: "You stay in control",
+              body: "You know what we buy, what it costs, how it ships, and when the next step happens.",
+            },
+          ],
+          midCtaTitle: "Leave a request and we will build the route around your budget",
+          midCtaBody:
+            "If you have been considering the USA route for a while, this is the moment to request a real estimate and see the numbers clearly.",
+          objectionsTitle: "What people usually worry about first",
+          objections: [
+            {
+              title: "What if it becomes too expensive?",
+              body: "We show the budget structure step by step, so you see exactly where the US route can beat local pricing.",
+            },
+            {
+              title: "What about repaired vehicles?",
+              body: "We can source clean-title cars or repair-friendly lots depending on whether your goal is safety, budget, or resale flexibility.",
+            },
+            {
+              title: "What if delivery takes too long?",
+              body: "We explain the route, timing expectations, and the milestones that affect delivery speed into Ukraine.",
+            },
+          ],
+          finalCtaTitle: "Leave a request. We will come back with an offer that can genuinely impress you.",
+          finalCtaBody:
+            "Do not leave the idea for later again. Reach out now and we will build a strong US auction option around your budget and delivery goals for Ukraine.",
+          sideTitle: "What you get",
+          sideItems: [
+            "A realistic estimate before the first bid",
+            "Lots selected for Ukraine, not random eye-catching inventory",
+            "Support with paperwork, logistics, and handover",
+            "Direct access through form, WhatsApp, Telegram, and phone",
+          ],
+          examplesTitle: "Price examples you can already benchmark against",
+        };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">{t.h1}</h1>
-          <p className="text-xl text-gray-600">{t.sub}</p>
-        </div>
+    <div className="bg-slate-50 min-h-screen py-8 px-4 font-sans md:py-10">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <section className="overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-950 via-blue-950 to-blue-900 text-white shadow-2xl">
+          <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-0">
+            <div className="px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+              <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                {copy.eyebrow}
+              </span>
+              <h1 className="mt-6 max-w-4xl text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+                {copy.heroTitle}
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-blue-50/90 sm:text-xl">{copy.heroBody}</p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2 space-y-12">
-            <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold mb-8">{t.processTitle}</h2>
-              <div className="space-y-6">
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {copy.trustStats.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+                    <div className="text-2xl font-black text-white">{item.value}</div>
+                    <div className="mt-2 text-sm leading-6 text-blue-100/90">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <ul className="mt-8 space-y-3">
+                {copy.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-3 text-base leading-7 text-blue-50">
+                    <span className="mt-1 inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-300">
+                      ✓
+                    </span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="#ua-lead-form"
+                  className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-base font-bold text-slate-950 transition hover:bg-blue-50"
+                >
+                  {copy.primaryCta}
+                </a>
+                <a
+                  href="#ua-price-examples"
+                  className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/15"
+                >
+                  {copy.secondaryCta}
+                </a>
+              </div>
+            </div>
+
+            <div id="ua-lead-form" className="border-t border-white/10 bg-white p-5 text-slate-900 xl:border-l xl:border-t-0">
+              <div className="rounded-[1.75rem] bg-slate-50 p-4 sm:p-6 shadow-xl ring-1 ring-slate-200">
+                <div className="mb-6 rounded-2xl bg-blue-50 p-5">
+                  <div className="text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">
+                    CTA
+                  </div>
+                  <h2 className="mt-2 text-2xl font-black text-slate-950">{copy.formCardTitle}</h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-700">{copy.formCardBody}</p>
+                </div>
+                <LeadFormUniversal
+                  heading={copy.formCardTitle}
+                  subtitle={copy.formCardBody}
+                  formType="shipping"
+                  destinationPrefill="Ukraine"
+                  sourceContext="export_ukraine_hero"
+                  submitButtonText={copy.formButton}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {copy.promiseCards.map((card) => (
+            <article key={card.title} className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-sm">
+              <h2 className="text-2xl font-black text-slate-950">{card.title}</h2>
+              <p className="mt-4 text-base leading-7 text-slate-600">{card.body}</p>
+            </article>
+          ))}
+        </section>
+
+        <div className="grid grid-cols-1 gap-8 xl:grid-cols-[1fr_320px]">
+          <div className="space-y-8">
+            <section className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+              <h2 className="text-3xl font-black text-slate-950">{t.processTitle}</h2>
+              <div className="mt-8 space-y-6">
                 {steps.map((s, i) => (
-                  <div key={i} className="flex">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xl mr-4">
+                  <div key={s.title} className="flex gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-xl font-black text-blue-700">
                       {i + 1}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold">{s.title}</h3>
-                      <p className="text-gray-600">{s.body}</p>
+                      <h3 className="text-lg font-bold text-slate-950">{s.title}</h3>
+                      <p className="mt-1 text-base leading-7 text-slate-600">{s.body}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold mb-6">{t.costTitle}</h2>
-              <div className="bg-gray-50 rounded-xl p-6 space-y-4">
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cAuction}</span>
-                  <span className="font-semibold">$4,500</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cFees}</span>
-                  <span className="font-semibold">$650</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cShip}</span>
-                  <span className="font-semibold">$1,600</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cDuty}</span>
-                  <span className="font-semibold">~$1,800</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cBroker}</span>
-                  <span className="font-semibold">$300</span>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-600">{t.cService}</span>
-                  <span className="font-semibold">$500</span>
-                </div>
-                <div className="flex justify-between text-lg pt-2 text-emerald-700 font-bold">
-                  <span>{t.cTotal}</span>
-                  <span>$9,350</span>
-                </div>
-                <p className="text-xs text-gray-500 mt-4">{t.cNote}</p>
+            <section className="rounded-[1.75rem] bg-slate-950 px-7 py-8 text-white shadow-xl sm:px-9">
+              <h2 className="text-3xl font-black">{copy.midCtaTitle}</h2>
+              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">{copy.midCtaBody}</p>
+              <div className="mt-6">
+                <a
+                  href="#ua-lead-form"
+                  className="inline-flex items-center justify-center rounded-2xl bg-emerald-400 px-6 py-4 text-base font-bold text-slate-950 transition hover:bg-emerald-300"
+                >
+                  {copy.formButton}
+                </a>
               </div>
             </section>
 
-            <ShippingExamplesSection locale={locale} market="ukraine" accent="blue" />
+            <section className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+              <h2 className="text-3xl font-black text-slate-950">{t.costTitle}</h2>
+              <div className="mt-6 rounded-[1.5rem] bg-slate-50 p-6 space-y-4">
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cAuction}</span>
+                  <span className="font-semibold">$4,500</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cFees}</span>
+                  <span className="font-semibold">$650</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cShip}</span>
+                  <span className="font-semibold">$1,600</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cDuty}</span>
+                  <span className="font-semibold">~$1,800</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cBroker}</span>
+                  <span className="font-semibold">$800</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-600">{t.cService}</span>
+                  <span className="font-semibold">Included</span>
+                </div>
+                <div className="flex justify-between pt-2 text-lg font-black text-emerald-700">
+                  <span>{t.cTotal}</span>
+                  <span>$9,350</span>
+                </div>
+                <p className="text-xs text-slate-500">{t.cNote}</p>
+              </div>
+            </section>
+
+            <section className="rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9">
+              <h2 className="text-3xl font-black text-slate-950">{copy.objectionsTitle}</h2>
+              <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+                {copy.objections.map((item) => (
+                  <div key={item.title} className="rounded-[1.5rem] bg-slate-50 p-6 ring-1 ring-slate-200">
+                    <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section id="ua-price-examples" className="space-y-4">
+              <div className="px-1">
+                <h2 className="text-3xl font-black text-slate-950">{copy.examplesTitle}</h2>
+              </div>
+              <ShippingExamplesSection locale={locale} market="ukraine" accent="blue" />
+            </section>
+
+            <section className="rounded-[2rem] bg-gradient-to-br from-blue-900 to-slate-950 px-7 py-10 text-white shadow-2xl sm:px-10">
+              <h2 className="max-w-4xl text-3xl font-black sm:text-4xl">{copy.finalCtaTitle}</h2>
+              <p className="mt-4 max-w-3xl text-base leading-7 text-blue-100">{copy.finalCtaBody}</p>
+              <div className="mt-7 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="#ua-lead-form"
+                  className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-base font-bold text-slate-950 transition hover:bg-blue-50"
+                >
+                  {copy.primaryCta}
+                </a>
+                <a
+                  href="https://wa.me/380992557209"
+                  className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/15"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </section>
           </div>
 
-          <div className="space-y-8">
-            <div className="sticky top-24">
-              <div className="bg-blue-900 text-white p-6 rounded-2xl shadow-lg mb-8">
-                <h3 className="text-xl font-bold mb-4">{t.sideTitle}</h3>
-                <ul className="space-y-3">
-                  {sideItems.map((item, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="mr-2">✅</span>
-                      {item}
+          <aside className="space-y-6 xl:pt-1">
+            <div className="sticky top-24 space-y-6">
+              <div className="rounded-[1.75rem] bg-blue-900 p-6 text-white shadow-xl">
+                <h3 className="text-2xl font-black">{copy.sideTitle}</h3>
+                <ul className="mt-5 space-y-3">
+                  {copy.sideItems.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm leading-6 text-blue-50">
+                      <span className="mt-1 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-white/15 text-xs">
+                        ✓
+                      </span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <LeadFormUniversal
-                heading={t.formTitle}
+                heading={copy.formCardTitle}
+                subtitle={copy.formCardBody}
                 formType="shipping"
                 destinationPrefill="Ukraine"
                 sourceContext="export_ukraine_sidebar"
+                submitButtonText={copy.formButton}
               />
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>
