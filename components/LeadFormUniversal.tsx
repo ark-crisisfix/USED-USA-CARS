@@ -64,14 +64,18 @@ type ContactCopy = {
   anyOption: string;
 };
 
-const WHATSAPP_NUMBER = "380992557209";
-const WHATSAPP_LABEL = "+380 99 255 7209";
+const WHATSAPP_CONTACTS = [
+  { label: "+380 99 255 7209", href: "https://wa.me/380992557209" },
+  { label: "+1 647-241-9742", href: "https://wa.me/16472419742" },
+] as const;
 const CALL_NUMBERS = [
   { label: "+1 672-673-9976", href: "tel:+16726739976" },
   { label: "+778-254-55333", href: "tel:+77825455333" },
 ] as const;
-const TELEGRAM_USERNAME = "@ARMAN_TATEVOSYAN";
-const TELEGRAM_URL = "https://t.me/ARMAN_TATEVOSYAN";
+const TELEGRAM_CONTACTS = [
+  { label: "@ARMAN_TATEVOSYAN", href: "https://t.me/ARMAN_TATEVOSYAN" },
+  { label: "@Ark_Kan", href: "https://t.me/Ark_Kan" },
+] as const;
 const ORDER_EMAIL = "bid@hortham.com";
 
 function getCopy(locale: "en" | "ru"): ContactCopy {
@@ -301,46 +305,49 @@ export default function LeadFormUniversal({
   );
 
   const cards = [
-    {
-      title: copy.callTitle,
-      body: copy.callBody,
-      href: CALL_NUMBERS[0].href,
-      cta: copy.callCta,
-      tone: "bg-slate-50 border-slate-200 text-slate-900",
-      buttonTone: "bg-slate-900 hover:bg-slate-800 text-white",
-      phoneLinks: CALL_NUMBERS,
-      value: "",
-    },
-    {
-      title: copy.whatsappTitle,
-      body: copy.whatsappBody,
-      value: WHATSAPP_LABEL,
-      href: `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppText(locale, pathname)}`,
-      cta: copy.whatsappCta,
-      tone: "bg-green-50 border-green-200 text-green-900",
-      buttonTone: "bg-green-600 hover:bg-green-700 text-white",
-      phoneLinks: undefined,
-    },
-    {
-      title: copy.telegramTitle,
-      body: copy.telegramBody,
-      value: TELEGRAM_USERNAME,
-      href: TELEGRAM_URL,
-      cta: copy.telegramCta,
-      tone: "bg-sky-50 border-sky-200 text-sky-900",
-      buttonTone: "bg-sky-600 hover:bg-sky-700 text-white",
-      phoneLinks: undefined,
-    },
-    {
-      title: copy.emailTitle,
-      body: copy.emailBody,
-      value: ORDER_EMAIL,
-      href: `mailto:${ORDER_EMAIL}?subject=${mailTemplate.subject}&body=${mailTemplate.body}`,
-      cta: copy.emailCta,
-      tone: "bg-amber-50 border-amber-200 text-amber-900",
-      buttonTone: "bg-amber-600 hover:bg-amber-700 text-white",
-      phoneLinks: undefined,
-    },
+      {
+        title: copy.callTitle,
+        body: copy.callBody,
+        href: CALL_NUMBERS[0].href,
+        cta: copy.callCta,
+        tone: "bg-slate-50 border-slate-200 text-slate-900",
+        buttonTone: "bg-slate-900 hover:bg-slate-800 text-white",
+        links: CALL_NUMBERS,
+        value: "",
+      },
+      {
+        title: copy.whatsappTitle,
+        body: copy.whatsappBody,
+        value: "",
+        href: `${WHATSAPP_CONTACTS[0].href}?text=${buildWhatsAppText(locale, pathname)}`,
+        cta: copy.whatsappCta,
+        tone: "bg-green-50 border-green-200 text-green-900",
+        buttonTone: "bg-green-600 hover:bg-green-700 text-white",
+        links: WHATSAPP_CONTACTS.map((item) => ({
+          label: item.label,
+          href: `${item.href}?text=${buildWhatsAppText(locale, pathname)}`,
+        })),
+      },
+      {
+        title: copy.telegramTitle,
+        body: copy.telegramBody,
+        value: "",
+        href: TELEGRAM_CONTACTS[0].href,
+        cta: copy.telegramCta,
+        tone: "bg-sky-50 border-sky-200 text-sky-900",
+        buttonTone: "bg-sky-600 hover:bg-sky-700 text-white",
+        links: TELEGRAM_CONTACTS,
+      },
+      {
+        title: copy.emailTitle,
+        body: copy.emailBody,
+        value: ORDER_EMAIL,
+        href: `mailto:${ORDER_EMAIL}?subject=${mailTemplate.subject}&body=${mailTemplate.body}`,
+        cta: copy.emailCta,
+        tone: "bg-amber-50 border-amber-200 text-amber-900",
+        buttonTone: "bg-amber-600 hover:bg-amber-700 text-white",
+        links: undefined,
+      },
   ];
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -416,11 +423,17 @@ export default function LeadFormUniversal({
               <div>
                 <h4 className="text-lg font-bold">{card.title}</h4>
                 <p className="mt-1 text-sm leading-6">{card.body}</p>
-                {card.phoneLinks ? (
+                {card.links ? (
                   <div className="mt-3 flex flex-wrap gap-3">
-                    {card.phoneLinks.map((phone) => (
-                      <a key={phone.href} href={phone.href} className="font-semibold underline-offset-2 hover:underline">
-                        {phone.label}
+                    {card.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target={card.title === copy.callTitle ? undefined : "_blank"}
+                        rel={card.title === copy.callTitle ? undefined : "noreferrer"}
+                        className="font-semibold underline-offset-2 hover:underline"
+                      >
+                        {link.label}
                       </a>
                     ))}
                   </div>
