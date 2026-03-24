@@ -24,12 +24,14 @@ export default function HomePage({ locale }: { locale: Locale }) {
         body: "Откройте актуальные аукционные площадки, выберите интересный автомобиль и пришлите нам ссылку или номер лота на расчет.",
         cta: "Открыть лоты",
         quickLink: "Лоты с аукционов",
+        inlineHint: "Есть конкретный лот? Просто отправьте ссылку или номер, а мы проверим историю, риски и полную стоимость доставки.",
       }
     : {
         title: "Want to shortlist lots yourself?",
         body: "Open live auction marketplaces, pick a vehicle you like, and send us the link or lot number for a practical quote.",
         cta: "Browse Lots",
         quickLink: "Auction Lots",
+        inlineHint: "Already have a specific lot? Send the link or lot number and we will review history, risk, and full delivery cost.",
       };
   const heroPanel = locale === "ru"
     ? {
@@ -166,6 +168,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
               >
                 {t.browseCars}
               </Link>
+            </div>
+
+            <div className="mt-5 max-w-2xl rounded-2xl border border-emerald-300/15 bg-white/10 px-5 py-4 backdrop-blur-sm">
+              <p className="text-sm md:text-base leading-7 text-slate-100">{lotTeaser.inlineHint}</p>
             </div>
           </div>
 
