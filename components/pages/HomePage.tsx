@@ -18,6 +18,19 @@ export default function HomePage({ locale }: { locale: Locale }) {
   const hrefPrefix = locale === "ru" ? "/ru" : "";
   const featuredReady = getFeaturedReadyCarsForHome(6);
   const featuredCases = getFeaturedCasesForHome(3);
+  const lotTeaser = locale === "ru"
+    ? {
+        title: "Хотите сами выбрать лот?",
+        body: "Откройте актуальные аукционные площадки, выберите интересный автомобиль и пришлите нам ссылку или номер лота на расчет.",
+        cta: "Открыть лоты",
+        quickLink: "Лоты с аукционов",
+      }
+    : {
+        title: "Want to shortlist lots yourself?",
+        body: "Open live auction marketplaces, pick a vehicle you like, and send us the link or lot number for a practical quote.",
+        cta: "Browse Lots",
+        quickLink: "Auction Lots",
+      };
   const heroPanel = locale === "ru"
     ? {
         eyebrow: "NorthAm Cars",
@@ -142,6 +155,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 {t.findMyCar}
               </Link>
               <Link
+                href={L("/auction-listings")}
+                className="bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl hover:bg-emerald-300 transition shadow-lg text-lg text-center"
+              >
+                {lotTeaser.cta}
+              </Link>
+              <Link
                 href={L("/catalog")}
                 className="bg-blue-700/80 backdrop-blur border border-blue-300/20 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-600 transition shadow-lg text-lg text-center"
               >
@@ -160,9 +179,23 @@ export default function HomePage({ locale }: { locale: Locale }) {
               ))}
             </div>
 
+            <div className="mt-5 rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200 mb-2">{lotTeaser.title}</p>
+              <p className="text-sm leading-7 text-slate-100">{lotTeaser.body}</p>
+              <Link
+                href={L("/auction-listings")}
+                className="mt-4 inline-flex rounded-xl bg-emerald-300 px-4 py-3 text-sm font-bold text-slate-950 hover:bg-emerald-200 transition"
+              >
+                {lotTeaser.cta}
+              </Link>
+            </div>
+
             <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-5">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-200 mb-3">Quick Paths</p>
               <div className="grid gap-3">
+                <Link href={L("/auction-listings")} className="rounded-xl border border-emerald-300/20 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-100 hover:bg-emerald-400/20 transition">
+                  {lotTeaser.quickLink}
+                </Link>
                 <Link href={L("/ready-cars")} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/8 transition">
                   {heroPanel.links.ready}
                 </Link>
