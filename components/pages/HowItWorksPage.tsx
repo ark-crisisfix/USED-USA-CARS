@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuctionSourcesSection from "@/components/AuctionSourcesSection";
 import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -27,6 +28,10 @@ export default function HowItWorksPage({ locale }: { locale: Locale }) {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <AuctionSourcesSection locale={locale} />
         </div>
 
         <div className="mt-16 bg-gray-50 p-8 rounded-2xl border border-gray-200">

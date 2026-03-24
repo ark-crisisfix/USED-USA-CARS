@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuctionSourcesSection from "@/components/AuctionSourcesSection";
 import LeadFormUniversal from "@/components/LeadFormUniversal";
 import cars from "@/data/cars.json";
 import { getDictionary } from "@/lib/dictionaries";
@@ -89,6 +90,10 @@ export default function CatalogPage({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-10">
+              <AuctionSourcesSection locale={locale} />
             </div>
 
             <div className="mt-10">

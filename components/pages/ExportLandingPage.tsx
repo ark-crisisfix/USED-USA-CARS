@@ -1,3 +1,4 @@
+import AuctionSourcesSection from "@/components/AuctionSourcesSection";
 import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { shippingExamples, type ShippingExample } from "@/data/shipping-examples";
 import { getDictionary } from "@/lib/dictionaries";
@@ -143,19 +144,21 @@ function ExportGenericRoute({
               </div>
             </section>
 
-            <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-              <h2 className="text-2xl font-bold mb-6">{content.infoTitle}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                {content.cards.map((card, i) => (
-                  <div key={i} className={`rounded-xl p-6 ${cardTone}`}>
+              <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <h2 className="text-2xl font-bold mb-6">{content.infoTitle}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                  {content.cards.map((card, i) => (
+                    <div key={i} className={`rounded-xl p-6 ${cardTone}`}>
                     <div className="text-3xl mb-4">{card.icon}</div>
                     <h3 className="text-xl font-bold mb-2">{card.title}</h3>
                     <p>{card.body}</p>
                   </div>
-                ))}
-              </div>
-            </section>
-          </div>
+                  ))}
+                </div>
+              </section>
+
+              <AuctionSourcesSection locale={locale} />
+            </div>
 
           <div className="space-y-8">
             <div className="sticky top-24">
@@ -566,6 +569,8 @@ function ExportUkraine({ locale }: { locale: Locale }) {
               <ShippingExamplesSection locale={locale} market="ukraine" accent="blue" />
             </section>
 
+            <AuctionSourcesSection locale={locale} />
+
             <section className="rounded-[2rem] bg-gradient-to-br from-blue-900 to-slate-950 px-7 py-10 text-white shadow-2xl sm:px-10">
               <h2 className="max-w-4xl text-3xl font-black sm:text-4xl">{copy.finalCtaTitle}</h2>
               <p className="mt-4 max-w-3xl text-base leading-7 text-blue-100">{copy.finalCtaBody}</p>
@@ -670,8 +675,10 @@ function ExportUae({ locale }: { locale: Locale }) {
               </div>
             </section>
 
-            <ShippingExamplesSection locale={locale} market="uae" accent="amber" />
-          </div>
+              <ShippingExamplesSection locale={locale} market="uae" accent="amber" />
+
+              <AuctionSourcesSection locale={locale} />
+            </div>
 
           <div className="space-y-8">
             <div className="sticky top-24">
