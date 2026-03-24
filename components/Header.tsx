@@ -12,9 +12,31 @@ export default function Header() {
   const d = getDictionary(locale);
   const t = d.nav;
   const L = (path: string) => localizePath(path, locale);
+  const auctionListingsLabel = locale === "ru" ? "Лоты" : "Auction Lots";
+  const auctionListingsBarTitle =
+    locale === "ru" ? "Хотите сами выбрать лот?" : "Want to shortlist lots yourself?";
+  const auctionListingsBarBody =
+    locale === "ru"
+      ? "Откройте актуальные площадки и пришлите нам ссылку или номер лота на расчет."
+      : "Open live listing sites and send us the lot link or number for review.";
+  const auctionListingsBarCta = locale === "ru" ? "Открыть лоты" : "Browse Lots";
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="border-b border-blue-100 bg-gradient-to-r from-blue-50 via-white to-sky-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-700">{auctionListingsBarTitle}</div>
+            <div className="text-sm text-slate-600">{auctionListingsBarBody}</div>
+          </div>
+          <Link
+            href={L("/auction-listings")}
+            className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
+          >
+            {auctionListingsBarCta}
+          </Link>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <Link href={L("/")} className="font-bold text-2xl text-blue-600 shrink-0">
           {d.site.brand}
@@ -22,6 +44,9 @@ export default function Header() {
         <nav className="hidden md:flex space-x-6 lg:space-x-8">
           <Link href={L("/catalog")} className="text-gray-600 hover:text-blue-600 font-medium">
             {t.catalog}
+          </Link>
+          <Link href={L("/auction-listings")} className="text-blue-700 hover:text-blue-800 font-semibold">
+            {auctionListingsLabel}
           </Link>
           <Link href={L("/ready-cars")} className="text-gray-600 hover:text-blue-600 font-medium">
             {t.readyCars}
