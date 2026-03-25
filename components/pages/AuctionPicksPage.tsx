@@ -11,12 +11,11 @@ export default function AuctionPicksPage({ locale }: { locale: Locale }) {
 
   const copy = isRu
     ? {
-        eyebrow: "MVP-витрина лотов",
-        title: "Лучшие аукционные лоты недели: прообраз будущей подборки на сайте",
+        eyebrow: "Витрина лотов",
+        title: "Лучшие аукционные лоты недели",
         body:
-          "Это demo-структура будущего weekly-updated раздела. Сейчас здесь плейсхолдеры, но уже в таком формате можно показывать самые интересные, самые дешевые и самые перспективные лоты по направлениям.",
-        badge: "Сейчас это demo-лендинг. На этой неделе сюда можно подставить вашу первую двадцатку реальных лотов.",
-        boardTitle: "Как будет работать эта витрина",
+          "Здесь мы собираем самые интересные, самые дешевые и самые перспективные аукционные лоты по направлениям, бюджету и типу автомобиля, чтобы посетителю было проще быстро увидеть сильные варианты.",
+        boardTitle: "Как работает эта витрина",
         boardItems: [
           "Раз в неделю обновляем shortlist лучших лотов под Украину, ОАЭ, Польшу и Прибалтику.",
           "Показываем стартовую цену, ориентир по итоговой стоимости и короткое объяснение, почему лот интересен.",
@@ -40,12 +39,11 @@ export default function AuctionPicksPage({ locale }: { locale: Locale }) {
         formTitle: "Запросить подборку лучших лотов",
       }
     : {
-        eyebrow: "Auction picks MVP",
-        title: "Best auction picks of the week: a preview of your future curated lot board",
+        eyebrow: "Auction Picks",
+        title: "Best auction picks of the week",
         body:
-          "This is a demo structure for the weekly-updated auction board we can build on the site. The entries below are placeholders, but the format already shows how your best-value, cheapest, and most attractive lots can be presented.",
-        badge: "This is a demo landing page for now. Your first real top-20 lots can replace these placeholders later this week.",
-        boardTitle: "How this board can work",
+          "This page highlights the most interesting, lowest-cost, and most attractive auction lots by destination, budget, and vehicle type, so visitors can see strong opportunities without digging through raw marketplace inventory.",
+        boardTitle: "How this board works",
         boardItems: [
           "Refresh the shortlist every week for Ukraine, UAE, Poland, and Baltics routes.",
           "Show the opening price, an estimated landed total, and a short note on why the lot is interesting.",
@@ -77,9 +75,6 @@ export default function AuctionPicksPage({ locale }: { locale: Locale }) {
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-200">{copy.eyebrow}</div>
             <h1 className="mt-4 text-4xl font-black leading-tight sm:text-5xl">{copy.title}</h1>
             <p className="mt-5 text-lg leading-8 text-emerald-50/90">{copy.body}</p>
-            <div className="mt-6 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-emerald-50">
-              {copy.badge}
-            </div>
           </div>
         </section>
 
@@ -131,7 +126,7 @@ export default function AuctionPicksPage({ locale }: { locale: Locale }) {
                         <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">{pick.year}</div>
                         <h3 className="mt-2 text-2xl font-black text-slate-950">{pick.vehicle}</h3>
                       </div>
-                      <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-amber-900">
+                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-emerald-900">
                         {pick.status}
                       </span>
                     </div>
