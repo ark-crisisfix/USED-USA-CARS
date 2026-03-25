@@ -123,6 +123,31 @@ export default function HomePage({ locale }: { locale: Locale }) {
           },
         ],
       };
+  const partsSection = locale === "ru"
+    ? {
+        eyebrow: "Запчасти",
+        title: "Подбор и отправка запчастей для американских автомобилей",
+        body:
+          "Если машина уже куплена на аукционе или вы восстанавливаете авто из США, мы можем найти и отправить нужные детали отдельно или вместе с автомобилем.",
+        points: [
+          "Подбор по VIN, номеру детали или фото",
+          "OEM, б/у и донорские детали",
+          "Консолидация и отправка в одной партии",
+        ],
+        cta: "Открыть услугу по запчастям",
+      }
+    : {
+        eyebrow: "Parts",
+        title: "Parts sourcing and shipping for American vehicles",
+        body:
+          "If the car is already purchased at auction or you are rebuilding a US-market vehicle, we can source and ship the required parts separately or together with the vehicle.",
+        points: [
+          "Sourcing by VIN, part number, or photos",
+          "OEM, used, and donor parts",
+          "Consolidation and shipment in one batch",
+        ],
+        cta: "Open parts service",
+      };
 
   return (
     <div className="bg-gray-50 text-gray-900 font-sans">
@@ -326,6 +351,32 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 </div>
                 <h3 className="text-xl font-bold text-white">{item.title}</h3>
                 <p className="mt-3 text-slate-300 leading-7">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-r from-emerald-50 via-white to-blue-50 px-4 py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 rounded-[32px] border border-emerald-100 bg-white p-8 shadow-sm lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-10">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">{partsSection.eyebrow}</p>
+            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">{partsSection.title}</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{partsSection.body}</p>
+            <Link
+              href={L("/parts-shipping")}
+              className="mt-8 inline-flex rounded-xl bg-slate-900 px-6 py-4 text-base font-bold text-white transition hover:bg-slate-800"
+            >
+              {partsSection.cta}
+            </Link>
+          </div>
+          <div className="grid gap-4">
+            {partsSection.points.map((point, index) => (
+              <div key={point} className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-sm font-black text-emerald-700">
+                  0{index + 1}
+                </div>
+                <p className="text-base leading-7 text-slate-700">{point}</p>
               </div>
             ))}
           </div>

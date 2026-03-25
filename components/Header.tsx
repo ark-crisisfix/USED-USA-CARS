@@ -14,6 +14,7 @@ export default function Header() {
   const L = (path: string) => localizePath(path, locale);
   const auctionListingsLabel = locale === "ru" ? "Лоты" : "Auction Lots";
   const auctionPicksLabel = locale === "ru" ? "Подборка недели" : "Weekly Picks";
+  const partsLabel = locale === "ru" ? "Запчасти" : "Parts";
   const auctionListingsBarTitle =
     locale === "ru" ? "Хотите сами выбрать лот?" : "Want to shortlist lots yourself?";
   const auctionListingsBarBody =
@@ -51,6 +52,9 @@ export default function Header() {
           </Link>
           <Link href={L("/auction-picks")} className="text-gray-600 hover:text-blue-600 font-medium">
             {auctionPicksLabel}
+          </Link>
+          <Link href={L("/parts-shipping")} className="text-gray-600 hover:text-blue-600 font-medium">
+            {partsLabel}
           </Link>
           <Link href={L("/ready-cars")} className="text-gray-600 hover:text-blue-600 font-medium">
             {t.readyCars}

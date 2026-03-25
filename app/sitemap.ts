@@ -22,6 +22,7 @@ const staticRoutes = [
   "/guides",
   "/auction-listings",
   "/auction-picks",
+  "/parts-shipping",
   "/ru",
   "/ru/calculator",
   "/ru/catalog",
@@ -39,6 +40,7 @@ const staticRoutes = [
   "/ru/guides",
   "/ru/auction-listings",
   "/ru/auction-picks",
+  "/ru/parts-shipping",
   "/uk/guides",
 ];
 
