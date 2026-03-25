@@ -18,6 +18,7 @@ export type LeadFormUniversalProps = {
   submitButtonText?: string;
   className?: string;
   preferredVehicleInitial?: string;
+  variant?: "full" | "landing";
 };
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -259,11 +260,13 @@ export default function LeadFormUniversal({
   submitButtonText,
   className = "",
   preferredVehicleInitial = "",
+  variant = "full",
 }: LeadFormUniversalProps) {
   const pathname = usePathname() || "/";
   const router = useRouter();
   const locale = getLocaleFromPath(pathname);
   const copy = getCopy(locale);
+  const isLanding = variant === "landing";
   const effectiveSubtitle = subtitle ?? copy.subtitle;
   const lotReferenceLabel = copy.lotReferenceLabel ?? (locale === "ru" ? "Ссылка на лот / номер лота" : "Lot URL / Lot number");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -421,45 +424,75 @@ export default function LeadFormUniversal({
       <h3 className={`font-bold text-gray-900 ${compact ? "mb-2 text-xl" : "mb-2 text-2xl"}`}>{heading}</h3>
       {effectiveSubtitle ? <p className="mb-5 text-sm text-gray-600">{effectiveSubtitle}</p> : null}
 
-      <div className="grid gap-4">
-        {cards.map((card) => (
-          <div key={card.title} className={`rounded-xl border p-4 ${card.tone}`}>
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-              <div>
-                <h4 className="text-lg font-bold">{card.title}</h4>
-                <p className="mt-1 text-sm leading-6">{card.body}</p>
-                {card.links ? (
-                  <div className="mt-3 flex flex-wrap gap-3">
-                    {card.links.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        target={card.title === copy.callTitle ? undefined : "_blank"}
-                        rel={card.title === copy.callTitle ? undefined : "noreferrer"}
-                        className="font-semibold underline-offset-2 hover:underline"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
+      {isLanding ? (
+        <div className="mb-6 flex flex-wrap gap-3 rounded-2xl border border-gray-200 bg-gray-50 p-4">
+          <a
+            href={`${WHATSAPP_CONTACTS[0].href}?text=${buildWhatsAppText(locale, pathname)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-xl bg-green-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-green-700"
+          >
+            {copy.whatsappTitle}
+          </a>
+          <a
+            href={TELEGRAM_CONTACTS[0].href}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-xl bg-sky-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-sky-700"
+          >
+            {copy.telegramTitle}
+          </a>
+          <a
+            href={CALL_NUMBERS[0].href}
+            className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800"
+          >
+            {copy.callTitle}
+          </a>
+          <p className="basis-full text-xs leading-6 text-gray-500">{copy.templateLabel}</p>
+        </div>
+      ) : (
+        <>
+          <div className="grid gap-4">
+            {cards.map((card) => (
+              <div key={card.title} className={`rounded-xl border p-4 ${card.tone}`}>
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                  <div>
+                    <h4 className="text-lg font-bold">{card.title}</h4>
+                    <p className="mt-1 text-sm leading-6">{card.body}</p>
+                    {card.links ? (
+                      <div className="mt-3 flex flex-wrap gap-3">
+                        {card.links.map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target={card.title === copy.callTitle ? undefined : "_blank"}
+                            rel={card.title === copy.callTitle ? undefined : "noreferrer"}
+                            className="font-semibold underline-offset-2 hover:underline"
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-3 font-semibold">{card.value}</p>
+                    )}
                   </div>
-                ) : (
-                  <p className="mt-3 font-semibold">{card.value}</p>
-                )}
+                  <a
+                    href={card.href}
+                    target={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "_blank"}
+                    rel={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "noreferrer"}
+                    className={`shrink-0 rounded-lg px-4 py-2 text-center text-sm font-bold transition-colors ${card.buttonTone}`}
+                  >
+                    {card.cta}
+                  </a>
+                </div>
               </div>
-              <a
-                href={card.href}
-                target={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "_blank"}
-                rel={card.title === copy.emailTitle || card.title === copy.callTitle ? undefined : "noreferrer"}
-                className={`shrink-0 rounded-lg px-4 py-2 text-center text-sm font-bold transition-colors ${card.buttonTone}`}
-              >
-                {card.cta}
-              </a>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <p className="mt-4 text-xs text-gray-500">{copy.templateLabel}</p>
+          <p className="mt-4 text-xs text-gray-500">{copy.templateLabel}</p>
+        </>
+      )}
 
       <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50 p-5">
         <div className="mb-5">
@@ -555,7 +588,7 @@ export default function LeadFormUniversal({
               />
             </label>
 
-            <label className="block">
+            <label className={`block ${isLanding ? "md:col-span-2" : ""}`}>
               <span className="mb-1 block text-sm font-medium text-gray-700">{lotReferenceLabel}</span>
               <input
                 type="text"
@@ -584,7 +617,7 @@ export default function LeadFormUniversal({
             </label>
           </div>
 
-          <label className="block">
+          <label className={`block ${isLanding ? "hidden" : ""}`}>
             <span className="mb-1 block text-sm font-medium text-gray-700">{copy.messageLabel}</span>
             <textarea
               name="message"

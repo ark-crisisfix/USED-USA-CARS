@@ -2,7 +2,6 @@ import Link from "next/link";
 import CaseCard from "@/components/savings-cases/CaseCard";
 import LeadFormUniversal from "@/components/LeadFormUniversal";
 import ReadyCarCard from "@/components/ready-cars/ReadyCarCard";
-import cars from "@/data/cars.json";
 import { commerce } from "@/lib/commerceCopy";
 import { getDictionary } from "@/lib/dictionaries";
 import type { Locale } from "@/lib/i18n";
@@ -11,396 +10,276 @@ import { getFeaturedCasesForHome } from "@/lib/savings-cases";
 import { getFeaturedReadyCarsForHome } from "@/lib/ready-cars";
 
 export default function HomePage({ locale }: { locale: Locale }) {
-  const t = getDictionary(locale).home;
-  const c = getDictionary(locale).common;
+  const dictionary = getDictionary(locale);
+  const t = dictionary.home;
   const co = commerce(locale);
   const L = (path: string) => localizePath(path, locale);
   const hrefPrefix = locale === "ru" ? "/ru" : "";
   const featuredReady = getFeaturedReadyCarsForHome(6);
   const featuredCases = getFeaturedCasesForHome(3);
-  const lotTeaser = locale === "ru"
-    ? {
-        title: "Хотите сами выбрать лот?",
-        body: "Откройте актуальные аукционные площадки, выберите интересный автомобиль и пришлите нам ссылку или номер лота на расчет.",
-        cta: "Открыть лоты",
-        quickLink: "Лоты с аукционов",
-        inlineHint: "Есть конкретный лот? Просто отправьте ссылку или номер, а мы проверим историю, риски и полную стоимость доставки.",
-      }
-    : {
-        title: "Want to shortlist lots yourself?",
-        body: "Open live auction marketplaces, pick a vehicle you like, and send us the link or lot number for a practical quote.",
-        cta: "Browse Lots",
-        quickLink: "Auction Lots",
-        inlineHint: "Already have a specific lot? Send the link or lot number and we will review history, risk, and full delivery cost.",
-      };
-  const heroPanel = locale === "ru"
-    ? {
-        eyebrow: "NorthAm Cars",
-        bullets: ["Copart и IAAI без посредников", "Понятная структура расходов до ставки", "Прямой контакт: звонок, WhatsApp, Telegram"],
-        stats: [
-          { value: "500+", label: "подобранных авто" },
-          { value: "20–40%", label: "типичная экономия" },
-          { value: "4–10", label: "недель логистики" },
-        ],
-        links: {
-          contact: "Быстрый контакт",
-          cases: "Реальные кейсы",
-          ready: "Готовые авто",
-        },
-      }
-    : {
-        eyebrow: "NorthAm Cars",
-        bullets: ["Copart and IAAI access without middlemen", "Clear cost structure before you bid", "Direct contact by phone, WhatsApp, and Telegram"],
-        stats: [
-          { value: "500+", label: "cars sourced" },
-          { value: "20–40%", label: "typical savings" },
-          { value: "4–10", label: "weeks logistics" },
-        ],
-        links: {
-          contact: "Fast Contact",
-          cases: "Real Cases",
-          ready: "Ready Cars",
-        },
-      };
-  const trustProof = locale === "ru"
-    ? {
-        title: "Почему процессу доверяют",
-        subtitle:
-          "Вместо шаблонных отзывов мы показываем сигналы доверия, важные до ставки и покупки.",
-        note: "Реальные отзывы клиентов можно будет добавить позже, по мере сбора и проверки.",
-        eyebrow: "Доверие",
-        badges: ["Без фейковых отзывов", "Открытые кейсы", "Прямой контакт"],
-        links: {
-          cases: "Смотреть кейсы",
-          ready: "Авто в наличии",
-          contact: "Связаться сейчас",
-        },
-        items: [
-          {
-            stat: "01",
-            title: "Понятная структура расходов",
-            body: "До решения раскладываем стоимость: ставка, сборы аукциона, перевозка по США, море и расходы на стороне назначения.",
-          },
-          {
-            stat: "02",
-            title: "Открытые кейсы и наличие",
-            body: "Можно посмотреть авто в наличии, кейсы закупки и страницы по направлениям, а не опираться только на обещания.",
-          },
-          {
-            stat: "03",
-            title: "Прямой контакт без ожидания",
-            body: "На сайте сразу доступны WhatsApp, Telegram, звонок и email-шаблон заказа, чтобы быстро перейти к живому общению.",
-          },
-        ],
-      }
-    : {
-        title: "Why Clients Trust The Process",
-        subtitle:
-          "Instead of placeholder testimonials, we show the trust signals that matter before you place a bid.",
-        note: "Real customer reviews can be added later as they are collected and verified.",
-        eyebrow: "Trust",
-        badges: ["No fake reviews", "Open cases", "Direct contact"],
-        links: {
-          cases: "View Cases",
-          ready: "Ready Cars",
-          contact: "Contact Now",
-        },
-        items: [
-          {
-            stat: "01",
-            title: "Clear Cost Logic",
-            body: "We break down auction price, fees, inland transport, ocean freight, and destination-side costs before you commit.",
-          },
-          {
-            stat: "02",
-            title: "Visible Inventory And Cases",
-            body: "You can review ready cars, purchase cases, and destination pages instead of relying on generic promises.",
-          },
-          {
-            stat: "03",
-            title: "Direct Communication",
-            body: "WhatsApp, Telegram, phone, and order email are available directly on the site, so you can reach a person without waiting.",
-          },
-        ],
-      };
-  const partsSection = locale === "ru"
-    ? {
-        eyebrow: "Запчасти",
-        title: "Подбор и отправка запчастей для американских автомобилей",
-        body:
-          "Если машина уже куплена на аукционе или вы восстанавливаете авто из США, мы можем найти и отправить нужные детали отдельно или вместе с автомобилем.",
-        points: [
-          "Подбор по VIN, номеру детали или фото",
-          "OEM, б/у и донорские детали",
-          "Консолидация и отправка в одной партии",
-        ],
-        cta: "Открыть услугу по запчастям",
-      }
-    : {
-        eyebrow: "Parts",
-        title: "Parts sourcing and shipping for American vehicles",
-        body:
-          "If the car is already purchased at auction or you are rebuilding a US-market vehicle, we can source and ship the required parts separately or together with the vehicle.",
-        points: [
-          "Sourcing by VIN, part number, or photos",
-          "OEM, used, and donor parts",
-          "Consolidation and shipment in one batch",
-        ],
-        cta: "Open parts service",
-      };
+  const copy =
+    locale === "ru"
+      ? {
+          eyebrow: "NorthAm Cars",
+          heroBullets: [
+            "Copart \u0438 IAAI \u0431\u0435\u0437 \u043b\u0438\u0448\u043d\u0438\u0445 \u043f\u043e\u0441\u0440\u0435\u0434\u043d\u0438\u043a\u043e\u0432",
+            "\u041f\u043e\u043d\u044f\u0442\u043d\u0430\u044f \u0441\u043c\u0435\u0442\u0430 \u0434\u043e \u0441\u0442\u0430\u0432\u043a\u0438 \u0438 \u043f\u043e\u043a\u0443\u043f\u043a\u0438",
+            "\u0420\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430 \u0447\u0435\u0440\u0435\u0437 \u0437\u0432\u043e\u043d\u043e\u043a, WhatsApp \u0438 Telegram",
+          ],
+          lotTitle: "\u0423\u0436\u0435 \u0435\u0441\u0442\u044c \u043b\u043e\u0442?",
+          lotBody:
+            "\u041f\u0440\u0438\u0448\u043b\u0438\u0442\u0435 \u0441\u0441\u044b\u043b\u043a\u0443 \u0438\u043b\u0438 \u043d\u043e\u043c\u0435\u0440 \u043b\u043e\u0442\u0430, \u0430 \u043c\u044b \u0431\u044b\u0441\u0442\u0440\u043e \u043f\u0440\u043e\u0432\u0435\u0440\u0438\u043c \u0438\u0441\u0442\u043e\u0440\u0438\u044e, \u0440\u0438\u0441\u043a\u0438 \u0438 \u043f\u043e\u043b\u043d\u0443\u044e \u044d\u043a\u043e\u043d\u043e\u043c\u0438\u043a\u0443 \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0438.",
+          lotCta: "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043b\u043e\u0442\u044b",
+          trustEyebrow: "\u0414\u043e\u0432\u0435\u0440\u0438\u0435",
+          trustTitle: "\u041a\u0430\u043a \u043c\u044b \u0443\u0431\u0438\u0440\u0430\u0435\u043c \u0445\u0430\u043e\u0441 \u0438\u0437 \u0438\u043c\u043f\u043e\u0440\u0442\u0430 \u0430\u0432\u0442\u043e",
+          trustSubtitle:
+            "\u041d\u0430 \u0441\u0430\u0439\u0442\u0435 \u0441\u0435\u0439\u0447\u0430\u0441 \u043d\u0443\u0436\u0435\u043d \u043e\u0434\u0438\u043d \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u0439 \u0441\u0446\u0435\u043d\u0430\u0440\u0438\u0439: \u0432\u044b \u043e\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442\u0435 \u0437\u0430\u043f\u0440\u043e\u0441 \u0438\u043b\u0438 \u043f\u0440\u0438\u0441\u044b\u043b\u0430\u0435\u0442\u0435 \u043b\u043e\u0442, \u0430 \u043c\u044b \u0432\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u043c\u0441\u044f \u0441 \u0440\u0430\u0441\u0447\u0451\u0442\u043e\u043c \u0438 \u043f\u043b\u0430\u043d\u043e\u043c.",
+          trustItems: [
+            {
+              title: "\u041f\u0440\u043e\u0437\u0440\u0430\u0447\u043d\u0430\u044f \u0441\u043c\u0435\u0442\u0430",
+              body: "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u043c \u0441\u0442\u0430\u0432\u043a\u0443, \u0430\u0443\u043a\u0446\u0438\u043e\u043d\u043d\u044b\u0435 \u0441\u0431\u043e\u0440\u044b, inland transport, \u043c\u043e\u0440\u0435 \u0438 \u0440\u0430\u0441\u0445\u043e\u0434\u044b \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f.",
+            },
+            {
+              title: "\u0420\u0435\u0430\u043b\u044c\u043d\u043e\u0435 \u043d\u0430\u043b\u0438\u0447\u0438\u0435",
+              body: "\u0423 \u0432\u0430\u0441 \u0435\u0441\u0442\u044c \u0433\u043e\u0442\u043e\u0432\u044b\u0435 \u0430\u0432\u0442\u043e \u0438 \u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0435 \u043a\u0435\u0439\u0441\u044b, \u0430 \u043d\u0435 \u0430\u0431\u0441\u0442\u0440\u0430\u043a\u0442\u043d\u0430\u044f \u0432\u0438\u0442\u0440\u0438\u043d\u0430 \u0431\u0435\u0437 \u043f\u043e\u043d\u044f\u0442\u043d\u043e\u0433\u043e \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430.",
+            },
+            {
+              title: "\u041f\u0440\u044f\u043c\u043e\u0439 \u0441\u0432\u044f\u0437\u044c",
+              body: "\u0415\u0441\u043b\u0438 \u043d\u0443\u0436\u043d\u043e, \u043a\u043b\u0438\u0435\u043d\u0442 \u0441\u0440\u0430\u0437\u0443 \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u0438\u0442 \u0432 \u0437\u0432\u043e\u043d\u043e\u043a, WhatsApp \u0438\u043b\u0438 Telegram \u0431\u0435\u0437 \u043f\u043e\u0438\u0441\u043a\u0430 \u043d\u0443\u0436\u043d\u043e\u0439 \u043a\u043d\u043e\u043f\u043a\u0438.",
+            },
+          ],
+          destinationTitle: "\u041a\u0443\u0434\u0430 \u043c\u044b \u0432\u0435\u0437\u0451\u043c \u0430\u0432\u0442\u043e",
+          destinationCards: [
+            {
+              href: "/export-to-ukraine",
+              title: "\u0423\u043a\u0440\u0430\u0438\u043d\u0430",
+              body: "\u0411\u044e\u0434\u0436\u0435\u0442\u043d\u044b\u0435 \u043c\u043e\u0434\u0435\u043b\u0438, EV \u0438 \u0441\u0435\u043c\u0435\u0439\u043d\u044b\u0435 SUV \u0441 \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u043c \u0440\u0430\u0441\u0447\u0451\u0442\u043e\u043c.",
+              cta: "\u0412 \u0423\u043a\u0440\u0430\u0438\u043d\u0443",
+            },
+            {
+              href: "/export-to-uae",
+              title: "\u041e\u0410\u042d",
+              body: "Premium \u0438 luxury inventory \u0441 \u0444\u043e\u043a\u0443\u0441\u043e\u043c \u043d\u0430 clean-title \u0438 \u043f\u0440\u043e\u0441\u0442\u043e\u0439 \u043b\u043e\u0433\u0438\u0441\u0442\u0438\u043a\u043e\u0439.",
+              cta: "\u0412 \u041e\u0410\u042d",
+            },
+            {
+              href: "/export-to-poland",
+              title: "\u041f\u043e\u043b\u044c\u0448\u0430",
+              body: "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u043d\u044b\u0439 \u043c\u0430\u0440\u0448\u0440\u0443\u0442 \u0434\u043b\u044f \u0435\u0432\u0440\u043e\u043f\u0435\u0439\u0441\u043a\u043e\u0433\u043e \u0438\u043c\u043f\u043e\u0440\u0442\u0430 \u0438 \u0441\u0435\u043c\u0435\u0439\u043d\u044b\u0445 \u043c\u043e\u0434\u0435\u043b\u0435\u0439.",
+              cta: "\u0412 \u041f\u043e\u043b\u044c\u0448\u0443",
+            },
+            {
+              href: "/export-to-baltics",
+              title: "\u041f\u0440\u0438\u0431\u0430\u043b\u0442\u0438\u043a\u0430",
+              body: "\u0413\u0438\u0431\u043a\u0438\u0439 \u0432\u0445\u043e\u0434 \u0432 \u0415\u0421 \u0434\u043b\u044f \u043a\u043e\u043c\u043f\u0430\u043a\u0442\u043d\u044b\u0445 \u043c\u0430\u0448\u0438\u043d, EV \u0438 \u043f\u0440\u043e\u0441\u0442\u043e\u0439 \u043b\u043e\u0433\u0438\u0441\u0442\u0438\u043a\u0438.",
+              cta: "\u0412 \u041f\u0440\u0438\u0431\u0430\u043b\u0442\u0438\u043a\u0443",
+            },
+          ],
+          aiBullet: "AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442 \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u0442 \u0431\u044b\u0441\u0442\u0440\u0435\u0435 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441 \u0438 \u043b\u043e\u0442\u044b",
+          aiBody:
+            "\u041c\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u043c AI-\u0430\u0441\u0441\u0438\u0441\u0442\u0435\u043d\u0442\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0443\u0441\u043a\u043e\u0440\u044f\u0435\u0442 \u0440\u0430\u0437\u0431\u043e\u0440 \u0437\u0430\u044f\u0432\u043e\u043a, lot-\u0441\u0441\u044b\u043b\u043e\u043a \u0438 shortlist'\u043e\u0432, \u043d\u043e \u0444\u0438\u043d\u0430\u043b\u044c\u043d\u044b\u0439 \u043f\u043e\u0434\u0431\u043e\u0440 \u0438 \u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0437\u0430 \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442\u043e\u043c.",
+        }
+      : {
+          eyebrow: "NorthAm Cars",
+          heroBullets: [
+            "Copart and IAAI access without unnecessary middlemen",
+            "Clear landed-cost logic before you bid",
+            "Real support by phone, WhatsApp, and Telegram",
+          ],
+          lotTitle: "Already found a lot?",
+          lotBody: "Send the lot link or lot number and we will review history, risk, and full delivery economics.",
+          lotCta: "Browse Lots",
+          trustEyebrow: "Trust",
+          trustTitle: "How we make cross-border car buying feel simpler",
+          trustSubtitle:
+            "The site works better when it guides the visitor into one clear action: send a request or send a lot, then get a practical quote and sourcing plan back.",
+          trustItems: [
+            {
+              title: "Transparent math",
+              body: "We break down the bid, auction fees, inland transport, ocean freight, and destination-side costs before you commit.",
+            },
+            {
+              title: "Real inventory",
+              body: "You can review actual ready cars and real case studies instead of browsing placeholder content.",
+            },
+            {
+              title: "Direct contact",
+              body: "If needed, the user can move straight into a phone call, WhatsApp, or Telegram without hunting for the right entry point.",
+            },
+          ],
+          destinationTitle: "Where we deliver",
+          destinationCards: [
+            {
+              href: "/export-to-ukraine",
+              title: "Ukraine",
+              body: "Budget-friendly cars, EVs, and family SUVs with a clear landed-cost model.",
+              cta: "To Ukraine",
+            },
+            {
+              href: "/export-to-uae",
+              title: "UAE",
+              body: "Premium and luxury inventory with a focus on clean-title and practical logistics.",
+              cta: "To UAE",
+            },
+            {
+              href: "/export-to-poland",
+              title: "Poland",
+              body: "A practical route for European import and family-friendly inventory.",
+              cta: "To Poland",
+            },
+            {
+              href: "/export-to-baltics",
+              title: "Baltics",
+              body: "A flexible EU route for compact cars, EVs, and simple cross-border logistics.",
+              cta: "To Baltics",
+            },
+          ],
+          aiBullet: "AI assistant support for faster request and lot review",
+          aiBody:
+            "We use an AI assistant to speed up triage for incoming requests, lot links, and shortlists, while the final sourcing and client support stay with a human specialist.",
+        };
 
   return (
-    <div className="bg-gray-50 text-gray-900 font-sans">
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(125,211,252,0.2),_transparent_32%),linear-gradient(135deg,_#0f172a_0%,_#1d4ed8_45%,_#1e3a8a_100%)] text-white py-20 px-4">
+    <div className="bg-gray-50 font-sans text-gray-900">
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(125,211,252,0.2),_transparent_32%),linear-gradient(135deg,_#0f172a_0%,_#1d4ed8_45%,_#1e3a8a_100%)] px-4 py-20 text-white">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute -top-16 right-0 h-72 w-72 rounded-full bg-sky-300 blur-3xl" />
           <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-emerald-300 blur-3xl" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+        <div className="relative mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100">
-              {heroPanel.eyebrow}
+              {copy.eyebrow}
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mt-6 leading-tight">{t.heroTitle}</h1>
-            <p className="text-xl md:text-2xl text-blue-100 mt-6 max-w-2xl">{t.heroSub}</p>
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl">{t.heroTitle}</h1>
+            <p className="mt-6 max-w-2xl text-xl text-blue-100 md:text-2xl">{t.heroSub}</p>
 
-            <div className="mt-8 grid gap-3 max-w-2xl">
-              {heroPanel.bullets.map((bullet) => (
-                <div key={bullet} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/8 px-4 py-3 backdrop-blur-sm">
+            <div className="mt-8 grid max-w-2xl gap-3">
+              {copy.heroBullets.map((bullet) => (
+                <div key={bullet} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur-sm">
                   <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-300" />
-                  <span className="text-sm md:text-base text-slate-100">{bullet}</span>
+                  <span className="text-sm text-slate-100 md:text-base">{bullet}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 href={L("/#contact")}
-                className="bg-white text-blue-900 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg text-center"
+                className="rounded-xl bg-white px-8 py-4 text-center text-lg font-bold text-blue-900 shadow-lg transition hover:bg-gray-100"
               >
                 {t.findMyCar}
               </Link>
               <Link
                 href={L("/auction-listings")}
-                className="bg-emerald-400 text-slate-950 font-bold px-8 py-4 rounded-xl hover:bg-emerald-300 transition shadow-lg text-lg text-center"
+                className="rounded-xl bg-emerald-400 px-8 py-4 text-center text-lg font-bold text-slate-950 shadow-lg transition hover:bg-emerald-300"
               >
-                {lotTeaser.cta}
+                {copy.lotCta}
               </Link>
-              <Link
-                href={L("/catalog")}
-                className="bg-blue-700/80 backdrop-blur border border-blue-300/20 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-600 transition shadow-lg text-lg text-center"
-              >
-                {t.browseCars}
-              </Link>
-            </div>
-
-            <div className="mt-5 max-w-2xl rounded-2xl border border-emerald-300/15 bg-white/10 px-5 py-4 backdrop-blur-sm">
-              <p className="text-sm md:text-base leading-7 text-slate-100">{lotTeaser.inlineHint}</p>
             </div>
           </div>
 
-          <div className="rounded-[30px] border border-white/12 bg-slate-950/45 backdrop-blur-md p-6 shadow-2xl">
+          <div className="rounded-[30px] border border-white/12 bg-slate-950/45 p-6 shadow-2xl backdrop-blur-md">
             <div className="grid grid-cols-3 gap-3">
-              {heroPanel.stats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
-                  <div className="text-2xl md:text-3xl font-black text-white">{stat.value}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{stat.label}</div>
-                </div>
-              ))}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+                <div className="text-2xl font-black text-white md:text-3xl">500+</div>
+                <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{t.trustCars}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+                <div className="text-2xl font-black text-white md:text-3xl">20-40%</div>
+                <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{t.trustSave}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+                <div className="text-2xl font-black text-white md:text-3xl">4-10</div>
+                <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{t.trustDelivery}</div>
+              </div>
             </div>
 
             <div className="mt-5 rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200 mb-2">{lotTeaser.title}</p>
-              <p className="text-sm leading-7 text-slate-100">{lotTeaser.body}</p>
-              <Link
-                href={L("/auction-listings")}
-                className="mt-4 inline-flex rounded-xl bg-emerald-300 px-4 py-3 text-sm font-bold text-slate-950 hover:bg-emerald-200 transition"
-              >
-                {lotTeaser.cta}
-              </Link>
-            </div>
-
-            <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-200 mb-3">Quick Paths</p>
-              <div className="grid gap-3">
-                <Link href={L("/auction-listings")} className="rounded-xl border border-emerald-300/20 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-100 hover:bg-emerald-400/20 transition">
-                  {lotTeaser.quickLink}
-                </Link>
-                <Link href={L("/ready-cars")} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/8 transition">
-                  {heroPanel.links.ready}
-                </Link>
-                <Link href={L("/cases")} className="rounded-xl border border-white/10 px-4 py-3 text-sm font-semibold text-white hover:bg-white/8 transition">
-                  {heroPanel.links.cases}
-                </Link>
-                <Link href={L("/#contact")} className="rounded-xl border border-sky-300/25 bg-sky-400/10 px-4 py-3 text-sm font-semibold text-sky-100 hover:bg-sky-400/20 transition">
-                  {heroPanel.links.contact}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 px-4 max-w-6xl mx-auto border-b border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          <div className="p-6">
-            <div className="text-4xl font-black text-blue-600 mb-2">500+</div>
-            <div className="text-lg font-semibold text-gray-800">{t.trustCars}</div>
-            <p className="text-gray-500 mt-2">{t.trustCarsSub}</p>
-          </div>
-          <div className="p-6">
-            <div className="text-4xl font-black text-emerald-600 mb-2">20–40%</div>
-            <div className="text-lg font-semibold text-gray-800">{t.trustSave}</div>
-            <p className="text-gray-500 mt-2">{t.trustSaveSub}</p>
-          </div>
-          <div className="p-6">
-            <div className="text-4xl font-black text-amber-500 mb-2">4–10</div>
-            <div className="text-lg font-semibold text-gray-800">{t.trustDelivery}</div>
-            <p className="text-gray-500 mt-2">{t.trustDeliverySub}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">{t.valueTitle}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-              <div className="bg-blue-100 w-14 h-14 rounded-full flex items-center justify-center text-blue-600 text-2xl mb-6">
-                🏛️
-              </div>
-              <h3 className="text-xl font-bold mb-3">{t.v1t}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.v1b}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-              <div className="bg-emerald-100 w-14 h-14 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-6">
-                💎
-              </div>
-              <h3 className="text-xl font-bold mb-3">{t.v2t}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.v2b}</p>
-            </div>
-            <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
-              <div className="bg-amber-100 w-14 h-14 rounded-full flex items-center justify-center text-amber-600 text-2xl mb-6">
-                🚢
-              </div>
-              <h3 className="text-xl font-bold mb-3">{t.v3t}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.v3b}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-slate-950 text-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-sky-300 mb-4">{trustProof.eyebrow}</p>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">{trustProof.title}</h2>
-              <p className="mt-5 text-slate-300 text-lg leading-8">{trustProof.subtitle}</p>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                {trustProof.badges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-sky-800/80 bg-sky-900/30 px-4 py-2 text-sm font-medium text-sky-100"
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[28px] border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-2xl">
-              <div className="grid grid-cols-3 gap-3">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-emerald-200">{copy.lotTitle}</p>
+              <p className="text-sm leading-7 text-slate-100">{copy.lotBody}</p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <Link
-                  href={L("/cases")}
-                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-sky-700 hover:bg-slate-800 transition"
+                  href={L("/auction-listings")}
+                  className="rounded-xl bg-emerald-300 px-4 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-emerald-200"
                 >
-                  <div className="text-2xl font-black text-sky-300">{featuredCases.length}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.cases}</div>
+                  {copy.lotCta}
                 </Link>
                 <Link
                   href={L("/ready-cars")}
-                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-emerald-700 hover:bg-slate-800 transition"
+                  className="rounded-xl border border-white/10 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10"
                 >
-                  <div className="text-2xl font-black text-emerald-300">{featuredReady.length}</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.ready}</div>
+                  {co.readyViewAll}
                 </Link>
-                <Link
-                  href={L("/#contact")}
-                  className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-5 text-center hover:border-amber-700 hover:bg-slate-800 transition"
-                >
-                  <div className="text-2xl font-black text-amber-300">24/7</div>
-                  <div className="mt-2 text-xs uppercase tracking-[0.16em] text-slate-300">{trustProof.links.contact}</div>
-                </Link>
-              </div>
-
-              <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-sm leading-7 text-slate-300">
-                {trustProof.note}
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            {trustProof.items.map((item) => (
-              <div key={item.title} className="rounded-[26px] border border-slate-800 bg-slate-900/70 p-7 shadow-lg">
+      <section className="mx-auto max-w-6xl border-b border-gray-200 px-4 py-12">
+        <div className="grid grid-cols-1 gap-6 text-center md:grid-cols-3">
+          <div className="p-6">
+            <div className="mb-2 text-4xl font-black text-blue-600">500+</div>
+            <div className="text-lg font-semibold text-gray-800">{t.trustCars}</div>
+            <p className="mt-2 text-gray-500">{t.trustCarsSub}</p>
+          </div>
+          <div className="p-6">
+            <div className="mb-2 text-4xl font-black text-emerald-600">20-40%</div>
+            <div className="text-lg font-semibold text-gray-800">{t.trustSave}</div>
+            <p className="mt-2 text-gray-500">{t.trustSaveSub}</p>
+          </div>
+          <div className="p-6">
+            <div className="mb-2 text-4xl font-black text-amber-500">4-10</div>
+            <div className="text-lg font-semibold text-gray-800">{t.trustDelivery}</div>
+            <p className="mt-2 text-gray-500">{t.trustDeliverySub}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-sky-700">{copy.trustEyebrow}</p>
+            <h2 className="text-3xl font-bold text-gray-900 md:text-5xl">{copy.trustTitle}</h2>
+            <p className="mt-5 text-lg leading-8 text-gray-600">{copy.trustSubtitle}</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {copy.trustItems.map((item, index) => (
+              <div key={item.title} className="rounded-[26px] border border-gray-200 bg-gray-50 p-7 shadow-sm">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-xs font-bold tracking-[0.22em] text-sky-300">{item.stat}</span>
-                  <span className="h-px flex-1 bg-slate-800" />
+                  <span className="text-xs font-bold tracking-[0.22em] text-sky-700">0{index + 1}</span>
+                  <span className="h-px flex-1 bg-gray-200" />
                 </div>
-                <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                <p className="mt-3 text-slate-300 leading-7">{item.body}</p>
+                <h3 className="mt-4 text-xl font-bold text-gray-900">{item.title}</h3>
+                <p className="mt-3 leading-7 text-gray-600">{item.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-emerald-50 via-white to-blue-50 px-4 py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 rounded-[32px] border border-emerald-100 bg-white p-8 shadow-sm lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-10">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-700">{partsSection.eyebrow}</p>
-            <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-4xl">{partsSection.title}</h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{partsSection.body}</p>
-            <Link
-              href={L("/parts-shipping")}
-              className="mt-8 inline-flex rounded-xl bg-slate-900 px-6 py-4 text-base font-bold text-white transition hover:bg-slate-800"
-            >
-              {partsSection.cta}
-            </Link>
-          </div>
-          <div className="grid gap-4">
-            {partsSection.points.map((point, index) => (
-              <div key={point} className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-sm font-black text-emerald-700">
-                  0{index + 1}
-                </div>
-                <p className="text-base leading-7 text-slate-700">{point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-6">
+      <section className="border-t border-gray-100 bg-white px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-3xl font-bold text-gray-900">{co.readySectionTitle}</h2>
-              <p className="text-gray-600 mt-2 max-w-2xl">{co.readySectionSub}</p>
-              <p className="text-xs text-amber-800 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 mt-3 inline-block">{co.readyBadgeExample}</p>
+              <p className="mt-2 max-w-2xl text-gray-600">{co.readySectionSub}</p>
+              <p className="mt-3 inline-block rounded-lg border border-amber-100 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                {co.readyBadgeExample}
+              </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-              <Link
-                href={L("/ready-cars")}
-                className="text-center text-sm font-bold px-5 py-3 rounded-xl bg-blue-600 text-white hover:bg-blue-700"
-              >
-                {co.readyViewAll}
-              </Link>
-            </div>
+            <Link
+              href={L("/ready-cars")}
+              className="rounded-xl bg-blue-600 px-5 py-3 text-center text-sm font-bold text-white hover:bg-blue-700"
+            >
+              {co.readyViewAll}
+            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredReady.map((car) => (
               <ReadyCarCard key={car.id} car={car} hrefPrefix={hrefPrefix} />
             ))}
@@ -408,80 +287,19 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <h2 className="text-3xl font-bold">{t.featuredTitle}</h2>
-              <p className="text-gray-600 mt-2">{t.featuredSub}</p>
-            </div>
-            <Link href={L("/catalog")} className="hidden sm:inline-block text-blue-600 font-semibold hover:underline">
-              {c.viewAllCars}
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {cars.map((car) => (
-              <div key={car.lot_id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition group">
-                <div className="h-56 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={car.image}
-                    alt={`${car.make} ${car.model}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="text-sm text-gray-500 mb-1">
-                    {car.year} • {car.mileage} {c.mi}
-                  </div>
-                  <h3 className="text-xl font-bold mb-4">
-                    {car.make} {car.model}
-                  </h3>
-                  <div className="space-y-2 mb-6 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-gray-500">{c.damage}</span>
-                      <span className="font-medium">{car.damage}</span>
-                    </div>
-                    <div className="flex justify-between text-blue-700 font-semibold">
-                      <span>{c.auctionPrice}</span>
-                      <span>${car.auction_price.toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between text-emerald-600 font-bold border-t pt-2 mt-2">
-                      <span>{c.estimatedTotal}</span>
-                      <span>${car.estimated_total.toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <Link
-                    href={L(`/car/${car.lot_id}`)}
-                    className="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 rounded-lg transition"
-                  >
-                    {c.viewDetails}
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Link href={L("/catalog")} className="text-blue-600 font-semibold hover:underline">
-              {c.viewAllCars}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-10">
+      <section className="border-t border-gray-100 bg-gray-50 px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="text-3xl font-bold text-gray-900">{co.realCasesTitle}</h2>
-              <p className="text-gray-600 mt-2 max-w-2xl">{co.realCasesSub}</p>
+              <p className="mt-2 max-w-2xl text-gray-600">{co.realCasesSub}</p>
             </div>
-            <Link href={L("/cases")} className="text-blue-600 font-bold hover:underline shrink-0">
+            <Link href={L("/cases")} className="shrink-0 font-bold text-blue-600 hover:underline">
               {co.viewAllCases}
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {featuredCases.map((cs) => (
               <CaseCard key={cs.id} c={cs} locale={locale} hrefPrefix={hrefPrefix} compact />
             ))}
@@ -489,104 +307,77 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">{t.destTitle}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link
-              href={L("/export-to-ukraine")}
-              className="group relative rounded-2xl overflow-hidden block h-80 bg-blue-900 shadow-lg"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://placehold.co/800x600/1e3a8a/white?text=Odessa+Port"
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-40 transition"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
-                <h3 className="text-4xl font-bold mb-4">{t.uaTitle}</h3>
-                <p className="text-lg max-w-sm mx-auto mb-6">{t.uaSub}</p>
-                <span className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold group-hover:bg-blue-500 transition">
-                  {t.uaCta}
-                </span>
-              </div>
-            </Link>
-            <Link
-              href={L("/export-to-uae")}
-              className="group relative rounded-2xl overflow-hidden block h-80 bg-amber-900 shadow-lg"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://placehold.co/800x600/78350f/white?text=Dubai+Skyline"
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-40 transition"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
-                <h3 className="text-4xl font-bold mb-4">{t.uaeTitle}</h3>
-                <p className="text-lg max-w-sm mx-auto mb-6">{t.uaeSub}</p>
-                <span className="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold group-hover:bg-amber-500 transition">
-                  {t.uaCta}
-                </span>
-              </div>
-            </Link>
+      <section className="bg-white px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-gray-900">{copy.destinationTitle}</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {copy.destinationCards.map((card, index) => (
+              <Link
+                key={card.href}
+                href={L(card.href)}
+                className="group rounded-[28px] border border-gray-200 bg-gray-50 p-7 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-sm font-black text-blue-700">
+                  0{index + 1}
+                </div>
+                <h3 className="mt-6 text-2xl font-bold text-gray-900">{card.title}</h3>
+                <p className="mt-4 text-base leading-7 text-gray-600">{card.body}</p>
+                <span className="mt-6 inline-flex text-sm font-bold text-blue-700 group-hover:text-blue-800">{card.cta}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-blue-600 text-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.calcTitle}</h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">{t.calcSub}</p>
+      <section className="bg-blue-600 px-4 py-20 text-white">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="mb-6 text-3xl font-bold md:text-4xl">{t.calcTitle}</h2>
+          <p className="mx-auto mb-10 max-w-2xl text-xl text-blue-100">{t.calcSub}</p>
           <Link
             href={L("/calculator")}
-            className="inline-block bg-white text-blue-600 font-bold px-10 py-4 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg"
+            className="inline-block rounded-xl bg-white px-10 py-4 text-lg font-bold text-blue-600 shadow-lg transition hover:bg-gray-100"
           >
             {t.calcCta}
           </Link>
         </div>
       </section>
 
-      <section id="contact" className="py-24 px-4 bg-gray-100">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section id="contact" className="bg-gray-100 px-4 py-24">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 items-center gap-12 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.leadTitle}</h2>
-            <p className="text-lg text-gray-600 mb-8">{t.leadSub}</p>
+            <h2 className="mb-6 text-3xl font-bold md:text-4xl">{t.leadTitle}</h2>
+            <p className="mb-8 text-lg text-gray-600">{t.leadSub}</p>
             <ul className="space-y-4">
               <li className="flex items-center text-gray-700">
-                <span className="text-emerald-500 mr-3 text-xl">✓</span>
+                <span className="mr-3 text-xl text-emerald-500">✓</span>
                 {t.leadB1}
               </li>
               <li className="flex items-center text-gray-700">
-                <span className="text-emerald-500 mr-3 text-xl">✓</span>
+                <span className="mr-3 text-xl text-emerald-500">✓</span>
                 {t.leadB2}
               </li>
               <li className="flex items-center text-gray-700">
-                <span className="text-emerald-500 mr-3 text-xl">✓</span>
+                <span className="mr-3 text-xl text-emerald-500">✓</span>
                 {t.leadB3}
               </li>
               <li className="flex items-center text-gray-700">
-                <span className="text-emerald-500 mr-3 text-xl">✓</span>
-                {locale === "ru"
-                  ? "AI-ассистент помогает быстрее обработать заявку и варианты лотов"
-                  : "AI assistant support for faster request and lot review"}
+                <span className="mr-3 text-xl text-emerald-500">✓</span>
+                {copy.aiBullet}
               </li>
             </ul>
             <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-blue-900">
-              {locale === "ru"
-                ? "Мы используем AI-ассистента, который помогает быстрее разбирать заявки, lot-ссылки и shortlist'ы, а финальный подбор и сопровождение подтверждает специалист."
-                : "We use an AI assistant to help process incoming requests, lot links, and shortlists faster, while the final sourcing and support stay with a human specialist."}
+              {copy.aiBody}
             </div>
           </div>
           <div>
             <LeadFormUniversal
               heading={t.leadFormTitle}
-              subtitle={
-                locale === "ru"
-                  ? "Мы используем AI-ассистента, который помогает быстрее разбирать заявки, lot-ссылки и shortlist'ы, а финальный подбор и сопровождение подтверждает специалист."
-                  : "We use an AI assistant to help process incoming requests, lot links, and shortlists faster, while the final sourcing and support stay with a human specialist."
-              }
+              subtitle={copy.aiBody}
               formType="general"
               sourceContext="homepage_contact"
+              variant="landing"
             />
           </div>
         </div>
