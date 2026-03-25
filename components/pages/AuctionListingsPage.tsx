@@ -38,6 +38,7 @@ export default function AuctionListingsPage({ locale }: { locale: Locale }) {
         ctaTitle: "Нашел интересный лот?",
         ctaBody:
           "Оставь заявку ниже и сразу добавь ссылку или номер лота. Мы вернемся с расчетом, оценкой рисков и рекомендацией, стоит ли вообще заходить в этот вариант.",
+        aiNote: "AI-ассистент помогает нам быстрее разбирать lot-ссылки и shortlists, но финальная рекомендация и расчёт остаются за специалистом.",
         quickLinksTitle: "Также полезно",
         quickLinks: [
           { href: "/export-to-ukraine", label: "Доставка в Украину" },
@@ -75,6 +76,7 @@ export default function AuctionListingsPage({ locale }: { locale: Locale }) {
         ctaTitle: "Found an interesting lot?",
         ctaBody:
           "Leave a request below and include the link or lot number right away. We will come back with pricing, risk notes, and a recommendation on whether the lot is worth pursuing.",
+        aiNote: "An AI assistant helps us process lot links and shortlists faster, while the final recommendation and estimate are still handled by a specialist.",
         quickLinksTitle: "You may also need",
         quickLinks: [
           { href: "/export-to-ukraine", label: "Delivery to Ukraine" },
@@ -148,11 +150,14 @@ export default function AuctionListingsPage({ locale }: { locale: Locale }) {
         <section className="rounded-[1.75rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
           <h2 className="text-3xl font-black text-slate-950">{copy.ctaTitle}</h2>
           <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">{copy.ctaBody}</p>
+          <div className="mt-5 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-blue-900">
+            {copy.aiNote}
+          </div>
 
           <div className="mt-8">
             <LeadFormUniversal
               heading={copy.formTitle}
-              subtitle={copy.ctaBody}
+              subtitle={copy.aiNote}
               formType="similar_car"
               sourceContext="auction_listings_page"
             />

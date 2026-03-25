@@ -564,10 +564,30 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 <span className="text-emerald-500 mr-3 text-xl">✓</span>
                 {t.leadB3}
               </li>
+              <li className="flex items-center text-gray-700">
+                <span className="text-emerald-500 mr-3 text-xl">✓</span>
+                {locale === "ru"
+                  ? "AI-ассистент помогает быстрее обработать заявку и варианты лотов"
+                  : "AI assistant support for faster request and lot review"}
+              </li>
             </ul>
+            <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-blue-900">
+              {locale === "ru"
+                ? "Мы используем AI-ассистента, который помогает быстрее разбирать заявки, lot-ссылки и shortlist'ы, а финальный подбор и сопровождение подтверждает специалист."
+                : "We use an AI assistant to help process incoming requests, lot links, and shortlists faster, while the final sourcing and support stay with a human specialist."}
+            </div>
           </div>
           <div>
-            <LeadFormUniversal heading={t.leadFormTitle} formType="general" sourceContext="homepage_contact" />
+            <LeadFormUniversal
+              heading={t.leadFormTitle}
+              subtitle={
+                locale === "ru"
+                  ? "Мы используем AI-ассистента, который помогает быстрее разбирать заявки, lot-ссылки и shortlist'ы, а финальный подбор и сопровождение подтверждает специалист."
+                  : "We use an AI assistant to help process incoming requests, lot links, and shortlists faster, while the final sourcing and support stay with a human specialist."
+              }
+              formType="general"
+              sourceContext="homepage_contact"
+            />
           </div>
         </div>
       </section>
