@@ -283,7 +283,7 @@ function ExportUkraine({ locale }: { locale: Locale }) {
           secondaryCta: "Смотреть примеры цен",
           formCardTitle: "Оставь заявку сейчас",
           formCardBody:
-            "Мы вернемся к тебе с классным предложением, которое действительно сможет поразить по цене, маршруту и срокам.",
+            "Мы вернемся к тебе с классным предложением, которое действительно сможет поразить по цене, маршруту и срокам. AI-ассистент помогает нам быстрее обработать заявку, ссылки на лоты и shortlist, а финальный подбор и сопровождение подтверждает специалист.",
           formButton: "Получить предложение",
           trustStats: [
             { value: "4 шага", label: "от подбора лота до выдачи" },
@@ -349,7 +349,7 @@ function ExportUkraine({ locale }: { locale: Locale }) {
           secondaryCta: "See Price Examples",
           formCardTitle: "Leave your request now",
           formCardBody:
-            "We will get back to you with a strong offer that can genuinely surprise you on price, route, and timing.",
+            "We will get back to you with a strong offer that can genuinely surprise you on price, route, and timing. An AI assistant helps us process your request, lot links, and shortlist faster, while final sourcing and support are confirmed by a specialist.",
           formButton: "Get My Offer",
           trustStats: [
             { value: "4 steps", label: "from lot selection to final handover" },
