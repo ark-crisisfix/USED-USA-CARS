@@ -53,7 +53,7 @@ export default function Header() {
       <div className="mx-auto flex min-h-[112px] max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:min-h-[132px] lg:px-8">
         <Link href={L("/")} className="flex shrink-0 items-center" aria-label={d.site.brand}>
           <Image
-            src="/logo_Namcars.png"
+            src="/logo-nac-transparent.png"
             alt={d.site.brand}
             width={1408}
             height={768}

@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: '/logo_Namcars.png',
-    shortcut: '/logo_Namcars.png',
-    apple: '/logo_Namcars.png',
+    icon: '/logo-nac-transparent.png',
+    shortcut: '/logo-nac-transparent.png',
+    apple: '/logo-nac-transparent.png',
   },
   openGraph: {
     title: siteTitle,
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: SITE_BRAND,
     images: [
       {
-        url: '/logo_Namcars.png',
+        url: '/logo-nac-transparent.png',
         width: 1408,
         height: 768,
         alt: `${SITE_BRAND} logo`,
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: ['/logo_Namcars.png'],
+    images: ['/logo-nac-transparent.png'],
   },
 }
 
