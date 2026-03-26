@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: '/logo-northamcars.svg',
-    shortcut: '/logo-northamcars.svg',
-    apple: '/logo-northamcars.svg',
+    icon: '/logo_Namcars.png',
+    shortcut: '/logo_Namcars.png',
+    apple: '/logo_Namcars.png',
   },
   openGraph: {
     title: siteTitle,
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     siteName: SITE_BRAND,
     images: [
       {
-        url: '/logo-northamcars.svg',
-        width: 640,
-        height: 180,
+        url: '/logo_Namcars.png',
+        width: 1408,
+        height: 768,
         alt: `${SITE_BRAND} logo`,
       },
     ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: ['/logo-northamcars.svg'],
+    images: ['/logo_Namcars.png'],
   },
 }
 

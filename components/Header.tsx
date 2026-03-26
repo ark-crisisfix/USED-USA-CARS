@@ -50,15 +50,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <div className="mx-auto flex min-h-[92px] max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:min-h-[104px] lg:px-8">
+      <div className="mx-auto flex min-h-[112px] max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:min-h-[132px] lg:px-8">
         <Link href={L("/")} className="flex shrink-0 items-center" aria-label={d.site.brand}>
           <Image
-            src="/logo-northamcars.svg"
+            src="/logo_Namcars.png"
             alt={d.site.brand}
-            width={360}
-            height={100}
+            width={1408}
+            height={768}
             priority
-            className="h-auto w-[240px] sm:w-[300px] lg:w-[340px]"
+            className="h-auto w-[220px] sm:w-[250px] lg:w-[290px]"
           />
         </Link>
 
