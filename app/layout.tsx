@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: '/logo-northamcars.svg',
-    shortcut: '/logo-northamcars.svg',
-    apple: '/logo-northamcars.svg',
+    icon: '/logo-northamcars-mark.svg',
+    shortcut: '/logo-northamcars-mark.svg',
+    apple: '/logo-northamcars-mark.svg',
   },
   openGraph: {
     title: siteTitle,
