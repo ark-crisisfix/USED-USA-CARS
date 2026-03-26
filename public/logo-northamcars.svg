@@ -1,30 +1,52 @@
-<svg width="640" height="180" viewBox="0 0 640 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="760" height="210" viewBox="0 0 760 210" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="aggr-red" x1="96" y1="58" x2="381" y2="142" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F04A3A"/>
-      <stop offset="1" stop-color="#A81323"/>
+    <linearGradient id="n-red" x1="74" y1="60" x2="168" y2="154" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC4A3B"/>
+      <stop offset="1" stop-color="#AC1727"/>
     </linearGradient>
-    <linearGradient id="aggr-blue" x1="198" y1="18" x2="560" y2="130" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2B5C9A"/>
-      <stop offset="1" stop-color="#0E2954"/>
+    <linearGradient id="us-blue" x1="178" y1="50" x2="325" y2="162" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A6CB0"/>
+      <stop offset="1" stop-color="#173765"/>
+    </linearGradient>
+    <linearGradient id="star-red" x1="324" y1="38" x2="472" y2="158" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F14A3B"/>
+      <stop offset="1" stop-color="#B51B2B"/>
+    </linearGradient>
+    <linearGradient id="money-blue" x1="470" y1="28" x2="622" y2="158" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#305D9C"/>
+      <stop offset="1" stop-color="#102D59"/>
     </linearGradient>
   </defs>
 
-  <path d="M156 47C244 18 381 19 517 59" stroke="url(#aggr-blue)" stroke-width="7" stroke-linecap="round"/>
-  <path d="M422 31H495C507 31 516 39 518 50L521 62H504L487 47H432L418 62H400L406 48C409 38 415 31 422 31Z" fill="#0E2954"/>
-  <path d="M395 69H528L548 78L543 91H392L395 69Z" fill="#173A67"/>
-  <path d="M418 94C418 89 422 85 427 85H442C447 85 451 89 451 94C451 99 447 103 442 103H427C422 103 418 99 418 94Z" fill="#0E2954"/>
-  <path d="M497 94C497 89 501 85 506 85H521C526 85 530 89 530 94C530 99 526 103 521 103H506C501 103 497 99 497 94Z" fill="#0E2954"/>
+  <path d="M127 49C219 28 343 28 480 50C520 57 558 67 594 80" stroke="#204F8E" stroke-width="6" stroke-linecap="round"/>
+  <path d="M572 30H651C663 30 671 37 674 48L678 60H659L641 46H584L569 60H552L557 47C560 37 565 30 572 30Z" fill="#173765"/>
+  <path d="M546 69H681L700 78L695 91H543L546 69Z" fill="#204F8E"/>
+  <rect x="570" y="82" width="31" height="13" rx="6.5" fill="#173765"/>
+  <rect x="646" y="82" width="31" height="13" rx="6.5" fill="#173765"/>
 
-  <path d="M98 59C118 59 136 75 146 101L156 128H122C108 128 97 117 97 103V60C97 59 98 59 98 59Z" fill="url(#aggr-red)"/>
-  <path d="M126 77L131 87L142 88L134 95L137 106L126 100L115 106L118 95L110 88L121 87L126 77Z" fill="white"/>
+  <path d="M74 64C95 64 114 80 126 105L138 133H100C85 133 74 122 74 107V64Z" fill="url(#n-red)"/>
+  <path d="M108 80L113 90L124 91L116 99L119 111L108 104L97 111L100 99L92 91L103 90L108 80Z" fill="white"/>
 
-  <path d="M178 126L220 56H247L289 126H264L257 113H217L210 126H178ZM224 96H249L236 72L224 96Z" fill="url(#aggr-blue)"/>
+  <path d="M156 133V58H183L220 105V58H276V77H237V133H210L173 86V133H156Z" fill="url(#us-blue)"/>
+  <rect x="214" y="58" width="62" height="18" fill="#173765"/>
+  <rect x="214" y="79" width="62" height="11" fill="white"/>
+  <rect x="214" y="90" width="62" height="11" fill="#173765"/>
+  <rect x="214" y="101" width="62" height="11" fill="white"/>
+  <rect x="214" y="112" width="62" height="11" fill="#173765"/>
+  <rect x="214" y="123" width="62" height="10" fill="white"/>
+  <path d="M168 58H214V96H168V58Z" fill="#214F8D"/>
+  <path d="M179 66L181 72H187L182 75L184 81L179 78L174 81L176 75L171 72H177L179 66Z" fill="white"/>
+  <path d="M193 72L195 78H201L196 81L198 87L193 84L188 87L190 81L185 78H191L193 72Z" fill="white"/>
+  <path d="M179 82L181 88H187L182 91L184 97L179 94L174 97L176 91L171 88H177L179 82Z" fill="white"/>
+  <path d="M193 88L195 94H201L196 97L198 103L193 100L188 103L190 97L185 94H191L193 88Z" fill="white"/>
 
-  <path d="M294 110L313 100C320 112 332 118 347 118C360 118 370 114 370 106C370 98 362 95 346 92L335 90C310 85 297 75 297 58C297 36 316 23 345 23C372 23 390 35 397 56L377 63C372 51 361 43 345 43C333 43 323 48 323 57C323 65 330 69 347 72L357 74C384 79 397 89 397 106C397 129 378 140 347 140C319 140 300 129 294 110Z" fill="url(#aggr-red)"/>
-  <path d="M341 13H356L350 36H336L341 13ZM333 127H347L342 152H328L333 127Z" fill="#0E2954"/>
-  <path d="M347 40L353 55H369L356 64L361 79L347 70L333 79L338 64L325 55H341L347 40Z" fill="white"/>
-  <path d="M300 136L391 39" stroke="#E23B35" stroke-width="8" stroke-linecap="round"/>
+  <path d="M395 38L411 71H448L418 89L429 125L395 104L361 125L372 89L342 71H379L395 38Z" fill="url(#star-red)"/>
+  <path d="M395 61L404 79H424L407 90L413 109L395 98L377 109L383 90L366 79H386L395 61Z" fill="white"/>
+  <path d="M395 74L401 86H414L403 93L407 106L395 99L383 106L387 93L376 86H389L395 74Z" fill="#214F8D"/>
 
-  <text x="94" y="163" fill="#0E2954" font-family="Arial, Helvetica, sans-serif" font-size="34" font-style="italic" font-weight="900" letter-spacing="-1">NorthAmCars.com</text>
+  <path d="M479 113L501 104C507 117 518 123 531 123C544 123 553 117 553 107C553 98 545 94 530 91L519 89C495 84 483 74 483 57C483 34 501 21 530 21C557 21 574 34 580 56L559 62C555 51 545 42 530 42C517 42 508 47 508 56C508 64 515 68 532 71L542 73C569 78 580 88 580 106C580 130 562 143 531 143C505 143 486 133 479 113Z" fill="url(#money-blue)"/>
+  <rect x="524" y="8" width="13" height="31" rx="6.5" fill="#173765"/>
+  <rect x="524" y="127" width="13" height="31" rx="6.5" fill="#173765"/>
+
+  <text x="75" y="188" fill="#102D59" font-family="Arial, Helvetica, sans-serif" font-size="44" font-style="italic" font-weight="900" letter-spacing="-1.2">NorthAmCars.com</text>
 </svg>
