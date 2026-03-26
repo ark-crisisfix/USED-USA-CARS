@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -72,8 +73,15 @@ export default function Header() {
       </div>
 
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href={L("/")} className="shrink-0 text-2xl font-bold text-blue-600">
-          {d.site.brand}
+        <Link href={L("/")} className="shrink-0" aria-label={d.site.brand}>
+          <Image
+            src="/logo-northamcars.svg"
+            alt={d.site.brand}
+            width={240}
+            height={68}
+            priority
+            className="h-auto w-[190px] sm:w-[220px]"
+          />
         </Link>
 
         <nav className="hidden items-center gap-5 md:flex lg:gap-6">
