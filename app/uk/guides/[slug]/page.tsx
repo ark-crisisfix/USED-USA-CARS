@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical: `${SITE_URL}/uk/guides/${guide.slug}`,
       languages: {
-        en: `${SITE_URL}/guides/${guide.slug}`,
-        ru: `${SITE_URL}/ru/guides/${guide.slug}`,
+        en: `${SITE_URL}/en/guides/${guide.slug}`,
+        ru: `${SITE_URL}/guides/${guide.slug}`,
         uk: `${SITE_URL}/uk/guides/${guide.slug}`,
       },
     },

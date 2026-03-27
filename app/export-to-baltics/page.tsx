@@ -1,12 +1,13 @@
+import type { Metadata } from "next";
 import ExportLandingPage from "@/components/pages/ExportLandingPage";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
-export const metadata = {
-  title: metaTitleWithSeoKeywords("Export cars from USA to Baltics — Lithuania, Latvia, Estonia"),
+export const metadata: Metadata = {
+  title: metaTitleWithSeoKeywords("Экспорт авто из США в Прибалтику"),
   description:
-    "NorthAm Cars: vehicle sourcing from USA auctions with delivery to Lithuania, Latvia, and Estonia. northamcars.com.",
+    "NorthAm Cars: аукционы США, доставка в Литву, Латвию и Эстонию, логистика через европейские порты — northamcars.com.",
 };
 
 export default function Page() {
-  return <ExportLandingPage locale="en" country="baltics" />;
+  return <ExportLandingPage locale="ru" country="baltics" />;
 }

@@ -14,13 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!guide) return {};
 
   return {
-    title: metaTitleWithSeoKeywords(guide.title.en),
-    description: guide.description.en,
+    title: metaTitleWithSeoKeywords(guide.title.ru),
+    description: guide.description.ru,
     alternates: {
       canonical: `${SITE_URL}/guides/${guide.slug}`,
       languages: {
-        en: `${SITE_URL}/guides/${guide.slug}`,
-        ru: `${SITE_URL}/ru/guides/${guide.slug}`,
+        en: `${SITE_URL}/en/guides/${guide.slug}`,
+        ru: `${SITE_URL}/guides/${guide.slug}`,
         uk: `${SITE_URL}/uk/guides/${guide.slug}`,
       },
     },
@@ -31,5 +31,5 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const guide = getSeoGuide(slug);
   if (!guide) notFound();
-  return <SeoGuideArticlePage locale="en" guide={guide} />;
+  return <SeoGuideArticlePage locale="ru" guide={guide} />;
 }

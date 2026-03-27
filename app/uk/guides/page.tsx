@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${SITE_URL}/uk/guides`,
     languages: {
-      en: `${SITE_URL}/guides`,
-      ru: `${SITE_URL}/ru/guides`,
+      en: `${SITE_URL}/en/guides`,
+      ru: `${SITE_URL}/guides`,
       uk: `${SITE_URL}/uk/guides`,
     },
   },

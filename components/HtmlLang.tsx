@@ -14,7 +14,7 @@ export default function HtmlLang() {
       return;
     }
 
-    document.documentElement.lang = getLocaleFromPath(pathname) === "ru" ? "ru" : "en";
+    document.documentElement.lang = getLocaleFromPath(pathname) === "en" ? "en" : "ru";
   }, [pathname]);
 
   return null;

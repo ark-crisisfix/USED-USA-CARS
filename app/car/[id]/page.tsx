@@ -12,10 +12,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const car = cars.find((c) => c.lot_id === id);
-  if (!car) return { title: metaTitlePage("Auction lot") };
+  if (!car) return { title: metaTitlePage("Лот на аукционе") };
   return {
-    title: metaTitleWithSeoKeywords(`${car.year} ${car.make} ${car.model} — Auction lot`),
-    description: `Auction lot ${car.lot_id}: ${car.make} ${car.model}. NorthAm Cars — northamcars.com.`,
+    title: metaTitleWithSeoKeywords(`${car.year} ${car.make} ${car.model} - лот`),
+    description: `Лот ${car.lot_id}: ${car.make} ${car.model}. NorthAm Cars - northamcars.com.`,
   };
 }
 
@@ -23,5 +23,5 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const { id } = await params;
   const car = cars.find((c) => c.lot_id === id);
   if (!car) notFound();
-  return <CarDetailPage car={car} locale="en" />;
+  return <CarDetailPage car={car} locale="ru" />;
 }

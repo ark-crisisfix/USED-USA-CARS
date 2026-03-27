@@ -138,6 +138,44 @@ export default function HomePage({ locale }: { locale: Locale }) {
           aiBody:
             "We use an AI assistant to speed up triage for incoming requests, lot links, and shortlists, while the final sourcing and client support stay with a human specialist.",
         };
+  const seoContent =
+    locale === "ru"
+      ? {
+          title: "Авто из США под заказ, с аукциона и в наличии",
+          intro:
+            "Если пользователь ищет авто из США, чаще всего ему нужен один из трёх сценариев: купить машину в Америке с аукциона, заказать подбор под бюджет или выбрать уже готовый вариант. Мы закрываем все три сценария и даём понятный расчёт до ставки.",
+          paragraphs: [
+            "NorthAm Cars помогает купить авто с аукциона США через Copart и IAAI без лишних посредников. Проверяем историю, оцениваем риски по повреждениям, считаем аукционные сборы, доставку до порта и итоговый бюджет в стране получения.",
+            "Для запросов вроде «машина из США», «авто из США под заказ» и «купить машину в Америке» важна не только цена лота, но и полная экономика сделки. Поэтому на сайте есть каталог, реальные кейсы, раздел с готовыми авто и калькулятор стоимости доставки.",
+          ],
+          cards: [
+            {
+              title: "Авто из США с аукциона",
+              body: "Подбор лотов Copart и IAAI, проверка истории, помощь со ставкой и выкупом.",
+              href: "/used-cars-usa",
+              cta: "Подробнее",
+            },
+            {
+              title: "Авто из США под заказ",
+              body: "Подбираем машины под ваш бюджет, тип кузова, пробег, повреждения и страну доставки.",
+              href: "/catalog",
+              cta: "Смотреть каталог",
+            },
+            {
+              title: "Машины из США в наличии",
+              body: "Готовые авто и реальные кейсы для тех, кто хочет быстрее принять решение.",
+              href: "/ready-cars",
+              cta: "Смотреть в наличии",
+            },
+          ],
+          linksTitle: "Полезные разделы для выбора авто из США",
+          links: [
+            { href: "/auction-listings", label: "Площадки и листинги аукционов США" },
+            { href: "/calculator", label: "Калькулятор стоимости покупки и доставки" },
+            { href: "/cases", label: "Реальные кейсы и примеры экономии" },
+          ],
+        }
+      : null;
 
   return (
     <div className="bg-gray-50 font-sans text-gray-900">
@@ -343,6 +381,47 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </Link>
         </div>
       </section>
+
+      {seoContent ? (
+        <section className="border-t border-gray-200 bg-white px-4 py-20">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-4xl">
+              <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">{seoContent.title}</h2>
+              <p className="mt-5 text-lg leading-8 text-gray-600">{seoContent.intro}</p>
+              <div className="mt-8 space-y-5 text-base leading-8 text-gray-700">
+                {seoContent.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {seoContent.cards.map((card) => (
+                <Link
+                  key={card.title}
+                  href={L(card.href)}
+                  className="rounded-[26px] border border-gray-200 bg-gray-50 p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <h3 className="text-xl font-bold text-gray-900">{card.title}</h3>
+                  <p className="mt-3 leading-7 text-gray-600">{card.body}</p>
+                  <span className="mt-5 inline-flex text-sm font-bold text-blue-700">{card.cta}</span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-[28px] border border-blue-100 bg-blue-50 p-8">
+              <h3 className="text-2xl font-bold text-gray-900">{seoContent.linksTitle}</h3>
+              <div className="mt-5 flex flex-col gap-3">
+                {seoContent.links.map((item) => (
+                  <Link key={item.href} href={L(item.href)} className="font-semibold text-blue-700 hover:underline">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section id="contact" className="bg-gray-100 px-4 py-24">
         <div className="mx-auto grid max-w-4xl grid-cols-1 items-center gap-12 md:grid-cols-2">

@@ -3,17 +3,17 @@ import LeadFormUniversal from "@/components/LeadFormUniversal";
 import { commerce } from "@/lib/commerceCopy";
 import { getDictionary } from "@/lib/dictionaries";
 import { getAllReadyCars } from "@/lib/ready-cars";
+import type { Metadata } from "next";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
-export const metadata = {
-  title: metaTitleWithSeoKeywords("Ready cars — Canada & export"),
-  description:
-    "NorthAm Cars (northamcars.com): inventory in Canada and ready-to-ship export to Ukraine, UAE, worldwide.",
+export const metadata: Metadata = {
+  title: metaTitleWithSeoKeywords("Авто в наличии — Канада и экспорт"),
+  description: "NorthAm Cars: инвентарь в Канаде и экспорт — northamcars.com.",
 };
 
 export default function Page() {
-  const co = commerce("en");
-  const lead = getDictionary("en").leadForm;
+  const co = commerce("ru");
+  const lead = getDictionary("ru").leadForm;
   const cars = getAllReadyCars();
 
   return (
@@ -22,14 +22,14 @@ export default function Page() {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{co.readyPageH1}</h1>
         <p className="text-lg text-gray-600 max-w-3xl mb-10">{co.readyPageIntro}</p>
         <div className="mb-6 inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-900">
-          3 vehicles currently in stock. Additional inventory will be added as it arrives.
+          Сейчас в наличии 3 автомобиля. Новые позиции будем добавлять по мере поступления.
         </div>
-        <ReadyCarsClient cars={cars} hrefPrefix="" />
+        <ReadyCarsClient cars={cars} hrefPrefix="/ru" />
         <div className="mt-10">
           <LeadFormUniversal
             heading={lead.defaultTitle}
             formType="ready_car"
-            sourceContext="ready_cars_listing"
+            sourceContext="ready_cars_listing_ru"
           />
         </div>
       </div>

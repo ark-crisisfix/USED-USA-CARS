@@ -7,9 +7,49 @@ import { localizePath } from "@/lib/i18n";
 export default function UsedCarsUsaPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).usedCarsUsa;
   const L = (path: string) => localizePath(path, locale);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: t.faq1q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: t.faq1a,
+        },
+      },
+      {
+        "@type": "Question",
+        name: t.faq2q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: t.faq2a,
+        },
+      },
+    ],
+  };
+  const ruSeoBlocks =
+    locale === "ru"
+      ? {
+          title: "Кому подходит покупка авто из США",
+          body: "Запросы «авто из США», «авто с аукциона США» и «купить машину в Америке» обычно означают желание получить больше машины за тот же бюджет. Лучше всего этот сценарий работает, когда заранее понятны предел ставки, стоимость доставки и допустимый объём ремонта.",
+          items: [
+            "Под заказ: если нужен конкретный бренд, кузов, мотор или диапазон пробега.",
+            "С аукциона: если цель — сэкономить и есть готовность рассматривать лоты Copart и IAAI.",
+            "С готовой сметой: если важно сравнить покупку в США с местным рынком до принятия решения.",
+          ],
+          links: [
+            { href: "/calculator", label: "Посчитать стоимость доставки и всех сборов" },
+            { href: "/auction-listings", label: "Посмотреть площадки с лотами США" },
+            { href: "/cases", label: "Изучить реальные кейсы и экономию клиентов" },
+          ],
+        }
+      : null;
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-10 bg-white p-8 md:p-12 rounded-2xl shadow-sm">
@@ -56,12 +96,48 @@ export default function UsedCarsUsaPage({ locale }: { locale: Locale }) {
                   <p>{t.faq2a}</p>
                 </div>
               </div>
+
+              {ruSeoBlocks ? (
+                <div className="mt-12 rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                  <h2 className="text-2xl font-bold text-gray-900">{ruSeoBlocks.title}</h2>
+                  <p className="mt-4">{ruSeoBlocks.body}</p>
+                  <ul className="mt-4 list-disc space-y-2 pl-6">
+                    {ruSeoBlocks.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 flex flex-col gap-3">
+                    {ruSeoBlocks.links.map((item) => (
+                      <Link key={item.href} href={L(item.href)} className="font-semibold text-blue-700 hover:underline">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
           </div>
 
           <div className="space-y-8">
             <div className="sticky top-24">
-              <LeadFormUniversal heading={t.formTitle} formType="general" sourceContext="used_cars_usa" />
+              <LeadFormUniversal
+                heading={t.formTitle}
+                subtitle={
+                  locale === "ru"
+                    ? "Пришлите ссылку на лот или параметры подбора, и мы посчитаем полную стоимость авто из США."
+                    : `Send a lot link or sourcing criteria and we will calculate the full landed cost.`
+                }
+                formType="general"
+                sourceContext={locale === "ru" ? "used_cars_usa_ru" : "used_cars_usa"}
+              />
+              {locale === "ru" ? (
+                <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5 text-sm leading-7 text-blue-900">
+                  <p className="font-semibold">Что ускоряет расчёт</p>
+                  <p className="mt-2">
+                    Ссылка на Copart или IAAI, желаемый бюджет, страна доставки и допустимый объём повреждений.
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

@@ -3,18 +3,18 @@ import AuctionPicksPage from "@/components/pages/AuctionPicksPage";
 import { metaTitleWithSeoKeywords, SITE_URL } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: metaTitleWithSeoKeywords("Featured auction picks and weekly lot shortlist"),
+  title: metaTitleWithSeoKeywords("Лучшие аукционные лоты и weekly shortlist"),
   description:
-    "Preview a curated weekly shortlist of interesting auction lots by destination, budget, and vehicle type, then request a practical quote on the lots you like.",
+    "Посмотрите demo-витрину будущей еженедельной подборки интересных лотов по направлениям, бюджету и типу автомобиля, а затем отправьте нам запрос по интересующим вариантам.",
   alternates: {
     canonical: `${SITE_URL}/auction-picks`,
     languages: {
-      en: `${SITE_URL}/auction-picks`,
-      ru: `${SITE_URL}/ru/auction-picks`,
+      en: `${SITE_URL}/en/auction-picks`,
+      ru: `${SITE_URL}/auction-picks`,
     },
   },
 };
 
 export default function Page() {
-  return <AuctionPicksPage locale="en" />;
+  return <AuctionPicksPage locale="ru" />;
 }

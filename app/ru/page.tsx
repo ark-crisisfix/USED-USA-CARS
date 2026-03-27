@@ -1,11 +1,37 @@
 import type { Metadata } from "next";
 import HomePage from "@/components/pages/HomePage";
-import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
+import { metaTitleWithSeoKeywords, SITE_BRAND, SITE_URL } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: metaTitleWithSeoKeywords("Авто из США — Copart / IAAI и доставка"),
+  title: metaTitleWithSeoKeywords("Авто из США под заказ и с аукциона Copart / IAAI"),
   description:
-    "NorthAm Cars (northamcars.com): аукционы США, доставка в Украину и ОАЭ. Экономия до 40%.",
+    "NorthAm Cars: авто из США, авто с аукциона США и доставка под ключ. Помогаем купить машину в Америке через Copart и IAAI, проверить лот и посчитать итоговый бюджет.",
+  keywords: [
+    "авто из сша",
+    "авто с аукциона сша",
+    "машина из сша",
+    "купить машину в америке",
+    "машины из сша",
+    "авто из сша под заказ",
+    "copart",
+    "iaai",
+  ],
+  alternates: {
+    canonical: `${SITE_URL}/ru`,
+    languages: {
+      en: SITE_URL,
+      ru: `${SITE_URL}/ru`,
+    },
+  },
+  openGraph: {
+    title: `Авто из США под заказ и с аукциона | ${SITE_BRAND}`,
+    description:
+      "Авто из США под заказ, подбор лотов Copart и IAAI, расчёт бюджета и доставка под ключ.",
+    url: `${SITE_URL}/ru`,
+    siteName: SITE_BRAND,
+    locale: "ru_RU",
+    type: "website",
+  },
 };
 
 export default function RuHomePage() {

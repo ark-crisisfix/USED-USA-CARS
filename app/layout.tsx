@@ -1,28 +1,28 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import HtmlLang from '@/components/HtmlLang'
-import { SITE_BRAND, SITE_URL } from '@/lib/siteMeta'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Script from "next/script";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import HtmlLang from "@/components/HtmlLang";
+import { SITE_BRAND, SITE_URL } from "@/lib/siteMeta";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] })
+const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
-const siteTitle = `${SITE_BRAND} - US auction access & international delivery`
+const siteTitle = `${SITE_BRAND} - Авто из США с аукциона и доставка`;
 const siteDescription = `${SITE_BRAND} · ${SITE_URL.replace(
-  'https://',
-  ''
-)}. Used cars from USA auctions (Copart, IAAI) with international delivery - Ukraine, UAE, and more. Save up to 40%.`
+  "https://",
+  ""
+)}. Авто из США через Copart и IAAI: подбор, проверка, покупка и международная доставка под ключ.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: siteTitle,
@@ -31,30 +31,30 @@ export const metadata: Metadata = {
     siteName: SITE_BRAND,
     images: [
       {
-        url: '/logo-nac-transparent.png',
+        url: "/logo-nac-transparent.png",
         width: 1408,
         height: 768,
         alt: `${SITE_BRAND} logo`,
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "ru_RU",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ['/logo-nac-transparent.png'],
+    images: ["/logo-nac-transparent.png"],
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-V8GHSRNRQ3"
@@ -74,5 +74,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  )
+  );
 }

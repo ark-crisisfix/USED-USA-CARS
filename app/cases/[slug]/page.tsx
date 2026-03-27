@@ -10,9 +10,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const c = getSavingsCaseBySlug(slug);
-  if (!c) return { title: metaTitlePage("Case") };
+  if (!c) return { title: metaTitlePage("Кейс") };
   return {
-    title: metaTitleWithSeoKeywords(`${c.year} ${c.make} ${c.model} — Purchase case`),
+    title: metaTitleWithSeoKeywords(`${c.year} ${c.make} ${c.model} - кейс покупки`),
     description: c.summary.slice(0, 160),
   };
 }
@@ -21,5 +21,5 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const c = getSavingsCaseBySlug(slug);
   if (!c) notFound();
-  return <SavingsCaseDetailPage c={c} locale="en" />;
+  return <SavingsCaseDetailPage c={c} locale="ru" />;
 }

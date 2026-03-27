@@ -3,19 +3,19 @@ import GuidesIndexPage from "@/components/pages/GuidesIndexPage";
 import { metaTitleWithSeoKeywords, SITE_URL } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: metaTitleWithSeoKeywords("Guides about car import from USA auctions"),
+  title: metaTitleWithSeoKeywords("Статьи об импорте авто с аукционов США"),
   description:
-    "Short guides about buying cars from US auctions, shipping, customs, and route-specific delivery logic for international buyers.",
+    "Короткие SEO-статьи о покупке авто с аукционов США, доставке, таможне и логике маршрутов в разные страны.",
   alternates: {
     canonical: `${SITE_URL}/guides`,
     languages: {
-      en: `${SITE_URL}/guides`,
-      ru: `${SITE_URL}/ru/guides`,
+      en: `${SITE_URL}/en/guides`,
+      ru: `${SITE_URL}/guides`,
       uk: `${SITE_URL}/uk/guides`,
     },
   },
 };
 
 export default function Page() {
-  return <GuidesIndexPage locale="en" />;
+  return <GuidesIndexPage locale="ru" />;
 }

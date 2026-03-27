@@ -1,12 +1,12 @@
+import type { Metadata } from "next";
 import ContactPage from "@/components/pages/ContactPage";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
-export const metadata = {
-  title: metaTitleWithSeoKeywords("Contact us"),
-  description:
-    "Contact NorthAm Cars (northamcars.com): quotes, USA auction buying, export to Ukraine, UAE, and more.",
+export const metadata: Metadata = {
+  title: metaTitleWithSeoKeywords("Контакты"),
+  description: "NorthAm Cars: связь, расчёт, аукционы и доставка — northamcars.com.",
 };
 
 export default function Page() {
-  return <ContactPage locale="en" />;
+  return <ContactPage locale="ru" />;
 }

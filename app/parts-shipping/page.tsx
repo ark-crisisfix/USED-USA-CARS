@@ -2,11 +2,11 @@ import PartsShippingPage from "@/components/pages/PartsShippingPage";
 import { metaTitleWithSeoKeywords } from "@/lib/siteMeta";
 
 export const metadata = {
-  title: metaTitleWithSeoKeywords("US car parts sourcing and shipping"),
+  title: metaTitleWithSeoKeywords("Подбор и отправка запчастей для авто из США"),
   description:
-    "NorthAm Cars sources and ships parts for American vehicles: OEM, used, donor parts, consolidation, and export logistics.",
+    "NorthAm Cars помогает с подбором и отправкой запчастей для американских автомобилей: OEM, б/у, донорские детали и логистика.",
 };
 
 export default function Page() {
-  return <PartsShippingPage locale="en" />;
+  return <PartsShippingPage locale="ru" />;
 }
