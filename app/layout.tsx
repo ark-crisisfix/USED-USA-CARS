@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: '/logo-nac-transparent.png',
-    shortcut: '/logo-nac-transparent.png',
-    apple: '/logo-nac-transparent.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   openGraph: {
     title: siteTitle,
