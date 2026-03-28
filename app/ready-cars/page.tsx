@@ -15,6 +15,7 @@ export default function Page() {
   const co = commerce("ru");
   const lead = getDictionary("ru").leadForm;
   const cars = getAllReadyCars();
+  const activeCount = cars.filter((car) => !car.is_sold).length;
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">
@@ -22,7 +23,7 @@ export default function Page() {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{co.readyPageH1}</h1>
         <p className="text-lg text-gray-600 max-w-3xl mb-10">{co.readyPageIntro}</p>
         <div className="mb-6 inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-900">
-          Сейчас в наличии 3 автомобиля. Новые позиции будем добавлять по мере поступления.
+          Сейчас в наличии {activeCount} автомобиля. Новые позиции будем добавлять по мере поступления.
         </div>
         <ReadyCarsClient cars={cars} hrefPrefix="/ru" />
         <div className="mt-10">
