@@ -18,18 +18,14 @@
     "market_price": 22500,
     "estimated_savings": 2650,
     "currency": "USD",
-    "summary": "Light front-end bid from a US auction with run-and-drive notes. We targeted a lot with isolated sheet metal damage to keep repair scope predictable for Ukraine partners. Ocean leg to EU hub plus land to UA; customs based on declared value class at time of shipment (example estimate).",
+    "summary": "Light front-end bid from a US auction with run-and-drive notes. We targeted a lot with isolated sheet metal damage to keep repair scope predictable for Ukraine partners. Ocean leg to an EU hub plus land delivery to Ukraine; customs shown here are illustrative and can change based on vehicle specs, auction outcome, and applicable taxes at import.",
     "verdict": "Best for repair and resale in Ukraine with a trusted local body shop.",
-    "before_images": [
-      "https://placehold.co/1000x700/1e3a8a/ffffff?text=Before+RAV4"
-    ],
-    "after_images": [
-      "https://placehold.co/1000x700/047857/ffffff?text=After+RAV4"
-    ],
+    "before_images": [],
+    "after_images": [],
     "is_featured_homepage": true,
     "is_real_case": false,
     "is_estimate": true,
-    "client_label": "Example composite — not a single named client",
+    "client_label": "Illustrative example — not a single transaction",
     "created_at": "2026-01-15T12:00:00Z",
     "updated_at": "2026-03-01T10:00:00Z"
   },
@@ -52,16 +48,14 @@
     "market_price": 21800,
     "estimated_savings": 3200,
     "currency": "USD",
-    "summary": "Three-row SUV sourced for a buyer prioritizing space over cosmetic perfection. Rear quarter damage; mechanical inspection passed pre-bid. Example estimate illustrates how salvage plus controlled repair can land below comparable retail in destination.",
+    "summary": "Three-row SUV example for a buyer prioritizing space over cosmetic perfection. Rear quarter damage and controlled repair scope illustrate how salvage plus repair can land below comparable retail in the destination market, but duties and taxes remain estimate-based until the exact import scenario is confirmed.",
     "verdict": "Strong for families comfortable with documented repair and certification steps.",
-    "before_images": [
-      "https://placehold.co/1000x700/312e81/ffffff?text=Before+Pilot"
-    ],
+    "before_images": [],
     "after_images": [],
     "is_featured_homepage": true,
     "is_real_case": false,
     "is_estimate": true,
-    "client_label": "Example estimate",
+    "client_label": "Illustrative example — not a single transaction",
     "created_at": "2026-02-01T12:00:00Z",
     "updated_at": "2026-03-05T09:00:00Z"
   },
@@ -84,18 +78,14 @@
     "market_price": 29000,
     "estimated_savings": 6790,
     "currency": "USD",
-    "summary": "Clean-title EV sourced from East Coast inventory for UAE-bound container. Minor wear only; no structural work. Customs line uses indicative UAE duty assumptions — final charges depend on HS code and policy at arrival.",
-    "verdict": "Clean-title export for UAE — efficient port path via Jebel Ali.",
-    "before_images": [
-      "https://placehold.co/1000x700/4f46e5/ffffff?text=Tesla+Auction"
-    ],
-    "after_images": [
-      "https://placehold.co/1000x700/312e81/ffffff?text=Tesla+Delivered"
-    ],
+    "summary": "Illustrative clean-title EV export scenario from East Coast inventory to Jebel Ali. UAE customs duty often starts at 5%, but VAT, port fees, and local compliance can change the actual final landed figure depending on the buyer structure and current rules.",
+    "verdict": "Clean-title export example for UAE with an efficient Jebel Ali route.",
+    "before_images": [],
+    "after_images": [],
     "is_featured_homepage": true,
     "is_real_case": false,
     "is_estimate": true,
-    "client_label": "Buyer from Dubai (anonymized)",
+    "client_label": "Illustrative example — not a single transaction",
     "created_at": "2026-01-20T12:00:00Z",
     "updated_at": "2026-03-12T11:00:00Z"
   },
@@ -118,17 +108,14 @@
     "market_price": 35000,
     "estimated_savings": 6030,
     "currency": "USD",
-    "summary": "Hail-damaged bed and roof panels; mechanical systems verified. Buyer elected partial paintless repair in EU. Illustrates how hail inventory can pencil out versus local retail for work-truck use cases.",
-    "verdict": "Good for EU buyer accepting cosmetic repair trade-offs.",
-    "before_images": [
-      "https://placehold.co/1000x700/0f172a/ffffff?text=F-150+Before"
-    ],
-    "after_images": [
-      "https://placehold.co/1000x700/334155/ffffff?text=F-150+After"
-    ],
+    "summary": "Illustrative hail-damage work-truck calculation showing how cosmetic repair can compare against local retail in Europe. Import costs, duties, and repair budgets depend on the exact truck spec, route, and destination-side processing at the time of shipment.",
+    "verdict": "Good for buyers accepting cosmetic repair trade-offs in exchange for lower acquisition cost.",
+    "before_images": [],
+    "after_images": [],
     "is_featured_homepage": false,
     "is_real_case": false,
     "is_estimate": true,
+    "client_label": "Illustrative example — not a single transaction",
     "created_at": "2026-02-18T12:00:00Z",
     "updated_at": "2026-03-08T14:00:00Z"
   }

@@ -5,22 +5,30 @@ import { conditionDisplay, statusDisplay, titleStatusDisplay } from "@/lib/ready
 export default function ReadyCarCard({
   car,
   hrefPrefix,
+  locale,
 }: {
   car: ReadyCar;
   /** e.g. "" or "/ru" */
   hrefPrefix: string;
+  locale?: "en" | "ru";
 }) {
   const base = hrefPrefix || "";
   const detailHref = `${base}/ready-cars/${car.slug}`;
-  const mainImage = car.images[0] ?? "https://placehold.co/800x500/e2e8f0/64748b?text=No+image";
+  const mainImage = car.images[0] ?? null;
+  const noImageCopy = hrefPrefix === "/ru" ? "Детали по запросу" : "Details available on request";
+  const currentLocale = locale ?? (hrefPrefix === "/ru" ? "ru" : "en");
 
   return (
     <article className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col h-full">
       <div className="relative h-48 bg-gray-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={mainImage} alt="" className="w-full h-full object-cover" />
+        {mainImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={mainImage} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div className="flex h-full items-center justify-center px-6 text-center text-sm text-gray-500">{noImageCopy}</div>
+        )}
         <span className="absolute top-2 left-2 bg-white/95 text-gray-900 text-xs font-bold px-2 py-1 rounded shadow">
-          {statusDisplay(car.status)}
+          {statusDisplay(car.status, currentLocale)}
         </span>
       </div>
       <div className="p-4 flex flex-col flex-grow">
@@ -29,8 +37,8 @@ export default function ReadyCarCard({
         </h3>
         <p className="text-sm text-gray-500 mt-1">{car.location}</p>
         <div className="flex flex-wrap gap-2 mt-2">
-          <span className="text-xs font-medium bg-slate-100 text-slate-800 px-2 py-0.5 rounded">{titleStatusDisplay(car.title_status)}</span>
-          <span className="text-xs font-medium bg-amber-50 text-amber-900 px-2 py-0.5 rounded">{conditionDisplay(car.condition)}</span>
+          <span className="text-xs font-medium bg-slate-100 text-slate-800 px-2 py-0.5 rounded">{titleStatusDisplay(car.title_status, currentLocale)}</span>
+          <span className="text-xs font-medium bg-amber-50 text-amber-900 px-2 py-0.5 rounded">{conditionDisplay(car.condition, currentLocale)}</span>
         </div>
         <p className="text-sm text-gray-600 mt-2">
           {car.mileage} {car.mileage_unit === "km" ? "km" : "mi"}

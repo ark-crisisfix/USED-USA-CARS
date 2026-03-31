@@ -19,6 +19,14 @@ export default function CalculatorClient({ locale }: { locale: Locale }) {
   const customs = destination === "ukraine" ? Math.round(budget * 0.35) : Math.round(budget * 0.05);
   const total = budget + auctionFee + landShipping + oceanShipping + serviceFee + customs;
   const destPref = destination === "ukraine" ? "Ukraine" : "UAE";
+  const resultContext =
+    locale === "ru"
+      ? "Итог показан как ориентировочный сценарий с разбивкой по основным статьям, а не как фиксированная сумма."
+      : "The total below is shown as an estimate with cost context, not as a fixed guaranteed amount.";
+  const ukraineTaxNote =
+    locale === "ru"
+      ? "Для Украины расчет может включать пошлину, акциз и НДС в зависимости от типа двигателя, топлива, возраста автомобиля и статуса электромобиля."
+      : "For Ukraine, estimated import cost may include import duty, excise tax, and VAT depending on engine type, fuel type, vehicle age, and EV status.";
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">
@@ -137,7 +145,11 @@ export default function CalculatorClient({ locale }: { locale: Locale }) {
                 <span className="text-3xl font-black text-emerald-400">${total.toLocaleString()}</span>
               </div>
 
-              <p className="text-xs text-gray-500 mt-6 text-center">{tc.disclaimer}</p>
+              <div className="mt-6 space-y-3 text-center">
+                <p className="text-xs text-gray-400">{resultContext}</p>
+                <p className="text-xs text-gray-500">{tc.disclaimer}</p>
+                {destination === "ukraine" ? <p className="text-xs text-blue-200">{ukraineTaxNote}</p> : null}
+              </div>
             </div>
           </div>
         </div>

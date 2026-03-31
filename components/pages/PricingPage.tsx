@@ -8,6 +8,11 @@ export default function PricingPage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).pricing;
   const lead = getDictionary(locale).leadForm;
   const L = (path: string) => localizePath(path, locale);
+  const fromLabel = locale === "ru" ? "от " : "from ";
+  const pricingDisclaimer =
+    locale === "ru"
+      ? "Все диапазоны цен являются типовыми оценками на основе недавних отправок и могут изменяться в зависимости от размера автомобиля, состояния, маршрута, стоимости топлива, загруженности портов и доступности перевозчиков."
+      : "All pricing ranges are typical estimates based on recent shipments and may vary depending on vehicle size, condition, route, fuel costs, port workload, and carrier availability.";
 
   return (
     <div className="bg-gray-50 min-h-screen py-16 px-4 font-sans">
@@ -19,7 +24,7 @@ export default function PricingPage({ locale }: { locale: Locale }) {
           <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
             <h2 className="text-2xl font-bold mb-2">{t.basicTitle}</h2>
             <div className="text-4xl font-black text-blue-600 mb-6">
-              $500 <span className="text-lg font-medium text-gray-500">{t.perCar}</span>
+              {fromLabel}$500 <span className="text-lg font-medium text-gray-500">{t.perCar}</span>
             </div>
             <p className="text-gray-600 mb-6 flex-grow">{t.basicDesc}</p>
             <ul className="space-y-3 mb-8">
@@ -50,7 +55,7 @@ export default function PricingPage({ locale }: { locale: Locale }) {
             </div>
             <h2 className="text-2xl font-bold mb-2">{t.fullTitle}</h2>
             <div className="text-4xl font-black mb-6">
-              $850 <span className="text-lg font-medium text-blue-200">{t.perCar}</span>
+              {fromLabel}$850 <span className="text-lg font-medium text-blue-200">{t.perCar}</span>
             </div>
             <p className="text-blue-100 mb-6 flex-grow">{t.fullDesc}</p>
             <ul className="space-y-3 mb-8">
@@ -103,6 +108,9 @@ export default function PricingPage({ locale }: { locale: Locale }) {
             <Link href={L("/calculator")} className="text-blue-600 font-semibold hover:underline">
               {t.calcLink}
             </Link>
+          </div>
+          <div className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-900">
+            {pricingDisclaimer}
           </div>
         </div>
 

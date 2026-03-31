@@ -226,7 +226,7 @@ export const dictionaries = {
       email: 'Email',
       emailNote: 'We typically reply within 2 hours',
       office: 'Head Office',
-      reps: 'Regional Representatives',
+      reps: 'Contact channels',
       formTitle: 'Send us a message',
     },
     pricing: {
@@ -391,7 +391,7 @@ export const dictionaries = {
       sideTitle: 'UAE specific advantages',
       side1: 'Focus on Clean Titles',
       side2: 'Jebel Ali direct freight',
-      side3: 'Fast 5% customs duty processing',
+      side3: 'UAE duty, VAT, and compliance depend on the transaction',
       side4: 'Luxury & SUV specialists',
       formTitle: 'Get a Quote for UAE',
     },

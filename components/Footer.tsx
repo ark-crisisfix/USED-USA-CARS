@@ -12,6 +12,10 @@ export default function Footer() {
   const auctionListingsLabel = locale === "ru" ? "Площадки с лотами" : "Auction Listings";
   const auctionPicksLabel = locale === "ru" ? "Лучшие лоты недели" : "Auction Picks";
   const partsLabel = locale === "ru" ? "Запчасти и отправка" : "Parts Shipping";
+  const disclaimer =
+    locale === "ru"
+      ? "Все цены, пошлины и сроки доставки, указанные на сайте, являются ориентировочными и могут изменяться в зависимости от состояния автомобиля, результатов аукциона, маршрута доставки, работы портов, таможенного оформления и изменений законодательства."
+      : "All prices, duties, and delivery timelines shown on this site are estimates only and may vary based on vehicle condition, auction result, shipping route, port schedules, customs processing, and regulatory changes.";
   const L = (path: string) => localizePath(path, locale);
   const y = new Date().getFullYear();
 
@@ -120,6 +124,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+          <p className="mx-auto mb-4 max-w-4xl text-sm leading-6 text-gray-400">{disclaimer}</p>
           <p>
             &copy; {y} {t.brand}. {t.rights}
           </p>

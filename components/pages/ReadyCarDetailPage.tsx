@@ -49,13 +49,13 @@ export default function ReadyCarDetailPage({ car, locale }: { car: ReadyCar; loc
                   {car.mileage} {car.mileage_unit === "km" ? "km" : t.mi}
                 </dd>
                 <dt className="text-gray-500">Condition</dt>
-                <dd className="font-semibold">{conditionDisplay(car.condition)}</dd>
+                <dd className="font-semibold">{conditionDisplay(car.condition, locale)}</dd>
                 <dt className="text-gray-500">Title</dt>
-                <dd className="font-semibold">{titleStatusDisplay(car.title_status)}</dd>
+                <dd className="font-semibold">{titleStatusDisplay(car.title_status, locale)}</dd>
                 <dt className="text-gray-500">Location</dt>
                 <dd className="font-semibold">{car.location}</dd>
                 <dt className="text-gray-500">Availability</dt>
-                <dd className="font-semibold">{statusDisplay(car.status)}</dd>
+                <dd className="font-semibold">{statusDisplay(car.status, locale)}</dd>
               </dl>
               {car.vin_last6 ? (
                 <p className="text-xs text-gray-500 mt-4">VIN (last 6): …{car.vin_last6}</p>

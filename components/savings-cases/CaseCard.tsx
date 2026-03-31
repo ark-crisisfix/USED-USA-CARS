@@ -7,10 +7,10 @@ import { commerce } from "@/lib/commerceCopy";
 function destBadge(locale: Locale, dest: SavingsCase["destination"]): string {
   if (locale === "ru") {
     const m: Record<SavingsCase["destination"], string> = {
-      ukraine: "Украина",
-      uae: "ОАЭ",
-      canada: "Канада",
-      worldwide: "Другое",
+      ukraine: "\u0423\u043a\u0440\u0430\u0438\u043d\u0430",
+      uae: "\u041e\u0410\u042d",
+      canada: "\u041a\u0430\u043d\u0430\u0434\u0430",
+      worldwide: "\u0414\u0440\u0443\u0433\u043e\u0435",
     };
     return m[dest];
   }
@@ -37,16 +37,24 @@ export default function CaseCard({
   const co = commerce(locale);
   const base = hrefPrefix || "";
   const detailHref = `${base}/cases/${c.slug}`;
-  const img = c.before_images[0] ?? c.after_images[0] ?? "https://placehold.co/800x500/e2e8f0/64748b?text=Case";
+  const img = c.before_images[0] ?? c.after_images[0] ?? null;
   const delivery = deliveryFeesTotal(c);
   const repair = c.repair_cost ?? 0;
-  const repairLine = c.repair_cost != null ? `${co.repair}: $${repair.toLocaleString()}` : `${co.repair}: —`;
+  const repairLine = c.repair_cost != null ? `${co.repair}: $${repair.toLocaleString()}` : `${co.repair}: -`;
+  const illustrativeLabel =
+    locale === "ru" ? "\u041f\u0440\u0438\u043c\u0435\u0440 \u0440\u0430\u0441\u0447\u0435\u0442\u0430 \u2014 \u043d\u0435 \u0435\u0434\u0438\u043d\u0438\u0447\u043d\u0430\u044f \u0440\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u0441\u0434\u0435\u043b\u043a\u0430" : "Illustrative example — not a single transaction";
 
   return (
     <article className={`bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col h-full ${compact ? "" : ""}`}>
       <div className="relative h-44 bg-gray-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img} alt="" className="w-full h-full object-cover" />
+        {img ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={img} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div className="flex h-full items-center justify-center px-6 text-center text-sm text-gray-500">
+            {illustrativeLabel}
+          </div>
+        )}
         <span className="absolute top-2 left-2 bg-white/95 text-gray-900 text-xs font-bold px-2 py-1 rounded shadow">{destBadge(locale, c.destination)}</span>
         {c.is_estimate ? (
           <span className="absolute top-2 right-2 bg-amber-100 text-amber-900 text-xs font-bold px-2 py-1 rounded">{co.estimateLabel}</span>
@@ -73,12 +81,13 @@ export default function CaseCard({
           </li>
         </ul>
         <p className="text-sm mt-3 text-slate-700 border-t border-gray-100 pt-3">
-          <span className="text-gray-500">{co.estMarket}:</span> ${c.market_price.toLocaleString()} ·{" "}
+          <span className="text-gray-500">{co.estMarket}:</span> ${c.market_price.toLocaleString()}{" "}
           <span className="text-emerald-800 font-semibold">
             {co.saved}: ${c.estimated_savings.toLocaleString()}
           </span>
         </p>
         {c.client_label ? <p className="text-xs text-gray-500 mt-2">{c.client_label}</p> : null}
+        {!c.is_real_case ? <p className="text-xs text-amber-800 mt-2">{illustrativeLabel}</p> : null}
         <Link
           href={detailHref}
           className="mt-4 text-center text-sm font-semibold py-2.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800"

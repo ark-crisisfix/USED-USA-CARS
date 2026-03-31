@@ -22,7 +22,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       ? {
           eyebrow: "NorthAm Cars",
           heroBullets: [
-            "Copart \u0438 IAAI \u0431\u0435\u0437 \u043b\u0438\u0448\u043d\u0438\u0445 \u043f\u043e\u0441\u0440\u0435\u0434\u043d\u0438\u043a\u043e\u0432",
+            "\u041c\u044b \u0431\u0435\u0440\u0435\u043c \u043d\u0430 \u0441\u0435\u0431\u044f \u0432\u0435\u0441\u044c \u043f\u0440\u043e\u0446\u0435\u0441\u0441 \u0440\u0430\u0431\u043e\u0442\u044b \u0441 Copart \u0438 IAAI \u2014 \u043e\u0442 \u043f\u043e\u0434\u0431\u043e\u0440\u0430 \u043b\u043e\u0442\u0430 \u0438 \u0443\u0447\u0430\u0441\u0442\u0438\u044f \u0432 \u0430\u0443\u043a\u0446\u0438\u043e\u043d\u0435 \u0434\u043e \u043e\u0444\u043e\u0440\u043c\u043b\u0435\u043d\u0438\u044f \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u043e\u0432, \u043b\u043e\u0433\u0438\u0441\u0442\u0438\u043a\u0438 \u0438 \u0440\u0430\u0441\u0447\u0435\u0442\u0430 \u043f\u043e\u043b\u043d\u043e\u0439 \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u0438.",
             "\u041f\u043e\u043d\u044f\u0442\u043d\u0430\u044f \u0441\u043c\u0435\u0442\u0430 \u0434\u043e \u0441\u0442\u0430\u0432\u043a\u0438 \u0438 \u043f\u043e\u043a\u0443\u043f\u043a\u0438",
             "\u0420\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430 \u0447\u0435\u0440\u0435\u0437 \u0437\u0432\u043e\u043d\u043e\u043a, WhatsApp \u0438 Telegram",
           ],
@@ -82,7 +82,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       : {
           eyebrow: "NorthAm Cars",
           heroBullets: [
-            "Copart and IAAI access without unnecessary middlemen",
+            "We manage the full process across Copart and IAAI — including lot selection, bidding, title handling, logistics, and total cost planning.",
             "Clear landed-cost logic before you bid",
             "Real support by phone, WhatsApp, and Telegram",
           ],
@@ -231,6 +231,11 @@ export default function HomePage({ locale }: { locale: Locale }) {
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
                 <div className="text-2xl font-black text-white md:text-3xl">4-10</div>
                 <div className="mt-2 text-xs uppercase tracking-[0.16em] text-blue-100">{t.trustDelivery}</div>
+                <div className="mt-2 text-xs leading-5 text-blue-100">
+                  {locale === "ru"
+                    ? "Типичный срок доставки зависит от маршрута, работы портов и таможенного оформления."
+                    : "Typical delivery time depends on route, port schedules, and customs processing."}
+                </div>
               </div>
             </div>
 
@@ -271,7 +276,11 @@ export default function HomePage({ locale }: { locale: Locale }) {
           <div className="p-6">
             <div className="mb-2 text-4xl font-black text-amber-500">4-10</div>
             <div className="text-lg font-semibold text-gray-800">{t.trustDelivery}</div>
-            <p className="mt-2 text-gray-500">{t.trustDeliverySub}</p>
+            <p className="mt-2 text-gray-500">
+              {locale === "ru"
+                ? "Типичный срок доставки: 4–10 недель в зависимости от маршрута, работы портов и таможенного оформления."
+                : "Typical delivery time: 4–10 weeks depending on route, port schedules, and customs processing."}
+            </p>
           </div>
         </div>
       </section>
@@ -305,9 +314,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <div>
               <h2 className="text-3xl font-bold text-gray-900">{co.readySectionTitle}</h2>
               <p className="mt-2 max-w-2xl text-gray-600">{co.readySectionSub}</p>
-              <p className="mt-3 inline-block rounded-lg border border-amber-100 bg-amber-50 px-3 py-2 text-xs text-amber-800">
-                {co.readyBadgeExample}
-              </p>
             </div>
             <Link
               href={L("/ready-cars")}
@@ -319,7 +325,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredReady.map((car) => (
-              <ReadyCarCard key={car.id} car={car} hrefPrefix={hrefPrefix} />
+              <ReadyCarCard key={car.id} car={car} hrefPrefix={hrefPrefix} locale={locale} />
             ))}
           </div>
         </div>

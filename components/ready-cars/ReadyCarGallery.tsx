@@ -6,11 +6,11 @@ export default function ReadyCarGallery({ images, altBase }: { images: string[];
   const [active, setActive] = useState(0);
   const [modal, setModal] = useState(false);
 
-  const imgs = images.length ? images : ["https://placehold.co/1200x800/e2e8f0/64748b?text=No+image"];
+  const imgs = images;
 
   const onKey = useCallback(
     (e: KeyboardEvent) => {
-      if (!modal) return;
+      if (!modal || !imgs.length) return;
       if (e.key === "Escape") setModal(false);
       if (e.key === "ArrowRight") setActive((i) => (i + 1) % imgs.length);
       if (e.key === "ArrowLeft") setActive((i) => (i - 1 + imgs.length) % imgs.length);
@@ -25,15 +25,22 @@ export default function ReadyCarGallery({ images, altBase }: { images: string[];
 
   return (
     <div className="space-y-3">
-      <button
-        type="button"
-        onClick={() => setModal(true)}
-        className="relative w-full aspect-[16/10] bg-gray-100 rounded-xl overflow-hidden border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        aria-label="Open full screen gallery"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imgs[active]} alt={`${altBase} — photo ${active + 1}`} className="w-full h-full object-cover" />
-      </button>
+      {imgs.length ? (
+        <button
+          type="button"
+          onClick={() => setModal(true)}
+          className="relative w-full aspect-[16/10] bg-gray-100 rounded-xl overflow-hidden border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-label="Open full screen gallery"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imgs[active]} alt={`${altBase} - photo ${active + 1}`} className="w-full h-full object-cover" />
+        </button>
+      ) : (
+        <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-gray-200 bg-gray-100 px-6 text-center text-sm text-gray-500">
+          Details available on request
+        </div>
+      )}
+
       {imgs.length > 1 ? (
         <div className="flex gap-2 flex-wrap">
           {imgs.map((src, i) => (
@@ -50,7 +57,7 @@ export default function ReadyCarGallery({ images, altBase }: { images: string[];
         </div>
       ) : null}
 
-      {modal ? (
+      {modal && imgs.length ? (
         <div
           className="fixed inset-0 z-[100] bg-black/90 flex flex-col p-4"
           role="dialog"
@@ -77,7 +84,7 @@ export default function ReadyCarGallery({ images, altBase }: { images: string[];
                 className="text-white font-semibold px-4 py-2 bg-white/10 rounded-lg"
                 onClick={() => setActive((i) => (i - 1 + imgs.length) % imgs.length)}
               >
-                ←
+                {"<-"}
               </button>
               <span className="text-white/80 self-center text-sm">
                 {active + 1} / {imgs.length}
@@ -87,7 +94,7 @@ export default function ReadyCarGallery({ images, altBase }: { images: string[];
                 className="text-white font-semibold px-4 py-2 bg-white/10 rounded-lg"
                 onClick={() => setActive((i) => (i + 1) % imgs.length)}
               >
-                →
+                {"->"}
               </button>
             </div>
           ) : null}

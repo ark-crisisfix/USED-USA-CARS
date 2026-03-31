@@ -630,7 +630,11 @@ function ExportUae({ locale }: { locale: Locale }) {
     { title: t.s3t, body: t.s3b },
     { title: t.s4t, body: t.s4b },
   ];
-  const sideItems = [t.side1, t.side2, t.side3, t.side4];
+  const uaeDutyText =
+    locale === "ru"
+      ? "Таможенная пошлина в ОАЭ обычно начинается от 5%. Дополнительно может применяться НДС (5%) и местные требования к оформлению в зависимости от статуса покупателя и структуры сделки."
+      : "Customs duty in the UAE typically starts at 5%. Additional VAT (5%) and local compliance requirements may apply depending on the buyer’s status and transaction structure.";
+  const sideItems = [t.side1, t.side2, uaeDutyText, t.side4];
 
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 font-sans">

@@ -18,6 +18,8 @@ export default function SavingsCaseDetailPage({ c, locale }: { c: SavingsCase; l
   const L = (path: string) => localizePath(path, locale);
   const title = `${c.year} ${c.make} ${c.model}`;
   const delivery = deliveryFeesTotal(c);
+  const illustrativeLabel =
+    locale === "ru" ? "Пример расчета — не единичная реальная сделка" : "Illustrative example — not a single transaction";
 
   const before = c.before_images;
   const after = c.after_images;
@@ -43,6 +45,9 @@ export default function SavingsCaseDetailPage({ c, locale }: { c: SavingsCase; l
           <p className="text-lg text-gray-700 mt-4 font-medium">{c.verdict}</p>
           {c.is_estimate ? (
             <p className="mt-2 inline-block text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded">{co.estimateLabel}</p>
+          ) : null}
+          {!c.is_real_case ? (
+            <p className="mt-2 inline-block text-sm font-bold bg-amber-50 text-amber-900 px-3 py-1 rounded">{illustrativeLabel}</p>
           ) : null}
           {c.client_label ? <p className="text-sm text-gray-500 mt-3">{c.client_label}</p> : null}
         </header>

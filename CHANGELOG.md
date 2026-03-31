@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
-- No unreleased changes at the moment. `main` reflects the latest deployed work.
+### Changed
+
+- Removed demo and placeholder content across homepage, contact, catalog, ready-cars, and cases flows, including fake contacts, fake addresses, placeholder inventory, and sample-lot visuals.
+- Added sitewide estimate disclaimers plus route-specific clarifications for pricing, calculator totals, UAE import charges, Ukraine tax context, and variable delivery timelines.
+- Reworked the cases section into separate verified and illustrative groups, labeling all non-real examples clearly and removing mock case imagery.
 
 ## [2026-03-25]
 
