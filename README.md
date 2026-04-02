@@ -86,7 +86,7 @@ Lead flow:
 2. Frontend sends `POST /api/leads`
 3. Cloudflare Pages Function validates and normalizes the payload
 4. Lead is durably persisted in HubSpot server-side
-5. Optional internal email notification is sent if configured
+5. Internal notification email is sent after HubSpot succeeds when notification env vars are configured
 
 ### Environment variables
 
@@ -100,11 +100,17 @@ Optional:
 - `NOTIFY_EMAIL_TO`
 - `NOTIFY_EMAIL_FROM`
 
+Recommended for this project:
+
+- `NOTIFY_EMAIL_TO=ark@crisisfix.ca`
+
 Behavior:
 
 - If `HUBSPOT_ACCESS_TOKEN` is missing, the API returns a backend failure and does not fake success
-- If Resend env vars are missing, email notification is skipped
+- If Resend notification env vars are missing, HubSpot still remains the primary acceptance step and the email side effect is skipped
 - Success is returned only after HubSpot persistence succeeds
+- If HubSpot persistence fails, no notification email is sent
+- If email delivery fails after HubSpot succeeds, the failure is logged server-side and the successful lead response is preserved
 
 ### HubSpot setup
 
@@ -129,12 +135,20 @@ These properties are optional for the code to work. If they do not exist yet, th
 ### Manual QA checklist
 
 - Homepage lead: submit a valid request and confirm a HubSpot contact + note are created
-- Ready car inquiry: confirm `ready_car_reference_id` and `source_context` appear in the note
-- Case inquiry: confirm `case_reference_id` appears in the note
+- Homepage lead: confirm the notification email includes site, full page URL, summary, and core fields
+- Ready car inquiry: confirm `ready_car_reference_id`, `source_context`, and ready-car context appear in the note and email
+- Case inquiry: confirm `case_reference_id` appears in the note and email
+- Lead with message: confirm the message is clearly visible in the email
 - Honeypot: fill the hidden field manually and confirm the request is rejected
 - Missing `HUBSPOT_ACCESS_TOKEN`: confirm the API returns an error instead of success
-- Missing Resend vars: confirm the lead still saves successfully in HubSpot
+- Missing Resend vars or provider failure: confirm the lead still saves successfully in HubSpot and the backend logs the email issue
 
 ### Security note
 
 Keep the HubSpot private app token server-side only in Cloudflare environment variables. If a token was ever pasted into chat or logs, rotate it in HubSpot before production deployment.
+
+### Reusable implementation note
+
+For future projects that need the same website form -> Cloudflare -> HubSpot lead flow, use:
+
+- `docs/hubspot-lead-form-playbook.md`

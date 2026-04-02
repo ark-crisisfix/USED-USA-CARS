@@ -1,5 +1,6 @@
 import { syncLeadToHubSpot } from "@/lib/leads/hubspot";
-import { SITE_URL } from "@/lib/siteMeta";
+import { sendLeadNotificationEmail } from "@/lib/email/sendLeadNotification";
+import { SITE_BRAND, SITE_URL } from "@/lib/siteMeta";
 import type {
   LeadFailureResponse,
   LeadRecord,
@@ -42,6 +43,30 @@ function asRequiredString(value: unknown): string | null {
   return asOptionalString(value);
 }
 
+function toAbsoluteUrl(value: string | null, baseUrl: string): string | null {
+  if (!value) return null;
+
+  try {
+    return new URL(value, baseUrl).toString();
+  } catch {
+    return value;
+  }
+}
+
+function toHostname(value: string | null): string | null {
+  if (!value) return null;
+
+  try {
+    return new URL(value).hostname || null;
+  } catch {
+    try {
+      return new URL(`https://${value}`).hostname || null;
+    } catch {
+      return null;
+    }
+  }
+}
+
 function normalizeFormType(value: unknown): LeadRecord["form_type"] {
   const allowed = new Set([
     "general",
@@ -79,10 +104,15 @@ async function hashIp(ip: string | null): Promise<string | null> {
 }
 
 async function buildContext(request: Request): Promise<LeadRequestContext> {
+  const requestUrl = request.url;
+  const requestHostname = toHostname(requestUrl);
+
   return {
     referrer: request.headers.get("referer"),
     user_agent: request.headers.get("user-agent"),
     ip_hash: await hashIp(getClientIp(request)),
+    request_url: requestUrl,
+    request_hostname: requestHostname,
   };
 }
 
@@ -104,18 +134,23 @@ function normalizeLead(payload: LeadRequestPayload, context: LeadRequestContext)
     return badRequest("Some required fields look incomplete.", "VALIDATION_ERROR");
   }
 
+  const pageUrl = toAbsoluteUrl(asOptionalString(payload.page_url), context.request_url);
+  const pageHostname = toHostname(pageUrl);
+  const requestHostname = context.request_hostname;
+  const fallbackSiteSource = toHostname(SITE_URL) ?? SITE_URL.replace(/^https?:\/\//, "");
+
   return {
     name,
     contact,
     budget,
     destination,
-    site_source: SITE_URL.replace(/^https?:\/\//, ""),
+    site_source: pageHostname || requestHostname || fallbackSiteSource,
     preferred_vehicle: asOptionalString(payload.preferred_vehicle),
     lot_reference: asOptionalString(payload.lot_reference),
     condition_preference: asOptionalString(payload.condition_preference),
     message: asOptionalString(payload.message),
     source_context: asOptionalString(payload.source_context),
-    page_url: asOptionalString(payload.page_url),
+    page_url: pageUrl,
     form_type: normalizeFormType(payload.form_type),
     ready_car_reference_id: asOptionalString(payload.ready_car_reference_id),
     case_reference_id: asOptionalString(payload.case_reference_id),
@@ -126,43 +161,12 @@ function normalizeLead(payload: LeadRequestPayload, context: LeadRequestContext)
   };
 }
 
-async function sendNotificationEmail(env: HandlerEnv, lead: LeadRecord): Promise<boolean> {
-  if (!env.RESEND_API_KEY || !env.NOTIFY_EMAIL_TO || !env.NOTIFY_EMAIL_FROM) {
-    return false;
-  }
-
-  const text = [
-    `New website lead`,
-    ``,
-    `Name: ${lead.name}`,
-    `Contact: ${lead.contact}`,
-    `Budget: ${lead.budget}`,
-    `Destination: ${lead.destination}`,
-    `Preferred vehicle: ${lead.preferred_vehicle ?? "-"}`,
-    `Lot URL / number: ${lead.lot_reference ?? "-"}`,
-    `Condition preference: ${lead.condition_preference ?? "-"}`,
-    `Message: ${lead.message ?? "-"}`,
-    ``,
-    `Form type: ${lead.form_type}`,
-    `Source context: ${lead.source_context ?? "-"}`,
-    `Page URL: ${lead.page_url ?? "-"}`,
-  ].join("\n");
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: env.NOTIFY_EMAIL_FROM,
-      to: [env.NOTIFY_EMAIL_TO],
-      subject: `New lead: ${lead.name}`,
-      text,
-    }),
-  });
-
-  return response.ok;
+async function hashIdentifier(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("")
+    .slice(0, 12);
 }
 
 function json(data: LeadResponse, status: number): Response {
@@ -229,12 +233,41 @@ export async function handleLeadPost(request: Request, env: HandlerEnv): Promise
   });
 
   let emailSent = false;
+  const submittedAt = new Date().toISOString();
 
   try {
-    emailSent = await sendNotificationEmail(env, normalized);
-    console.info("[leads] email notification", { sent: emailSent });
+    const emailResult = await sendLeadNotificationEmail(env, {
+      lead: normalized,
+      submittedAt,
+      requestUrl: context.request_url,
+      requestHostname: context.request_hostname,
+      explicitSiteName: SITE_BRAND,
+    });
+
+    emailSent = emailResult.success;
+
+    if (!emailResult.success) {
+      console.error("[leads] email notification failed", {
+        site: normalized.site_source,
+        page_url: normalized.page_url,
+        destination: normalized.destination,
+        contact_hash: await hashIdentifier(normalized.contact),
+        error: emailResult.error ?? "Unknown email delivery error",
+        skipped: Boolean(emailResult.skipped),
+      });
+    } else {
+      console.info("[leads] email notification sent", {
+        site: normalized.site_source,
+        page_url: normalized.page_url,
+        destination: normalized.destination,
+      });
+    }
   } catch (error) {
     console.error("[leads] email notification failed", {
+      site: normalized.site_source,
+      page_url: normalized.page_url,
+      destination: normalized.destination,
+      contact_hash: await hashIdentifier(normalized.contact),
       error: error instanceof Error ? error.message : "Unknown error",
     });
   }

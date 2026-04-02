@@ -72,4 +72,6 @@ export type LeadRequestContext = {
   referrer: string | null;
   user_agent: string | null;
   ip_hash: string | null;
+  request_url: string;
+  request_hostname: string | null;
 };
